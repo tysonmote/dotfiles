@@ -12,7 +12,8 @@ bootstrapping a new machine.
 
 ## Terminal.app
 
-TODO
+In Terminal.app's preference window, select "Profiles" and then import the
+`Terminal_app/Brown.terminal` profile.
 
 ## Git
 
