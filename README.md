@@ -50,9 +50,9 @@ First, install [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh), then:
 
 2. Install [Input Mono](http://input.fontbureau.com)
 
-2. Install [Janus](https://github.com/carlhuda/janus)
+3. Install [Janus](https://github.com/carlhuda/janus)
 
-3. Link up vimrc files:
+4. Link up vimrc files:
 
         ln -s ~/git/dotfiles/vim/vimrc.before ~/.vimrc.before
         ln -s ~/git/dotfiles/vim/vimrc.after ~/.vimrc.after
