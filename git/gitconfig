@@ -1,0 +1,76 @@
+[user]
+  name = Tyson Tate
+  email = tyson@tysontate.com
+
+[core]
+  # Global ignores
+  excludesfile = ~/.gitignore
+
+  # Treat spaces before tabs and all kinds of trailing whitespace as an error
+  # [default] trailing-space: looks for spaces at the end of a line
+  # [default] space-before-tab: looks for spaces before tabs at the beginning of a line
+  whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+
+  # Make `git rebase` safer on OS X
+  # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+  trustctime = false
+
+  # Prevent showing files whose names contain non-ASCII symbols as unversioned.
+  # http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
+  precomposeunicode = false
+
+[alias]
+  log = log --stat --summary
+  up = "!git remote update -p; git merge --ff-only @{u}"
+
+[apply]
+  # Detect whitespace errors when applying a patch
+  whitespace = fix
+
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+
+[color "status"]
+  added = green
+  changed = yellow
+  untracked = cyan
+
+[credential]
+  helper = osxkeychain
+
+[diff]
+  tool = Kaleidoscope
+  mnemonicprefix = true
+
+[difftool]
+  prompt = false
+
+[difftool "Kaleidoscope"]
+  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+
+[merge]
+  summary = true
+  verbosity = 1
+  tool = Kaleidoscope
+
+[mergetool]
+  prompt = false
+
+[mergetool "Kaleidoscope"]
+  cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+  trustExitCode = true
+
+[push]
+  default = simple
+
+[rerere]
+  enabled = 1
+

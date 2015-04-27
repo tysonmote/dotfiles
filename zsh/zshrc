@@ -1,0 +1,57 @@
+# .zshrc is sourced for interactive shells only
+
+#
+# Basic ZSH settings
+#
+
+# emacs-style keybindings
+bindkey -e
+HISTSIZE=1000
+SAVEHIST=10000
+
+#
+# oh-my-zsh
+#
+
+ZSH=$HOME/.oh-my-zsh
+ZSH_THEME="tyson"
+ENABLE_CORRECTION="false"
+DISABLE_AUTO_UPDATE=true
+plugins=(brew terminalapp heroku golang vagrant)
+source $ZSH/oh-my-zsh.sh
+
+#
+# rbenv
+#
+
+export PATH=$HOME/.rbenv/bin:$PATH
+eval "$(rbenv init -)"
+
+#
+# Aliases
+#
+
+alias rake='noglob rake'
+alias be="bundle exec"
+
+#
+# Tab completion
+#
+
+source $HOME/.rake_completion
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+
+#
+# Packer / ec2-ami-tools stuff
+#
+
+export JAVA_HOME="$(/usr/libexec/java_home)"
+export EC2_AMITOOL_HOME="$(find /usr/local/Cellar/ec2-ami-tools/*/libexec -type d | head -n 1)"
+
+#
+# Secrets
+#
+
+source $HOME/.secrets
+

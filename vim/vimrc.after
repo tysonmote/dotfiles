@@ -1,0 +1,196 @@
+" ========
+" Settings
+" ========
+
+" Pretty colors
+syntax enable
+set background=dark
+if has('gui_running')
+  colorscheme base16-ocean
+else
+  colorscheme molokai
+end
+
+" General stuff
+set nocompatible                " break away from old vi compatibility
+set number                      " Line numbers are good
+set showmode                    " Show current mode down the bottom
+set visualbell                  " No sounds because I'm deaf ;_;
+set encoding=utf-8              " Default to UTF-8 encoding
+
+" Turn off swap files
+set noswapfile
+set nobackup
+set nowritebackup
+
+" Persist undo history across sessions
+silent !mkdir ~/.vim/backups > /dev/null 2>&1
+set undodir=~/.vim/backups
+set undofile
+
+" Respect case in completion, etc.
+set noignorecase
+set noinfercase
+
+" Spell checking
+if has('gui_running')
+  set spell spelllang=en_us
+end
+
+" Allow modified buffers to be hidden
+set hidden
+
+" Nicer command mode completion
+set wildmode=longest,list,full
+
+" Ignore files
+set wildignore+=*DS_Store*
+set wildignore+=vendor/rails/**
+set wildignore+=log/**
+set wildignore+=tmp/**
+set wildignore+=*.png,*.jpg,*.gif
+
+" Wrap cursor movements to next / previous lines
+set whichwrap+=<,>,[,],b,s
+
+" Highlight as you type
+set incsearch
+set hlsearch
+
+" Indentation options
+set smartindent
+set tabstop=2                  " tab size eql 2 spaces
+set softtabstop=2
+set shiftwidth=2               " default shift width for indents
+set expandtab                  " replace tabs with ${tabstop} spaces
+set smarttab                   " Use shiftwidth to determine tab behavior at the beginning of lines
+set linebreak                  " Wrap lines at words by default
+set textwidth=80
+
+" Folding
+set foldmethod=indent   " fold based on indent
+set foldnestmax=3       " deepest fold is 3 levels
+set nofoldenable        " don't fold by default
+
+" Open splits below and to the right
+set splitbelow
+set splitright
+
+" ========
+" Commands
+" ========
+
+" Cycle through split panes
+nnoremap <Tab> <C-w><C-w>
+
+" Cycle through buffers
+imap <silent> <D-}> <C-[><D-}>
+imap <silent> <D-{> <C-[><D-{>
+nnoremap <silent> <D-}> :bnext<CR>
+nnoremap <silent> <D-{> :bprev<CR>
+
+" Open in Marked.app
+command! Marked silent !open -a "Marked.app" "%:p"
+
+" Vimrc shit
+noremap <leader>rs :source ~/.vimrc<CR>
+
+" Show path to current file
+nnoremap <leader>path :echo expand('%:p')<CR>
+
+" Rad comment block reformatting
+nnoremap <C-r> gqip
+
+" Select entire block of code
+imap <C-b> <C-[>va}V
+nnoremap <C-b> va}V
+
+" Emacs shit
+inoremap <C-k> <C-[>ld$A
+nnoremap <C-k> d$
+inoremap <C-a> <C-[>I
+nnoremap <C-a> ^
+inoremap <C-e> <C-[>A
+nnoremap <C-e> $
+
+" Replace selected text without overwriting buffer
+vmap r "_dP
+
+" Redo
+nnoremap U <C-R>
+
+" =========
+" filetypes
+" =========
+
+" Turn on filetype plugins
+filetype plugin on
+filetype indent on
+
+" Default to text type
+autocmd BufEnter * if &filetype == "" | setfiletype text | endif
+
+" Add filetypes
+au BufNewFile,BufRead *.rabl setfiletype ruby
+au BufNewFile,BufRead *.rockspec setfiletype lua
+
+" Wrap markdown files at 80
+function! s:wrapEighty()
+  set wrap
+  set linebreak
+  set textwidth=80
+  set nolist
+endfunction
+au BufRead,BufNewFile *.{md,markdown} setf markdown
+au FileType markdown call s:wrapEighty()
+
+" Treat JSON files like JavaScript
+au BufNewFile,BufRead *.json set ft=javascript
+
+" make Python follow PEP8 for whitespace ( http://www.python.org/dev/peps/pep-0008/ )
+au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
+
+" Remember last location in file, but not for commit messages.
+" see :help last-position-jump
+au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
+  \| exe "normal! g`\"" | endif
+
+" Fold by indentation in CoffeeScript files
+au BufNewFile,BufReadPost *.coffee setl foldmethod=indent
+
+" gofmt-approved indentation
+au FileType go setlocal noexpandtab nowrap textwidth=0
+
+" cfengine
+au BufRead,BufNewFile *.cf set ft=cf3
+au FileType cf3 setlocal expandtab nowrap textwidth=0 softtabstop=2 tabstop=2 shiftwidth=2
+
+" don't wrap plain text files
+au FileType text setlocal expandtab nowrap textwidth=0 softtabstop=2 tabstop=2 shiftwidth=2
+
+" ===============
+" Custom commands
+" ===============
+
+function! DeleteInactiveBufs()
+    "From tabpagebuflist() help, get a list of all buffers in all tabs
+    let tablist = []
+    for i in range(tabpagenr('$'))
+        call extend(tablist, tabpagebuflist(i + 1))
+    endfor
+
+    "Below originally inspired by Hara Krishna Dara and Keith Roberts
+    "http://tech.groups.yahoo.com/group/vim/message/56425
+    let nWipeouts = 0
+    for i in range(1, bufnr('$'))
+        if bufexists(i) && !getbufvar(i,"&mod") && index(tablist, i) == -1
+        "bufno exists AND isn't modified AND isn't in the list of buffers open in windows and tabs
+            silent exec 'bwipeout' i
+            let nWipeouts = nWipeouts + 1
+        endif
+    endfor
+    echomsg nWipeouts . ' buffer(s) wiped out'
+endfunction
+command! BufOnly :call DeleteInactiveBufs()
+command! Bonly :call DeleteInactiveBufs()
+
