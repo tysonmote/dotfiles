@@ -19,6 +19,10 @@
   # http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
   precomposeunicode = false
 
+  # Use in-terminal Vim for commit message editing instead of opening MacVim (my
+  # default EDITOR).
+  editor = vim
+
 [alias]
   log = log --stat --summary
   up = "!git remote update -p; git merge --ff-only @{u}"
