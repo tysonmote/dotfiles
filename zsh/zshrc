@@ -48,6 +48,7 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 
 export JAVA_HOME="$(/usr/libexec/java_home)"
 export EC2_AMITOOL_HOME="$(find /usr/local/Cellar/ec2-ami-tools/*/libexec -type d | head -n 1)"
+export EC2_HOME=$EC2_AMITOOL_HOME
 
 #
 # Secrets
