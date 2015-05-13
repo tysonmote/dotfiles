@@ -133,6 +133,7 @@ autocmd BufEnter * if &filetype == "" | setfiletype text | endif
 " Add filetypes
 au BufNewFile,BufRead *.rabl setfiletype ruby
 au BufNewFile,BufRead *.rockspec setfiletype lua
+au BufNewFile,BufRead *.prawn setfiletype ruby
 
 " Wrap markdown files at 80
 function! s:wrapEighty()
