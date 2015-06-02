@@ -59,3 +59,16 @@ First, install [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh), then:
         ln -s ~/git/dotfiles/vim/vimrc.after ~/.vimrc.after
         ln -s ~/git/dotfiles/vim/gvimrc.after ~/.gvimrc.after
 
+5. Install plugins in to `~/.janus`:
+
+        Dockerfile.vim
+        bclose.vim
+        mysnippets
+        vim-airline
+        vim-expand-region
+        vim-git
+        vim-go
+        vim-ragtag
+        vim-sensible
+        vim-terraform
+        vim_cf3
