@@ -7,7 +7,7 @@ bootstrapping a new machine.
 
   * [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)
   * [Homebrew](http://brew.sh)
-  * `brew install git mercurial lua openssl`
+  * `brew install git mercurial lua openssl redis postgres`
   * `mkdir ~/git && cd ~/git && git clone https://github.com/tysontate/dotfiles.git`
 
 ## Terminal.app
