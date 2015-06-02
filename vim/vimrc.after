@@ -119,6 +119,15 @@ vmap r "_dP
 " Redo
 nnoremap U <C-R>
 
+" vim-expand-region
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
+" Jump to end of pasted text automatically
+vnoremap <silent> y y`]
+vnoremap <silent> p p`]
+nnoremap <silent> p p`]
+
 " =========
 " filetypes
 " =========
