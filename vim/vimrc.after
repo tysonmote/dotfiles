@@ -49,6 +49,7 @@ set wildignore+=vendor/rails/**
 set wildignore+=log/**
 set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
+set wildignore+=vendor/** " Go 1.5+ vendoring
 
 " Wrap cursor movements to next / previous lines
 set whichwrap+=<,>,[,],b,s
