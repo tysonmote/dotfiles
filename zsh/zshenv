@@ -30,4 +30,5 @@ export EDITOR="mvim -f"
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$PATH
 export PATH=/usr/local/opt/go/libexec/bin:$PATH
+export GO15VENDOREXPERIMENT=1
 
