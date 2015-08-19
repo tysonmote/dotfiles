@@ -38,9 +38,10 @@ alias be="bundle exec"
 # Tab completion
 #
 
-source $HOME/.rake_completion
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
+source $HOME/.rake_completion                     # Rake
+source /usr/local/share/zsh/site-functions/_aws   # awscli
 
 #
 # Packer / ec2-ami-tools stuff
