@@ -4132,7 +4132,7 @@
 	<key>HotKeyBookmark</key>
 	<string>B4519A07-ACE8-49E6-929B-6E91354C3C0D</string>
 	<key>HotKeyTogglesWindow</key>
-	<false/>
+	<true/>
 	<key>Hotkey</key>
 	<true/>
 	<key>HotkeyChar</key>
@@ -4141,6 +4141,8 @@
 	<integer>50</integer>
 	<key>HotkeyModifiers</key>
 	<integer>262401</integer>
+	<key>HotkeyTermAnimationDuration</key>
+	<real>9.9999999747524271e-07</real>
 	<key>LoadPrefsFromCustomFolder</key>
 	<true/>
 	<key>NSFontPanelAttributes</key>
@@ -4182,9 +4184,9 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>2020 98 445 270 0 0 2560 1417 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>1373 497 606 456 0 0 2560 1440 </string>
+	<string>1373 671 606 456 0 0 2560 1440 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>381 26 954 1050 0 0 2560 1417 </string>
+	<string>0 0 2560 1440 0 0 2560 1417 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -4834,6 +4836,10 @@
 			<string>/Users/tyson</string>
 		</dict>
 	</array>
+	<key>NoSyncDoNotWarnBeforeMultilinePaste</key>
+	<true/>
+	<key>NoSyncDoNotWarnBeforeMultilinePaste_selection</key>
+	<integer>0</integer>
 	<key>NoSyncLastTipTime</key>
 	<real>465347512.59603697</real>
 	<key>NoSyncTimeOfLastPromo</key>
@@ -4848,6 +4854,10 @@
 	</array>
 	<key>OnlyWhenMoreTabs</key>
 	<false/>
+	<key>OpenArrangementAtStartup</key>
+	<false/>
+	<key>OpenNoWindowsAtStartup</key>
+	<true/>
 	<key>PasteTabToStringTabStopSize</key>
 	<integer>4</integer>
 	<key>PointerActions</key>
@@ -4919,5 +4929,7 @@
 	<false/>
 	<key>iTerm Version</key>
 	<string>2.9.20150830</string>
+	<key>kCommandHistoryHasEverBeenUsed</key>
+	<true/>
 </dict>
 </plist>
