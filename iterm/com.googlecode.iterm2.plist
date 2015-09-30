@@ -4132,7 +4132,7 @@
 	<key>HotKeyBookmark</key>
 	<string>B4519A07-ACE8-49E6-929B-6E91354C3C0D</string>
 	<key>HotKeyTogglesWindow</key>
-	<true/>
+	<false/>
 	<key>Hotkey</key>
 	<true/>
 	<key>HotkeyChar</key>
