@@ -93,6 +93,18 @@ if has('gui_running')
   let g:airline_powerline_fonts=1
 end
 
+function! AirlineInit()
+  " Disable git hunks & branch
+  let g:airline_section_b = airline#section#create(['branch'])
+  " Disable filetype, virtualenv
+  let g:airline_section_x = airline#section#create_right(['tagbar'])
+  " Disable fileencoding, fileformat
+  let g:airline_section_y=""
+  " Disable windowswap and line %
+  let g:airline_section_z = airline#section#create(['linenr', ':%3v '])
+endfunction
+autocmd User AirlineAfterInit call AirlineInit()
+
 " vim-go
 let g:go_fmt_command = "goimports"
 
