@@ -4340,6 +4340,8 @@
 				<key>Red Component</key>
 				<real>1</real>
 			</dict>
+			<key>Automatically Log</key>
+			<true/>
 			<key>BM Growl</key>
 			<true/>
 			<key>Background Color</key>
@@ -4756,6 +4758,8 @@
 				<key>Red Component</key>
 				<real>0.023</real>
 			</dict>
+			<key>Log Directory</key>
+			<string>/Users/tyson/sessions</string>
 			<key>Minimum Contrast</key>
 			<real>0.0</real>
 			<key>Mouse Reporting</key>
