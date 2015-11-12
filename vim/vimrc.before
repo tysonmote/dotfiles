@@ -63,8 +63,8 @@ let NERDTreeHijackNetrw = 1
 " Syntastic -- don't validate HTML types. Super annoying in template languages
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['html'] }
 let g:syntastic_check_on_open=1
-let g:syntastic_error_symbol='✗'
-let g:syntastic_warning_symbol='⚠'
+let g:syntastic_error_symbol='X'
+let g:syntastic_warning_symbol='!'
 let g:syntastic_auto_loc_list=1 " Auto-open and close the errors list
 let g:syntastic_loc_list_height=3 " Errors list height
 
