@@ -33,6 +33,7 @@ eval "$(rbenv init -)"
 
 alias rake='noglob rake'
 alias be="bundle exec"
+alias dc="docker-compose -f docker-dev.yml"
 
 #
 # Tab completion
