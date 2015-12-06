@@ -1,0 +1,14 @@
+# Class
+snippet class
+	class ${1:`substitute(Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`}
+		constructor: (${2:args}) ->
+			${3}
+# Log
+snippet log
+	console.log ${1}
+# Try __ Catch
+snippet try
+	try
+		${1}
+	catch ${2:error}
+		${3}
