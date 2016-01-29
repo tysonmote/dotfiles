@@ -77,6 +77,9 @@ set nofoldenable        " don't fold by default
 set splitbelow
 set splitright
 
+" Turn off annoying text hiding crap
+set conceallevel=0
+
 " ========
 " Commands
 " ========
