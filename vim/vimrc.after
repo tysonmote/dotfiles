@@ -80,6 +80,9 @@ set splitright
 " Turn off annoying text hiding crap
 set conceallevel=0
 
+" Don't autowrap text when typing
+set formatoptions-=t
+
 " ========
 " Commands
 " ========
