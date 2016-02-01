@@ -80,6 +80,9 @@ set splitright
 " Don't autowrap text when typing
 set formatoptions-=t
 
+" Don't auto-hide quotes christ that's annoying
+set conceallevel=0
+
 " ========
 " Commands
 " ========
@@ -157,9 +160,6 @@ function! s:wrapEighty()
 endfunction
 au BufRead,BufNewFile *.{md,markdown} setf markdown
 au FileType markdown call s:wrapEighty()
-
-" Don't auto-hide quotes christ that's annoying
-au FileType json setlocal conceallevel=0
 
 " make Python follow PEP8 for whitespace ( http://www.python.org/dev/peps/pep-0008/ )
 au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
