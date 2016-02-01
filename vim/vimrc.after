@@ -77,9 +77,6 @@ set nofoldenable        " don't fold by default
 set splitbelow
 set splitright
 
-" Turn off annoying text hiding crap
-set conceallevel=0
-
 " Don't autowrap text when typing
 set formatoptions-=t
 
@@ -161,8 +158,8 @@ endfunction
 au BufRead,BufNewFile *.{md,markdown} setf markdown
 au FileType markdown call s:wrapEighty()
 
-" Treat JSON files like JavaScript
-au BufNewFile,BufRead *.json set ft=javascript
+" Don't auto-hide quotes christ that's annoying
+au FileType json setlocal conceallevel=0
 
 " make Python follow PEP8 for whitespace ( http://www.python.org/dev/peps/pep-0008/ )
 au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
