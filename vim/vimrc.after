@@ -12,11 +12,11 @@ else
 end
 
 " General stuff
-set nocompatible                " break away from old vi compatibility
-set number                      " Line numbers are good
-set showmode                    " Show current mode down the bottom
-set visualbell                  " No sounds because I'm deaf ;_;
-set encoding=utf-8              " Default to UTF-8 encoding
+set nocompatible   " break away from old vi compatibility
+set number         " Line numbers are good
+set showmode       " Show current mode down the bottom
+set visualbell     " No sounds because I'm deaf ;_;
+set encoding=utf-8 " Default to UTF-8 encoding
 
 " Turn off swap files
 set noswapfile
@@ -45,11 +45,11 @@ set wildmode=longest,list,full
 
 " Ignore files
 set wildignore+=*DS_Store*
-set wildignore+=vendor/rails/**
 set wildignore+=log/**
 set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
-set wildignore+=vendor/** " Go 1.5+ vendoring
+set wildignore+=*.box
+set wildignore+=vendor/**
 
 " Wrap cursor movements to next / previous lines
 set whichwrap+=<,>,[,],b,s
@@ -60,13 +60,21 @@ set hlsearch
 
 " Indentation options
 set smartindent
-set tabstop=2                  " tab size eql 2 spaces
+set tabstop=2     " tab size eql 2 spaces
 set softtabstop=2
-set shiftwidth=2               " default shift width for indents
-set expandtab                  " replace tabs with ${tabstop} spaces
-set smarttab                   " Use shiftwidth to determine tab behavior at the beginning of lines
-set linebreak                  " Wrap lines at words by default
-set textwidth=80
+set shiftwidth=2  " default shift width for indents
+set expandtab     " replace tabs with ${tabstop} spaces
+set smarttab      " Use shiftwidth to determine tab behavior at the beginning of lines
+
+" Wrap options
+set textwidth=80     " Wrap at 80 chars
+set wrap             " Soft wrap by default
+set linebreak        " Wrap lines at words by default
+set formatoptions-=t " Don't hard-wrap text when typing
+set formatoptions+=c " Hard-wrap comments when typing, though
+set formatoptions+=r " Insert comment leader when hitting Enter in insert mode
+set formatoptions-=o " Don't insert comment leader when hitting 'o' or 'O' in normal mode
+set formatoptions+=n " Format numbered lists by indenting following lines
 
 " Folding
 set foldmethod=indent   " fold based on indent
@@ -77,11 +85,11 @@ set nofoldenable        " don't fold by default
 set splitbelow
 set splitright
 
-" Don't autowrap text when typing
-set formatoptions-=t
-
 " Don't auto-hide quotes christ that's annoying
 set conceallevel=0
+
+" Don't display $ at the end of lines
+set nolist
 
 " ========
 " Commands
@@ -151,36 +159,21 @@ au BufNewFile,BufRead *.rabl setfiletype ruby
 au BufNewFile,BufRead *.rockspec setfiletype lua
 au BufNewFile,BufRead *.prawn setfiletype ruby
 
-" Wrap markdown files at 80
-function! s:wrapEighty()
-  set wrap
-  set linebreak
-  set textwidth=80
-  set nolist
-endfunction
+" Markdown
 au BufRead,BufNewFile *.{md,markdown} setf markdown
-au FileType markdown call s:wrapEighty()
+au FileType markdown setlocal formatoptions+=t " Auto-wrap while typing
 
-" make Python follow PEP8 for whitespace ( http://www.python.org/dev/peps/pep-0008/ )
-au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
-
-" Remember last location in file, but not for commit messages.
-" see :help last-position-jump
-au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
-  \| exe "normal! g`\"" | endif
+" Python
+au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4 " Follow PEP8 for whitespace
 
 " Fold by indentation in CoffeeScript files
-au BufNewFile,BufReadPost *.coffee setl foldmethod=indent
+au BufNewFile,BufReadPost *.coffee setlocal foldmethod=indent
 
 " gofmt-approved indentation
 au FileType go setlocal noexpandtab nowrap textwidth=0
 
 " cfengine
 au BufRead,BufNewFile *.cf set ft=cf3
-au FileType cf3 setlocal expandtab nowrap textwidth=0 softtabstop=2 tabstop=2 shiftwidth=2
-
-" don't wrap plain text files
-au FileType text setlocal expandtab nowrap textwidth=0 softtabstop=2 tabstop=2 shiftwidth=2
 
 " ===============
 " Custom commands
