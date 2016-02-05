@@ -56,7 +56,7 @@ export EC2_HOME=$EC2_AMITOOL_HOME
 # Docker
 #
 
-which docker-machine > /dev/null && eval "$(docker-machine env default)"
+which docker-machine > /dev/null && eval "$(docker-machine env rg-docker)"
 
 #
 # Secrets
