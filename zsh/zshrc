@@ -59,12 +59,6 @@ export EC2_HOME=$EC2_AMITOOL_HOME
 which docker-machine > /dev/null && eval "$(docker-machine env rg-docker)"
 
 #
-# Secrets
-#
-
-source $HOME/.secrets
-
-#
 # iTerm 2 shell integration
 #
 

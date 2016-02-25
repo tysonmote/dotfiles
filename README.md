@@ -26,7 +26,6 @@ In Terminal.app's preference window, select "Profiles" and then import the
 
 First, install [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh), then:
 
-    touch ~/.secrets
     ln -s ~/git/dotfiles/zsh/zshrc ~/.zshrc
     ln -s ~/git/dotfiles/zsh/zshenv ~/.zshenv
     ln -s ~/git/dotfiles/zsh/tyson.zsh-theme ~/.oh-my-zsh/themes/tyson.zsh-theme
