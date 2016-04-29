@@ -112,7 +112,11 @@ autocmd User AirlineAfterInit call AirlineInit()
 let g:go_fmt_command = "goimports"
 
 " ack.vim
-let g:ackprg = 'ag --nogroup --nocolor --column --hidden'
+let g:ackprg = 'ag --nogroup --nocolor --column --hidden
+  \ --ignore .git
+  \ --ignore .svn
+  \ --ignore .hg
+  \ --ignore .DS_Store'
 
 " vim-json's annoying defaults
 let g:vim_json_syntax_conceal = 0
