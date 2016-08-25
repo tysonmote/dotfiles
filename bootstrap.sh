@@ -50,4 +50,5 @@ ln -s ~/git/dotfiles/vim/vimrc.after ~/.vimrc.after
 ln -s ~/git/dotfiles/vim/gvimrc.after ~/.gvimrc.after
 mkdir -p ~/.janus
 ln -s ~/git/dotfiles/vim/mysnippets ~/.janus/mysnippets
+ln -s ~/git/dotfiles/vim/update_all.sh ~/.janus/update_all.sh
 
