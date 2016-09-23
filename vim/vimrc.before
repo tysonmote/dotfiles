@@ -54,11 +54,7 @@ let mapleader = ";"
 
 " NERDtree
 let g:nerdtree_tabs_open_on_gui_startup = 0 " Auto open nerd tree on startup
-let g:nerdtree_tabs_focus_on_files = 1 " Focus in the main content window
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let g:NERDTreeWinSize = 30
-let NERDTreeHijackNetrw = 1
+let g:NERDTreeMinimalUI = 1
 
 " Syntastic -- don't validate HTML types. Super annoying in template languages
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['html'] }
