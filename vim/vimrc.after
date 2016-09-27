@@ -107,12 +107,6 @@ nnoremap <silent> <D-{> :bprev<CR>
 " Open in Marked.app
 command! Marked silent !open -a "Marked.app" "%:p"
 
-" Vimrc shit
-noremap <leader>rs :source ~/.vimrc<CR>
-
-" Show path to current file
-nnoremap <leader>path :echo expand('%:p')<CR>
-
 " Rad comment block reformatting
 nnoremap <C-r> gqip
 
