@@ -169,6 +169,13 @@ au FileType go setlocal noexpandtab nowrap textwidth=0
 " cfengine
 au BufRead,BufNewFile *.cf set ft=cf3
 
+" Pencil for writing
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init()
+  autocmd FileType text         call pencil#init()
+augroup END
+
 " ===============
 " Custom commands
 " ===============
