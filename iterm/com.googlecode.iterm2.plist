@@ -4186,9 +4186,11 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>769 110 445 301 0 0 1280 777 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>269 310 606 456 0 0 1280 800 </string>
+	<string>269 302 796 473 0 0 1280 777 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>265 191 700 507 0 0 1280 777 </string>
+	<string>290 220 700 507 0 0 1280 800 </string>
+	<key>NSWindow Frame SharedPreferences</key>
+	<string>269 122 796 473 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
 	<string>0 0 1280 800 0 0 1280 777 </string>
 	<key>New Bookmarks</key>
@@ -4844,10 +4846,18 @@
 			<string>/Users/tyson</string>
 		</dict>
 	</array>
+	<key>NoSyncConfirmBeta</key>
+	<true/>
 	<key>NoSyncDoNotWarnBeforeMultilinePaste</key>
 	<true/>
 	<key>NoSyncDoNotWarnBeforeMultilinePaste_selection</key>
 	<integer>0</integer>
+	<key>NoSyncDoNotWarnBeforePastingOneLineEndingInNewlineAtShellPrompt</key>
+	<true/>
+	<key>NoSyncDoNotWarnBeforePastingOneLineEndingInNewlineAtShellPrompt_selection</key>
+	<integer>1</integer>
+	<key>NoSyncInstallationId</key>
+	<string>6DC5D3AF-8DE2-47E1-96CB-3F91D2A5B08A</string>
 	<key>NoSyncLastTipTime</key>
 	<real>459964743.71196401</real>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
@@ -4913,11 +4923,11 @@
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>http://iterm2.com/appcasts/testing3.xml</string>
+	<string>https://iterm2.com/appcasts/final.xml?shard=39</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-11-13T03:21:14Z</date>
+	<date>2016-09-30T05:25:05Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -4930,6 +4940,11 @@
 	<integer>5</integer>
 	<key>TabStyle</key>
 	<integer>1</integer>
+	<key>ToolbeltTools</key>
+	<array>
+		<string>Profiles</string>
+		<string>Captured Output</string>
+	</array>
 	<key>UseBorder</key>
 	<false/>
 	<key>UseLionStyleFullscreen</key>
@@ -4941,7 +4956,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>2.9.20151001</string>
+	<string>3.0.9</string>
 	<key>kCommandHistoryHasEverBeenUsed</key>
 	<true/>
 </dict>
