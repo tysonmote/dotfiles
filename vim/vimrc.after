@@ -169,6 +169,9 @@ au FileType go setlocal noexpandtab nowrap textwidth=0
 " cfengine
 au BufRead,BufNewFile *.cf set ft=cf3
 
+" ruby
+au FileType ruby map <leader>r :!ruby %<cr>
+
 " Pencil for writing
 augroup pencil
   autocmd!
