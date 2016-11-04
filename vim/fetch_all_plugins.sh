@@ -7,6 +7,7 @@ https://github.com/fatih/vim-go.git
 https://github.com/godlygeek/tabular.git
 https://github.com/markcornick/vim-terraform.git
 https://github.com/neilhwatson/vim_cf3.git
+https://github.com/rbgrouleff/bclose.vim.git
 https://github.com/reedes/vim-pencil.git
 https://github.com/reedes/vim-wordy.git
 https://github.com/terryma/vim-expand-region.git
