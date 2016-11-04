@@ -91,6 +91,9 @@ set conceallevel=0
 " Don't display $ at the end of lines
 set nolist
 
+" Automatically size splits
+set equalalways
+
 " ========
 " Commands
 " ========
