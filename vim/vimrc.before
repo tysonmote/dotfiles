@@ -54,6 +54,7 @@ let mapleader = ";"
 
 " NERDtree
 let g:NERDTreeAutoDeleteBuffer = 1
+let g:NERDTreeHijackNetrw = 1
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeRespectWildIgnore = 1
 let g:NERDTreeShowHidden = 1
