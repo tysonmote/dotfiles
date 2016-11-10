@@ -179,7 +179,6 @@ au FileType ruby map <leader>r :!ruby %<cr>
 augroup pencil
   autocmd!
   autocmd FileType markdown,mkd call pencil#init()
-  autocmd FileType text         call pencil#init()
 augroup END
 
 " ===============
