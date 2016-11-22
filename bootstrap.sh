@@ -36,7 +36,7 @@ rbenv global 2.3.1
 
 banner "Installing MacVim"
 
-brew install macvim --override-system-vim
+brew install macvim --with-override-system-vim
 brew linkapps macvim
 
 banner "Installing Janus"
