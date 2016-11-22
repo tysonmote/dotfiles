@@ -19,19 +19,4 @@ when bootstrapping a new machine.
 
 7. Install [Input Mono](http://input.fontbureau.com)
 
-8. Install vim plugins in to `~/.janus`:
-
-        Dockerfile.vim
-        bclose.vim
-        vim-airline
-        vim-expand-region
-        vim-git
-        vim-go
-        vim-ragtag
-        vim-sensible
-        vim-terraform
-        vim_cf3
-
-## TODO
-
-* Auto-install vim plugins
+8. `cd ~/.janus && ./fetch_all_plugins.sh`
