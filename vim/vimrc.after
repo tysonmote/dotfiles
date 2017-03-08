@@ -140,6 +140,8 @@ vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 
+nnoremap <leader>s :w <bar> call SyntasticCheck()<cr>
+
 " =========
 " filetypes
 " =========
@@ -168,6 +170,13 @@ au BufNewFile,BufReadPost *.coffee setlocal foldmethod=indent
 
 " gofmt-approved indentation
 au FileType go setlocal noexpandtab nowrap textwidth=0
+" Misc. go goodies
+au FileType go nmap <leader>c <Plug>(go-callers)
+au FileType go nmap <leader>d <Plug>(go-def)
+au FileType go nmap <leader>gd <Plug>(go-doc-browser)
+au FileType go nmap <leader>l <Plug>(go-lint)
+au FileType go nmap <leader>r <Plug>(go-rename)
+au FileType go nmap <leader>v <Plug>(go-vet)
 
 " cfengine
 au BufRead,BufNewFile *.cf set ft=cf3
@@ -185,12 +194,8 @@ augroup END
 " Settings
 " ========
 
-" Syntastic -- Janus recently changed their defaults, so now we need to override
-" them here.
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_go_checkers = ['go', 'govet', 'golint', 'errcheck']
-let g:syntastic_mode_map = { 'mode': 'active' }
+let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 " Don't open the error list, it causes a lot of pain with splits:
 let g:syntastic_auto_loc_list = 0
 " Gutter symbols:
