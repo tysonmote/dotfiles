@@ -108,7 +108,7 @@ nnoremap <silent> <D-}> :bnext<CR>
 nnoremap <silent> <D-{> :bprev<CR>
 
 " Open in Marked.app
-command! Marked silent !open -a "Marked.app" "%:p"
+command! Marked silent !open -a "Marked 2.app" "%:p"
 
 " Rad comment block reformatting
 nnoremap <C-r> gqip
