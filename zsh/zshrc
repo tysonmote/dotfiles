@@ -65,6 +65,8 @@ for dotfile in $segment_dotfiles ; do
   source $HOME/dev/src/github.com/segmentio/dotfiles/source/$dotfile.sh
 done
 
+alias t='robo prod tool'
+
 #
 # Segment defaults
 #
