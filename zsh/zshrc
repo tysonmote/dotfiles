@@ -68,7 +68,7 @@ done
 alias t='robo prod tool'
 
 #
-# Segment defaults
+# Secrets
 #
 
-export AWS_DEFAULT_REGION="us-west-2"
+[ -f $HOME/.secrets/prod ] && source $HOME/.secrets/prod
