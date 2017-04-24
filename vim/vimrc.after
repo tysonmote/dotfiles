@@ -194,7 +194,9 @@ augroup END
 " Settings
 " ========
 
-let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'errcheck']
+let g:syntastic_go_checkers = ['gometalinter']
+" gotype doesn't handle vendoring correctly as of 2017-04-24
+let g:syntastic_go_gometalinter_args = "--vendor --skip vendor --disable gotype"
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 " Don't open the error list, it causes a lot of pain with splits:
 let g:syntastic_auto_loc_list = 0
