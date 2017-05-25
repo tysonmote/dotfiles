@@ -4127,6 +4127,8 @@
 	<true/>
 	<key>FsTabDelay</key>
 	<real>1.0900000000000001</real>
+	<key>HideFromDockAndAppSwitcher</key>
+	<true/>
 	<key>HideScrollbar</key>
 	<true/>
 	<key>HideTab</key>
@@ -4146,7 +4148,7 @@
 	<key>HotkeyModifiers</key>
 	<integer>262401</integer>
 	<key>HotkeyTermAnimationDuration</key>
-	<real>9.9999999747524271e-07</real>
+	<real>0.0099999997764825821</real>
 	<key>HotkeyWindowFloatsAboveOtherWindows</key>
 	<true/>
 	<key>LeftOption</key>
@@ -4195,8 +4197,10 @@
 	</dict>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>970 787 620 392 0 0 2560 1440 </string>
+	<key>NSWindow Frame SessionsPreferences</key>
+	<string>269 76 618 519 0 0 1680 1027 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>588 371 1018 447 0 0 1680 1027 </string>
+	<string>588 398 796 473 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
 	<string>0 0 1680 1050 0 0 1680 1027 </string>
 	<key>New Bookmarks</key>
@@ -4723,7 +4727,7 @@
 			<key>Smart Cursor Color</key>
 			<false/>
 			<key>Space</key>
-			<integer>0</integer>
+			<integer>-1</integer>
 			<key>Sync Title</key>
 			<false/>
 			<key>Tags</key>
@@ -4758,6 +4762,10 @@
 	<true/>
 	<key>NoSyncInstallationId</key>
 	<string>66FD779C-808E-450E-BF17-03B89C9208E5</string>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
+	<true/>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
+	<integer>0</integer>
 	<key>NoSyncPermissionToShowTip</key>
 	<false/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
@@ -4772,6 +4780,8 @@
 	<true/>
 	<key>PasteTabToStringTabStopSize</key>
 	<integer>4</integer>
+	<key>PinchToChangeFontSizeDisabled</key>
+	<true/>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -4809,6 +4819,8 @@
 	<string>/Users/tyson/git/dotfiles/iterm</string>
 	<key>PromptOnQuit</key>
 	<false/>
+	<key>QuitWhenAllWindowsClosed</key>
+	<false/>
 	<key>SUEnableAutomaticChecks</key>
 	<true/>
 	<key>SUFeedAlternateAppNameKey</key>
@@ -4825,8 +4837,10 @@
 	<false/>
 	<key>ShowFullScreenTabBar</key>
 	<true/>
+	<key>SlowFrameRate</key>
+	<real>30</real>
 	<key>SmartPlacement</key>
-	<false/>
+	<true/>
 	<key>SwitchPaneModifier</key>
 	<integer>5</integer>
 	<key>TabStyle</key>
@@ -4836,6 +4850,8 @@
 		<string>Profiles</string>
 		<string>Captured Output</string>
 	</array>
+	<key>UseAdaptiveFrameRate</key>
+	<true/>
 	<key>UseBorder</key>
 	<false/>
 	<key>UseLionStyleFullscreen</key>
