@@ -1,6 +1,6 @@
 snippet func
 	func ${1}(${2}) ${3} {
-		${4}
+		${0}
 	}
 snippet if
 	if ${1:condition} {
@@ -19,4 +19,15 @@ snippet select
 	select {
 	case ${1:v1} := <-${2:chan1}
 		${0}
+	}
+snippet tests
+	tests := []struct {
+		${1}
+		expect ${2:type}
+	}{
+		{$3},
+	}
+
+	for i, test := range tests {
+		${4}
 	}
