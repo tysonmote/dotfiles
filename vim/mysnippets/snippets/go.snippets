@@ -1,0 +1,22 @@
+snippet func
+	func ${1}(${2}) ${3} {
+		${4}
+	}
+snippet if
+	if ${1:condition} {
+		${0}
+	}
+snippet err
+	if err != nil {
+		${1:return err}
+	}
+snippet switch
+	switch ${1:var} {
+	case ${2:value1}:
+		${0}
+	}
+snippet select
+	select {
+	case ${1:v1} := <-${2:chan1}
+		${0}
+	}
