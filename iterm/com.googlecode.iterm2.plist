@@ -4120,7 +4120,7 @@
 		</dict>
 	</dict>
 	<key>Default Bookmark Guid</key>
-	<string>B4519A07-ACE8-49E6-929B-6E91354C3C0D</string>
+	<string>7FA1D2F1-A14B-474E-9F8C-0946ADE29DBB</string>
 	<key>DisableFullscreenTransparency</key>
 	<true/>
 	<key>FlashTabBarInFullscreen</key>
@@ -4132,7 +4132,7 @@
 	<key>HideMenuBarInFullscreen</key>
 	<false/>
 	<key>HideScrollbar</key>
-	<true/>
+	<false/>
 	<key>HideTab</key>
 	<false/>
 	<key>HideTabCloseButton</key>
@@ -4143,6 +4143,8 @@
 	<true/>
 	<key>Hotkey</key>
 	<true/>
+	<key>HotkeyAutoHides</key>
+	<false/>
 	<key>HotkeyChar</key>
 	<integer>96</integer>
 	<key>HotkeyCode</key>
@@ -4158,8 +4160,10 @@
 	<key>LoadPrefsFromCustomFolder</key>
 	<true/>
 	<key>NSNavLastRootDirectory</key>
-	<string>/Applications</string>
+	<string>~/Documents</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
+	<string>{712, 448}</string>
+	<key>NSNavPanelExpandedSizeForSaveMode</key>
 	<string>{712, 448}</string>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
@@ -4202,7 +4206,7 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 76 618 519 0 0 1680 1027 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>-1244 199 918 512 -1680 0 1680 1027 </string>
+	<string>805 297 796 473 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
 	<string>0 0 2560 1418 0 0 2560 1417 </string>
 	<key>New Bookmarks</key>
@@ -5386,7 +5390,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-05-30T10:33:39Z</date>
+	<date>2017-06-06T07:42:08Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowBookmarkName</key>
