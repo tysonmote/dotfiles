@@ -66,6 +66,7 @@ for dotfile in $segment_dotfiles ; do
 done
 
 alias t='robo prod tool'
+alias logs='aws-vault exec production -- cwlogs fetch'
 
 #
 # Secrets
