@@ -16,6 +16,14 @@ DISABLE_AUTO_UPDATE=true
 plugins=(brew heroku golang vagrant rake-fast)
 source $ZSH/oh-my-zsh.sh
 
+# -- git
+
+alias gpr='git push -u origin `git rev-parse --abbrev-ref HEAD` ; hub pull-request'
+alias gco='git checkout'
+alias gcob='git checkout -b'
+alias gb='git branch'
+alias gs='git status'
+
 # -- Ruby
 
 export PATH=$HOME/.rbenv/bin:$PATH
