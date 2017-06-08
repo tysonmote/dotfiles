@@ -1,8 +1,6 @@
 # .zshrc is sourced for interactive shells only
 
-#
-# Basic ZSH settings
-#
+# -- ZSH
 
 # emacs-style keybindings
 bindkey -e
@@ -10,9 +8,7 @@ bindkey -e
 HISTSIZE=1000
 SAVEHIST=10000
 
-#
-# oh-my-zsh
-#
+# -- oh-my-zsh
 
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="tyson"
@@ -21,45 +17,31 @@ DISABLE_AUTO_UPDATE=true
 plugins=(brew golang vagrant rake-fast)
 source $ZSH/oh-my-zsh.sh
 
-#
-# rbenv
-#
+# -- Ruby
 
 export PATH=$HOME/.rbenv/bin:$PATH
 eval "$(rbenv init -)"
-
-#
-# Aliases
-#
-
 alias rake='noglob rake'
 alias be="bundle exec"
 
-#
-# Tab completion
-#
+# -- Tab completion
 
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 source /usr/local/share/zsh/site-functions/_aws   # awscli
 
-#
-# Packer / ec2-ami-tools stuff
-#
+# -- Packer / ec2-ami-tools stuff
 
 export JAVA_HOME="$(/usr/libexec/java_home)"
 export EC2_AMITOOL_HOME="$(find /usr/local/Cellar/ec2-ami-tools/*/libexec -type d | head -n 1)"
 export EC2_HOME=$EC2_AMITOOL_HOME
 
-#
-# iTerm 2 shell integration
-#
+# -- iTerm 2 shell integration
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
 
-#
-# Segment dotfiles
-#
+# -- Segment dotfiles
+
 segment_dotfiles=(docker general git robo scripts vm)
 for dotfile in $segment_dotfiles ; do
   source $HOME/dev/src/github.com/segmentio/dotfiles/source/$dotfile.sh
@@ -68,8 +50,6 @@ done
 alias t='robo prod tool'
 alias logs='aws-vault exec production -- cwlogs fetch'
 
-#
-# Secrets
-#
+# -- Secrets
 
 [ -f $HOME/.secrets/prod ] && source $HOME/.secrets/prod
