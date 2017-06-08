@@ -26,6 +26,7 @@
 [alias]
   log = log --stat --summary
   up = "!git remote update -p; git merge --ff-only @{u}"
+  pr = "git push -u origin HEAD ; hub pull-request"
 
 [apply]
   # Detect whitespace errors when applying a patch
