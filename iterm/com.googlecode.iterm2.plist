@@ -4144,7 +4144,7 @@
 	<key>Hotkey</key>
 	<true/>
 	<key>HotkeyAutoHides</key>
-	<false/>
+	<true/>
 	<key>HotkeyChar</key>
 	<integer>96</integer>
 	<key>HotkeyCode</key>
