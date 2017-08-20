@@ -201,10 +201,10 @@ let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 " Don't open the error list, it causes a lot of pain with splits:
 let g:syntastic_auto_loc_list = 0
 " Gutter symbols:
-let g:syntastic_error_symbol = 'XX'
-let g:syntastic_style_error_symbol = 'xx'
-let g:syntastic_warning_symbol = '!!'
-let g:syntastic_style_warning_symbol = '!!'
+let g:syntastic_error_symbol = "⛔"
+let g:syntastic_style_error_symbol = "⛔"
+let g:syntastic_style_warning_symbol = "⚡"
+let g:syntastic_warning_symbol = "⚡"
 
 " ===============
 " Custom commands

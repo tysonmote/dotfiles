@@ -82,10 +82,8 @@ let NERDSpaceDelims = 1
 let g:gitgutter_eager = 0
 
 " vim-airline
-if has('gui_running')
-  let g:airline_powerline_fonts=1
-  let g:airline_theme='base16'
-end
+let g:airline_powerline_fonts=1
+let g:airline_theme='base16'
 
 function! AirlineInit()
   " Disable git hunks & branch
