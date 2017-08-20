@@ -53,3 +53,9 @@ ln -s ~/git/dotfiles/vim/mysnippets ~/.janus/mysnippets
 ln -s ~/git/dotfiles/vim/update_all.sh ~/.janus/update_all.sh
 ln -s ~/git/dotfiles/vim/fetch_all_plugins.sh ~/.janus/fetch_all_plugins.sh
 
+banner "Installing some vim-go helpers"
+
+go get -u gopkg.in/alecthomas/gometalinter.v1
+gometalinter --install --update
+go get honnef.co/go/tools/cmd/megacheck
+go get -u github.com/nsf/gocode

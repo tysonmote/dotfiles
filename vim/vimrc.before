@@ -71,12 +71,16 @@ let g:ctrlp_user_command = 'ag %s -i -l --nocolor --nogroup --hidden
 
 " SuperTab / completion
 set completeopt=menu
+let g:SuperTabDefaultCompletionType = "context"
 
 " ragtag
 let g:ragtag_global_maps = 1
 
 " NERDCommenter
-let NERDSpaceDelims = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDSpaceDelims = 1
+let g:NERDCommentEmptyLines = 1
+let g:NERDTrimTrailingWhitespace = 1
 
 " Don't refresh gitgutter on BufEnter, TabEnter and FocusGained
 let g:gitgutter_eager = 0
@@ -110,5 +114,12 @@ let g:ackprg = 'ag --nogroup --nocolor --column --hidden
 " vim-json's annoying defaults
 let g:vim_json_syntax_conceal = 0
 
-"Tagbar
+" Tagbar
 nmap <F8> :TagbarToggle<CR>
+let g:tagbar_left = 1
+let g:tagbar_zoomwidth = 0
+let g:tagbar_case_insensitive = 1
+
+" Pencil
+let g:pencil#conceallevel = 0
+let g:pencil#textwidth = 80
