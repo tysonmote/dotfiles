@@ -8,6 +8,10 @@ function banner() {
   echo "***"
 }
 
+banner "Installing basics"
+
+brew install git lua mercurial openssl python python3 subversion
+
 banner "Linking git config"
 
 ln -s ~/git/dotfiles/git/gitignore ~/.gitignore
@@ -31,17 +35,17 @@ brew install go
 baner "Installing Ruby"
 
 brew install rbenv ruby-build
-rbenv install 2.3.1
-rbenv global 2.3.1
+rbenv install 2.4.1
+rbenv global 2.4.1
 
 banner "Installing MacVim"
 
-brew install macvim --with-override-system-vim
+brew install macvim --with-override-system-vim --with-lua
 brew linkapps macvim
 
 banner "Installing Janus"
 
-curl -L https://bit.ly/janus-bootstrap | bash
+curl -L https://raw.githubusercontent.com/carlhuda/janus/master/bootstrap.sh | bash
 
 banner "Configuring Vim"
 
@@ -53,9 +57,17 @@ ln -s ~/git/dotfiles/vim/mysnippets ~/.janus/mysnippets
 ln -s ~/git/dotfiles/vim/update_all.sh ~/.janus/update_all.sh
 ln -s ~/git/dotfiles/vim/fetch_all_plugins.sh ~/.janus/fetch_all_plugins.sh
 
+cd ~/.janus
+./fetch_all_plugins.sh
+cd -
+
 banner "Installing some vim-go helpers"
 
 go get -u gopkg.in/alecthomas/gometalinter.v1
 gometalinter --install --update
-go get honnef.co/go/tools/cmd/megacheck
+go get -u honnef.co/go/tools/cmd/megacheck
 go get -u github.com/nsf/gocode
+
+banner "Installing extras"
+
+brew install awscli cscope ctags jq parallel pcre postgresql redis sqlite the_silver_searcher
