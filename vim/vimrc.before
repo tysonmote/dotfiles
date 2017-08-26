@@ -116,7 +116,6 @@ let g:vim_json_syntax_conceal = 0
 
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
-let g:tagbar_left = 1
 let g:tagbar_zoomwidth = 0
 let g:tagbar_case_insensitive = 1
 
