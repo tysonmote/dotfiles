@@ -185,11 +185,7 @@ au BufRead,BufNewFile *.cf set ft=cf3
 au FileType ruby map <leader>r :!ruby %<cr>
 
 " Pencil for writing
-augroup pencil
-  autocmd!
-  autocmd FileType markdown,mkd call pencil#init()
-  autocmd FileType text         call pencil#init()
-augroup END
+autocmd FileType markdown,mkd call pencil#init()
 
 " ========
 " Settings
