@@ -14,7 +14,6 @@ if has("gui_macvim")
   macmenu Window.Select\ Next\ Tab key=<nop>
   macmenu Window.Select\ Previous\ Tab key=<nop>
 
-  " Use 'Ack!' to prevent opening first result by default
-  call janus#add_mapping('ack', 'map', '<D-F>', ':Ack!<space>')
+  call janus#add_mapping('ag', 'map', '<D-F>', ':Ags<space>')
 endif
 

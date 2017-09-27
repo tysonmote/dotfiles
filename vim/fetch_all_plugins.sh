@@ -4,6 +4,7 @@ repos="
 https://github.com/bling/vim-airline
 https://github.com/ekalinin/Dockerfile.vim.git
 https://github.com/fatih/vim-go.git
+https://github.com/gabesoft/vim-ags.git
 https://github.com/godlygeek/tabular.git
 https://github.com/markcornick/vim-terraform.git
 https://github.com/neilhwatson/vim_cf3.git
