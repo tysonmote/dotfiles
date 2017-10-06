@@ -55,10 +55,14 @@ for dotfile in $segment_dotfiles ; do
   source $HOME/dev/src/github.com/segmentio/dotfiles/source/$dotfile.sh
 done
 
+# Production
 alias t='robo prod tool'
 alias wt='robo prod warehouse-tool'
+alias awsprod='aws-vault exec prod -- aws'
 alias logsprod='aws-vault exec production -- cwlogs'
 alias s3prod='aws-vault exec prod -- aws s3'
+# Staging
+alias awsstage='aws-vault exec stage -- aws'
 alias logsstage='aws-vault exec stage -- cwlogs'
 alias s3stage='aws-vault exec stage -- aws s3'
 
