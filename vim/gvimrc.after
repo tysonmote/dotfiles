@@ -14,6 +14,7 @@ if has("gui_macvim")
   macmenu Window.Select\ Next\ Tab key=<nop>
   macmenu Window.Select\ Previous\ Tab key=<nop>
 
-  call janus#add_mapping('ag', 'map', '<D-F>', ':Ags<space>')
+  " the_silver_searcher via vim-ags
+  map <D-F> :Ags<space>
 endif
 
