@@ -56,7 +56,7 @@ for dotfile in $segment_dotfiles ; do
 done
 
 # Production
-alias t='robo prod tool'
+alias t='robo prod.tool'
 alias wt='robo prod warehouse-tool'
 alias awsprod='aws-vault exec prod -- aws'
 alias logsprod='aws-vault exec production -- cwlogs'
