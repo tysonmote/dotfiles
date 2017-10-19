@@ -44,10 +44,6 @@ export JAVA_HOME="$(/usr/libexec/java_home)"
 export EC2_AMITOOL_HOME="$(find /usr/local/Cellar/ec2-ami-tools/*/libexec -type d | head -n 1)"
 export EC2_HOME=$EC2_AMITOOL_HOME
 
-# -- iTerm 2 shell integration
-
-test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
-
 # -- Docker
 
 # which docker-machine > /dev/null && eval "$(docker-machine env rg-docker)"
