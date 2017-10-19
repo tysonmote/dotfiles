@@ -6,6 +6,7 @@ https://github.com/ekalinin/Dockerfile.vim.git
 https://github.com/fatih/vim-go.git
 https://github.com/gabesoft/vim-ags.git
 https://github.com/godlygeek/tabular.git
+https://github.com/junegunn/fzf.vim.git
 https://github.com/markcornick/vim-terraform.git
 https://github.com/neilhwatson/vim_cf3.git
 https://github.com/rbgrouleff/bclose.vim.git
