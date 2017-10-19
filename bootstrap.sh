@@ -70,4 +70,8 @@ go get -u github.com/nsf/gocode
 
 banner "Installing extras"
 
-brew install awscli cscope ctags jq parallel pcre postgresql redis sqlite the_silver_searcher
+brew install awscli cscope ctags jq parallel pcre postgresql redis sqlite the_silver_searcher fzf
+
+banner "Configuring fzf"
+
+$(brew --prefix)/opt/fzf/install

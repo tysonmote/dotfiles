@@ -16,6 +16,10 @@ DISABLE_AUTO_UPDATE=true
 plugins=(brew heroku golang vagrant rake-fast)
 source $ZSH/oh-my-zsh.sh
 
+# -- fzf
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # -- git
 
 alias gpr='git push -u origin `git rev-parse --abbrev-ref HEAD` ; hub pull-request'
