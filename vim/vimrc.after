@@ -142,6 +142,10 @@ nnoremap <silent> p p`]
 
 nnoremap <leader>s :w <bar> call SyntasticCheck()<cr>
 
+" fzf
+map <C-t> :Files<CR>
+imap <C-t> <ESC>:Files<CR>
+
 " =========
 " filetypes
 " =========

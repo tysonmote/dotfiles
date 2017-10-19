@@ -26,6 +26,7 @@ call janus#disable_plugin('typescript')
 call janus#disable_plugin('ack.vim')
 call janus#disable_plugin('buffergator')
 call janus#disable_plugin('css-color') " Buggy and annoying
+call janus#disable_plugin('ctrlp') " fzf is the new hotness
 call janus#disable_plugin('easymotion')
 call janus#disable_plugin('eunuch')
 call janus#disable_plugin('filetypes') " Annoying defaults
@@ -120,3 +121,25 @@ let g:tagbar_case_insensitive = 1
 " Pencil
 let g:pencil#conceallevel = 0
 let g:pencil#textwidth = 80
+
+" fzf
+set rtp+=/usr/local/opt/fzf
+" fzf.vim
+let g:fzf_action = {
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit' }
+let g:fzf_layout = { 'down': '~20%' }
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Comment'],
+  \ 'hl':      ['fg', 'Label'],
+  \ 'fg+':     ['fg', 'Comment'],
+  \ 'bg+':     ['bg', 'Comment'],
+  \ 'hl+':     ['fg', 'Label'],
+  \ 'info':    ['fg', 'Comment'],
+  \ 'border':  ['fg', 'Comment'],
+  \ 'prompt':  ['fg', 'Comment'],
+  \ 'pointer': ['fg', 'Comment'],
+  \ 'marker':  ['fg', 'Label'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
