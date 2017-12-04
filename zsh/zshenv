@@ -30,3 +30,4 @@ export EDITOR="mvim -f"
 export GOPATH=$HOME/dev
 export PATH=$GOPATH/bin:$PATH
 export PATH=/usr/local/opt/go/libexec/bin:$PATH
+export SEGMENT_TEAM=warehouses
