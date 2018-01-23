@@ -23,6 +23,9 @@
   # default EDITOR).
   editor = vim
 
+  # Use less but just exit and retain output if output is short.
+  pager = "less -F -X"
+
 [alias]
   log = log --stat --summary
   up = "!git remote update -p; git merge --ff-only @{u}"
