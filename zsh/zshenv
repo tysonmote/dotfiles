@@ -21,7 +21,7 @@ export PATH=/usr/local/share/npm/bin:$PATH
 # Editor
 #
 
-export EDITOR="mvim -f"
+export EDITOR="nvim"
 
 #
 # Go

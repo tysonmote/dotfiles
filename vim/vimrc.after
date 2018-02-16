@@ -5,11 +5,10 @@
 " Pretty colors
 syntax enable
 set background=dark
-if has('gui_running')
-  colorscheme base16-ocean
-else
-  colorscheme molokai
-end
+colorscheme base16-tomorrow-night
+if (has("termguicolors"))
+  set termguicolors
+endif
 
 " General stuff
 set nocompatible   " break away from old vi compatibility
@@ -110,9 +109,6 @@ nnoremap <silent> <D-{> :bprev<CR>
 " Open in Marked.app
 command! Marked silent !open -a "Marked 2.app" "%:p"
 
-" Rad comment block reformatting
-nnoremap <C-r> gqip
-
 " Select entire block of code
 imap <C-b> <C-[>va}V
 nnoremap <C-b> va}V
@@ -120,10 +116,10 @@ nnoremap <C-b> va}V
 " Emacs shit
 inoremap <C-k> <C-[>ld$A
 nnoremap <C-k> d$
-inoremap <C-a> <C-[>I
-nnoremap <C-a> ^
-inoremap <C-e> <C-[>A
-nnoremap <C-e> $
+" inoremap <C-a> <C-[>I
+" nnoremap <C-a> ^
+" inoremap <C-e> <C-[>A
+" nnoremap <C-e> $
 
 " Replace selected text without overwriting buffer
 vmap r "_dP
@@ -145,6 +141,14 @@ nnoremap <leader>s :w <bar> call SyntasticCheck()<cr>
 " fzf
 map <C-t> :Files<CR>
 imap <C-t> <ESC>:Files<CR>
+
+" vim-ags
+map <C-f> :Ags<space>
+imap <C-f> <ESC>:Ags<space>
+
+" Don't de-select when indenting
+vnoremap < <gv
+vnoremap > >gv
 
 " =========
 " filetypes
@@ -169,9 +173,6 @@ au FileType markdown setlocal formatoptions+=t " Auto-wrap while typing
 " Python
 au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4 " Follow PEP8 for whitespace
 
-" Fold by indentation in CoffeeScript files
-au BufNewFile,BufReadPost *.coffee setlocal foldmethod=indent
-
 " gofmt-approved indentation
 au FileType go setlocal noexpandtab nowrap textwidth=0
 " Misc. go goodies
@@ -181,9 +182,6 @@ au FileType go nmap <leader>gd <Plug>(go-doc-browser)
 au FileType go nmap <leader>l <Plug>(go-lint)
 au FileType go nmap <leader>r <Plug>(go-rename)
 au FileType go nmap <leader>v <Plug>(go-vet)
-
-" cfengine
-au BufRead,BufNewFile *.cf set ft=cf3
 
 " ruby
 au FileType ruby map <leader>r :!ruby %<cr>
@@ -196,16 +194,15 @@ autocmd FileType markdown,mkd call pencil#init()
 " ========
 
 let g:syntastic_go_checkers = ['gometalinter']
-" gotype doesn't handle vendoring correctly as of 2017-04-24
-let g:syntastic_go_gometalinter_args = "--vendor --skip vendor --disable gotype --disable gocyclo --disable gas --disable aligncheck --disable goconst"
+let g:syntastic_go_gometalinter_args = "--vendor --skip vendor --disable gotypex --disable gocyclo --disable goconst --disable safesql"
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 " Don't open the error list, it causes a lot of pain with splits:
 let g:syntastic_auto_loc_list = 0
 " Gutter symbols:
-let g:syntastic_error_symbol = "⛔"
-let g:syntastic_style_error_symbol = "⛔"
-let g:syntastic_style_warning_symbol = "⚡"
-let g:syntastic_warning_symbol = "⚡"
+let g:syntastic_error_symbol = "▸"
+let g:syntastic_style_error_symbol = "▸"
+let g:syntastic_style_warning_symbol = "!"
+let g:syntastic_warning_symbol = "!"
 
 " ===============
 " Custom commands
