@@ -88,8 +88,8 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:gitgutter_eager = 0
 
 " vim-airline
-let g:airline_powerline_fonts=1
-let g:airline_theme='base16'
+let g:airline_powerline_fonts=0
+let g:airline_theme='base16_tomorrow'
 
 function! AirlineInit()
   " Disable git hunks & branch
@@ -129,17 +129,3 @@ let g:fzf_action = {
   \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit' }
 let g:fzf_layout = { 'down': '~20%' }
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Comment'],
-  \ 'hl':      ['fg', 'Label'],
-  \ 'fg+':     ['fg', 'Comment', 'Comment', 'Comment'],
-  \ 'bg+':     ['bg', 'Comment', 'Comment'],
-  \ 'hl+':     ['fg', 'Label'],
-  \ 'info':    ['fg', 'Comment'],
-  \ 'border':  ['fg', 'Comment'],
-  \ 'prompt':  ['fg', 'Comment'],
-  \ 'pointer': ['fg', 'Comment'],
-  \ 'marker':  ['fg', 'Label'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
