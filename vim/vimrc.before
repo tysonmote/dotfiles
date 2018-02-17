@@ -89,7 +89,7 @@ let g:gitgutter_eager = 0
 
 " vim-airline
 let g:airline_powerline_fonts=0
-let g:airline_theme='base16_tomorrow'
+let g:airline_theme='base16_default'
 
 function! AirlineInit()
   " Disable git hunks & branch
