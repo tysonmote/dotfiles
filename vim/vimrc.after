@@ -136,7 +136,8 @@ vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 
-nnoremap <leader>s :w <bar> call SyntasticCheck()<cr>
+" vim-go
+nnoremap <leader>s :w <bar> GoMetaLinter<cr>
 
 " fzf
 map <C-t> :Files<CR>
@@ -193,9 +194,6 @@ autocmd FileType markdown,mkd call pencil#init()
 " Settings
 " ========
 
-let g:syntastic_go_checkers = ['gometalinter']
-let g:syntastic_go_gometalinter_args = "--vendor --skip vendor --disable gotypex --disable gocyclo --disable goconst --disable safesql"
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 " Don't open the error list, it causes a lot of pain with splits:
 let g:syntastic_auto_loc_list = 0
 " Gutter symbols:
