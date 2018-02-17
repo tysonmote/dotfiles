@@ -5,7 +5,7 @@
 " Pretty colors
 syntax enable
 set background=dark
-colorscheme base16-tomorrow-night
+colorscheme base16-default-dark
 if (has("termguicolors"))
   set termguicolors
 endif
@@ -116,10 +116,10 @@ nnoremap <C-b> va}V
 " Emacs shit
 inoremap <C-k> <C-[>ld$A
 nnoremap <C-k> d$
-" inoremap <C-a> <C-[>I
-" nnoremap <C-a> ^
-" inoremap <C-e> <C-[>A
-" nnoremap <C-e> $
+inoremap <C-a> <C-[>I
+nnoremap <C-a> ^
+inoremap <C-e> <C-[>A
+nnoremap <C-e> $
 
 " Replace selected text without overwriting buffer
 vmap r "_dP
