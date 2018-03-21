@@ -60,8 +60,10 @@
   trustExitCode = true
 
 [push]
-  default = simple
+	default = current
 
 [rerere]
   enabled = 1
 
+[commit]
+	gpgsign = true
