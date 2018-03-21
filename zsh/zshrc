@@ -59,11 +59,11 @@ done
 alias t='robo prod.tool'
 alias wt='robo prod warehouse-tool'
 alias awsprod='aws-okta exec prod-privileged -- aws'
-alias logsprod='aws-okta exec prod-privileged -- cwlogs'
+alias logsprod='aws-okta exec production -- s3logs'
 alias s3prod='aws-okta exec prod-privileged -- aws s3'
 # Staging
 alias awsstage='aws-okta exec stage-privileged -- aws'
-alias logsstage='aws-okta exec stage-privileged -- cwlogs'
+alias logsstage='aws-okta exec stage -- s3logs'
 alias s3stage='aws-okta exec stage-privileged -- aws s3'
 
 # -- Secrets
