@@ -30,8 +30,23 @@ snippet tests
 	}
 
 	for _, test := range tests {
+		t.Run(test.desc, func(t *testing.T) {
+			${4}
+		})
+	}
+snippet ptests
+	tests := []struct {
+		desc string
+		${1}
+		expect ${2:type}
+	}{
+		{${3}},
+	}
+
+	for _, test := range tests {
 		test := test
 		t.Run(test.desc, func(t *testing.T) {
+			t.Parallel()
 			${4}
 		})
 	}
