@@ -45,7 +45,7 @@ brew linkapps macvim
 
 banner "Installing Janus"
 
-curl -L https://raw.githubusercontent.com/carlhuda/janus/master/bootstrap.sh | bash
+curl -L https://raw.githubusercontent.com/tysonmote/janus/master/bootstrap.sh | bash
 
 banner "Configuring Vim"
 
