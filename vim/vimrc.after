@@ -237,4 +237,3 @@ function! DeleteInactiveBufs()
 endfunction
 command! BufOnly :call DeleteInactiveBufs()
 command! Bonly :call DeleteInactiveBufs()
-
