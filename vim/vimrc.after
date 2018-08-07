@@ -183,6 +183,8 @@ au FileType go nmap <leader>gd <Plug>(go-doc-browser)
 au FileType go nmap <leader>l <Plug>(go-lint)
 au FileType go nmap <leader>r <Plug>(go-rename)
 au FileType go nmap <leader>v <Plug>(go-vet)
+au FileType go nmap <leader>i <Plug>(go-info)
+au FileType go nmap <leader>t <Plug>(go-test-func)
 
 " ruby
 au FileType ruby map <leader>r :!ruby %<cr>
@@ -194,13 +196,21 @@ autocmd FileType markdown,mkd call pencil#init()
 " Settings
 " ========
 
-" Don't open the error list, it causes a lot of pain with splits:
-let g:syntastic_auto_loc_list = 0
 " Gutter symbols:
-let g:syntastic_error_symbol = "▸"
-let g:syntastic_style_error_symbol = "▸"
-let g:syntastic_style_warning_symbol = "!"
-let g:syntastic_warning_symbol = "!"
+let g:syntastic_enable_signs = 1
+let g:syntastic_error_symbol = "🔺"
+let g:syntastic_style_error_symbol = "🔺"
+let g:syntastic_warning_symbol = "🔸"
+let g:syntastic_style_warning_symbol = "🔸"
+
+let g:syntastic_mode_map = {'mode': 'active'}
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 1
+let g:syntastic_aggregate_errors = 1
+
+let g:syntastic_go_checkers = ['golint', 'govet']
 
 " ===============
 " Custom commands
