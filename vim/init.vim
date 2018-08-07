@@ -19,14 +19,6 @@ function! AirlineInit()
 endfunction
 autocmd User AirlineAfterInit call AirlineInit()
 
-let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.rbc$', '\.rbo$', '\.class$', '\.o$', '\~$']
-let g:NERDTreeAutoDeleteBuffer = 1
-let g:NERDTreeHijackNetrw = 1
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeRespectWildIgnore = 1
-let g:NERDTreeShowHidden = 1
-let g:NERDTreeWinSize = 40
-
 " ------------------------------------------------------------------------------------------
 " ------------------------------------------------------------------------------------------
 " ----------------------------------------- Plugins ----------------------------------------
@@ -333,8 +325,8 @@ let g:go_test_show_name = 1
 let g:go_info_mode = 'guru'
 let g:go_jump_to_error = 0
 let g:go_fmt_experimental = 1
-let g:go_fmt_fail_silently = 1 " for syntactic active mode compatibility
-let g:go_list_type = "quickfix" " for syntactic active mode compatibility
+let g:go_fmt_fail_silently = 1   " for syntastic active mode compatibility
+let g:go_list_type = "quickfix"  " for syntastic active mode compatibility
 
 " -------------------------------------------- vim-json ------------------------------------
 
@@ -349,6 +341,13 @@ let g:NERDTrimTrailingWhitespace = 1
 
 " -------------------------------------------- NERDTree ------------------------------------
 
+let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.rbc$', '\.rbo$', '\.class$', '\.o$', '\~$']
+let g:NERDTreeAutoDeleteBuffer = 1
+let g:NERDTreeHijackNetrw = 1
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeRespectWildIgnore = 1
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeWinSize = 40
 
 " --------------------------------------------- Pencil -------------------------------------
 
