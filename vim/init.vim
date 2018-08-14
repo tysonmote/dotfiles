@@ -163,6 +163,7 @@ set directory=~/.vim/_temp//
 silent !mkdir ~/.vim/_undo > /dev/null 2>&1
 set undodir=~/.vim/_undo//
 set undofile
+set updatetime=500   " write swap files after 0.5s of inactivity (default 4s)
 
 " --------------------------------------------- Misc. --------------------------------------
 
@@ -313,10 +314,6 @@ let g:fzf_action = {
   \ 'ctrl-v': 'vsplit' }
 let g:fzf_layout = { 'down': '~20%' }
 
-" ------------------------------------------- gitgutter ------------------------------------
-
-let g:gitgutter_async = 0  " TODO nvim hides gitgutter when async
-
 " --------------------------------------------- vim-go -------------------------------------
 
 let g:go_fmt_command = "goimports"
@@ -342,9 +339,11 @@ let g:NERDTrimTrailingWhitespace = 1
 " -------------------------------------------- NERDTree ------------------------------------
 
 let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.rbc$', '\.rbo$', '\.class$', '\.o$', '\~$']
-let g:NERDTreeAutoDeleteBuffer = 1
-let g:NERDTreeHijackNetrw = 1
+let g:NERDTreeAutoDeleteBuffer = 1    " close buffer when deleting file
+let g:NERDTreeChDirMode = 2           " change nvim cwd when changing root
+let g:NERDTreeHijackNetrw = 0         " don't kill nerdtree when opening first file
 let g:NERDTreeMinimalUI = 1
+let g:NERDTreeNaturalSort = 1         " sort numbers nicely
 let g:NERDTreeRespectWildIgnore = 1
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeWinSize = 40
