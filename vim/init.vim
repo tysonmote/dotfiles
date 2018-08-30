@@ -39,7 +39,11 @@ Plug 'sheerun/vim-polyglot'
 " Tools
 Plug 'tpope/vim-unimpaired'
 Plug 'scrooloose/nerdcommenter'
-Plug 'ervandew/supertab'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'Shougo/neopairs.vim'
+Plug 'Shougo/context_filetype.vim'
+Plug 'Shougo/echodoc.vim'
 Plug 'tpope/vim-surround'
 Plug 'garbas/vim-snipmate'
 Plug 'tomtom/tlib_vim'
@@ -80,6 +84,7 @@ set showmode          " show current mode down the bottom
 set visualbell        " no sounds because I'm deaf ;_;
 set hidden            " aLlow modified buffers to be hidden
 let mapleader = ";"
+set noshowmode        " don't show mode in status line
 
 " -------------------------------------------- Wrapping ------------------------------------
 
@@ -139,6 +144,11 @@ set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=*.box
 set wildignore+=vendor/**
+
+
+" --------------------------------------- Completion ---------------------------------------
+
+set completeopt=menu,noinsert
 
 " -------------------------------------------- Folding -------------------------------------
 
@@ -276,6 +286,16 @@ nnoremap <silent> <D-{> :bprev<CR>
 map <C-f> :Ags<space>
 imap <C-f> <ESC>:Ags<space>
 
+" deoplete
+inoremap <silent><expr> <TAB>
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "{{{
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+
 " vim-expand-region
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
@@ -303,6 +323,15 @@ map <leader>n :NERDTreeToggle<CR>:NERDTreeMirror<CR>
 
 let g:ags_agcontext = 0
 let g:ags_winheight = '20'
+
+" ---------------------------------------- deoplete ----------------------------------------
+
+let g:deoplete#enable_at_startup = 1
+
+call deoplete#custom#option({
+  \ 'auto_complete': v:false,
+  \ 'complete_method': 'omnifunc',
+  \ })
 
 " ---------------------------------------------- fzf ---------------------------------------
 
@@ -339,7 +368,6 @@ let g:NERDTrimTrailingWhitespace = 1
 let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.rbc$', '\.rbo$', '\.class$', '\.o$', '\~$']
 let g:NERDTreeAutoDeleteBuffer = 1    " close buffer when deleting file
 let g:NERDTreeChDirMode = 2           " change nvim cwd when changing root
-let g:NERDTreeHijackNetrw = 0         " don't kill nerdtree when opening first file
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeNaturalSort = 1         " sort numbers nicely
 let g:NERDTreeRespectWildIgnore = 1
@@ -354,11 +382,6 @@ let g:pencil#textwidth = 80
 " --------------------------------------------- Ragtag -------------------------------------
 
 let g:ragtag_global_maps = 1
-
-" -------------------------------------------- SuperTab ------------------------------------
-
-set completeopt=menu
-let g:SuperTabDefaultCompletionType = "context"
 
 " ------------------------------------------- Syntastic ------------------------------------
 
