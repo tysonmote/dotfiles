@@ -19,6 +19,7 @@ source $ZSH/oh-my-zsh.sh
 # -- fzf
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude vendor'
 
 # -- git
 
