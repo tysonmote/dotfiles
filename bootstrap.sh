@@ -32,7 +32,7 @@ banner "Installing Go"
 mkdir ~/go
 brew install go
 
-baner "Installing Ruby"
+banner "Installing Ruby"
 
 brew install rbenv ruby-build
 rbenv install 2.4.1
@@ -41,6 +41,7 @@ rbenv global 2.4.1
 banner "Installing NeoVim"
 
 brew install neovim
+pip3 install neovim
 
 banner "Configuring NeoVim"
 
