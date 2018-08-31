@@ -25,7 +25,6 @@ banner "Linking zsh config"
 
 ln -s ~/git/dotfiles/zsh/zshrc ~/.zshrc
 ln -s ~/git/dotfiles/zsh/zshenv ~/.zshenv
-ln -s ~/git/dotfiles/zsh/tyson.zsh-theme ~/.oh-my-zsh/themes/tyson.zsh-theme
 
 banner "Installing Go"
 
