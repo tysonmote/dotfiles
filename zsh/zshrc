@@ -13,7 +13,7 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="tyson"
 ENABLE_CORRECTION="false"
 DISABLE_AUTO_UPDATE=true
-plugins=(brew heroku golang vagrant rake-fast)
+plugins=(brew golang vagrant rake-fast)
 source $ZSH/oh-my-zsh.sh
 
 # -- fzf
@@ -35,7 +35,7 @@ export PATH=$HOME/.rbenv/bin:$PATH
 eval "$(rbenv init -)"
 alias rake='noglob rake'
 alias be="bundle exec"
-alias dc="docker-compose -f docker-dev.yml"
+alias dc="docker-compose -f docker-compose.yml"
 
 # -- Tab completion
 
@@ -49,6 +49,3 @@ export JAVA_HOME="$(/usr/libexec/java_home)"
 export EC2_AMITOOL_HOME="$(find /usr/local/Cellar/ec2-ami-tools/*/libexec -type d | head -n 1)"
 export EC2_HOME=$EC2_AMITOOL_HOME
 
-# -- Docker
-
-# which docker-machine > /dev/null && eval "$(docker-machine env rg-docker)"
