@@ -52,7 +52,7 @@ ln -s ~/git/dotfiles/vim/snippets ~/.config/nvim/
 
 banner "Installing extras"
 
-brew install awscli cscope ctags jq parallel pcre postgresql redis sqlite the_silver_searcher fzf fd
+brew install awscli cscope ctags jq parallel pcre postgresql redis sqlite the_silver_searcher fzf fd bat htop diff-so-fancy tldr
 
 banner "Configuring fzf"
 
