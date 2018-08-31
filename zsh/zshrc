@@ -41,7 +41,9 @@ alias be="bundle exec"
 # -- Node.js / NVM
 
 export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
+loadnvm() {
+	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+}
 
 # -- Tab completion
 
