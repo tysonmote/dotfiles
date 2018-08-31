@@ -24,7 +24,7 @@
   editor = nvim
 
   # Use less but just exit and retain output if output is short.
-  pager = "less -F -X"
+  pager = "diff-so-fancy | less --tabs=4 -RFX"
 
 [alias]
   log = log --stat --summary
