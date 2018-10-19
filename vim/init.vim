@@ -41,7 +41,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-go', { 'do': 'make'}
-Plug 'Shougo/neopairs.vim'
 Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/echodoc.vim'
 Plug 'tpope/vim-surround'
@@ -177,6 +176,7 @@ set updatetime=500   " write swap files after 0.5s of inactivity (default 4s)
 " --------------------------------------------- Misc. --------------------------------------
 
 set conceallevel=0  " don't auto-hide quotes. christ that's annoying
+let loaded_netrwPlugin = 1 " disable netrw
 
 " ------------------------------------------------------------------------------------------
 " ------------------------------------------------------------------------------------------
@@ -268,14 +268,11 @@ map <Up> gk
 " Adjust viewports to the same size
 map <Leader>= <C-w>=
 
-" Cycle through split panes
-nnoremap <Tab> <C-w><C-w>
-
-" Cycle through buffers
-imap <silent> <D-}> <C-[><D-}>
-imap <silent> <D-{> <C-[><D-{>
-nnoremap <silent> <D-}> :bnext<CR>
-nnoremap <silent> <D-{> :bprev<CR>
+" Option-arrows to move through panes
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
 
 " -------------------------------------------- Plugins -------------------------------------
 
@@ -288,8 +285,8 @@ vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
 " fzf
-map <C-t> :Files<CR>
-imap <C-t> <ESC>:Files<CR>
+map <silent> <expr> <C-t> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
+imap <C-t> <ESC>:Fzf<CR>
 
 " vim-go
 nnoremap <leader>s :w <bar> GoMetaLinter<cr>
@@ -367,7 +364,8 @@ let g:NERDTreeNaturalSort = 1         " sort numbers nicely
 let g:NERDTreeRespectWildIgnore = 1
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeWinSize = 40
-let g:NERDTreeHijackNetrw = 0
+let g:NERDTreeHijackNetrw = 0         " fix lots of weird issues
+let g:NERDTreeQuitOnOpen = 1          " close on file open
 
 " --------------------------------------------- Pencil -------------------------------------
 
@@ -433,52 +431,7 @@ command! Bonly :call DeleteInactiveBufs()
 
 " ---------------------- NERDTree --------------------------------------------------
 
-augroup AuNERDTreeCmd
-autocmd AuNERDTreeCmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
-autocmd AuNERDTreeCmd FocusGained * call s:UpdateNERDTree()
-
-" If the parameter is a directory, cd into it
-function s:CdIfDirectory(directory)
-	let explicitDirectory = isdirectory(a:directory)
-	let directory = explicitDirectory || empty(a:directory)
-
-	if explicitDirectory
-		exe "cd " . fnameescape(a:directory)
-	endif
-
-	" Allows reading from stdin
-	" ex: git diff | mvim -R -
-	if strlen(a:directory) == 0
-		return
-	endif
-
-	if directory
-		NERDTree
-		wincmd p
-		bd
-	endif
-
-	if explicitDirectory
-		wincmd p
-	endif
-endfunction
-
-" NERDTree utility function
-function s:UpdateNERDTree(...)
-	let stay = 0
-
-	if(exists("a:1"))
-		let stay = a:1
-	end
-
-	if exists("t:NERDTreeBufName")
-		let nr = bufwinnr(t:NERDTreeBufName)
-		if nr != -1
-			exe nr . "wincmd w"
-			exe substitute(mapcheck("R"), "<CR>", "", "")
-			if !stay
-				wincmd p
-			end
-		endif
-	endif
-endfunction
+" Open on startup
+autocmd vimenter * NERDTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
