@@ -298,7 +298,7 @@ nnoremap <leader>s :w <bar> GoMetaLinter<cr>
 map <leader>/ <plug>NERDCommenterToggle<CR>
 
 " NERDTree
-map <leader>n :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+map <leader>n :NERDTreeToggle<CR>
 
 " ------------------------------------------------------------------------------------------
 " ------------------------------------------------------------------------------------------
@@ -367,6 +367,7 @@ let g:NERDTreeNaturalSort = 1         " sort numbers nicely
 let g:NERDTreeRespectWildIgnore = 1
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeWinSize = 40
+let g:NERDTreeHijackNetrw = 0
 
 " --------------------------------------------- Pencil -------------------------------------
 
