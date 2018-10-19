@@ -66,6 +66,7 @@ Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-sensible'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'w0rp/ale'
 
 call plug#end()
 
