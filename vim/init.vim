@@ -66,7 +66,7 @@ Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-sensible'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'w0rp/ale'
+Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 
@@ -217,10 +217,6 @@ au FileType markdown,mkd call pencil#init()     " use Pencil for Markdown writin
 
 au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4 " follow PEP8 for whitespace
 
-" ---------------------------------------------- Ruby --------------------------------------
-
-au FileType ruby map <leader>r :!ruby %<cr>
-
 
 " ------------------------------------------------------------------------------------------
 " ------------------------------------------------------------------------------------------
@@ -287,16 +283,6 @@ nnoremap <silent> <D-{> :bprev<CR>
 map <C-f> :Ags<space>
 imap <C-f> <ESC>:Ags<space>
 
-" deoplete
-inoremap <silent><expr> <TAB>
-    \ pumvisible() ? "\<C-n>" :
-    \ <SID>check_back_space() ? "\<TAB>" :
-    \ deoplete#mappings#manual_complete()
-function! s:check_back_space() abort "{{{
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
-
 " vim-expand-region
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
@@ -330,9 +316,16 @@ let g:ags_winheight = '20'
 let g:deoplete#enable_at_startup = 1
 
 call deoplete#custom#option({
-  \ 'auto_complete': v:false,
-  \ 'complete_method': 'omnifunc',
+	\ 'auto_complete_delay': 200,
   \ })
+
+call deoplete#custom#source('_', 'converters', [
+  \ 'converter_auto_paren',
+  \ 'converter_remove_overlap',
+  \ 'converter_truncate_abbr',
+  \ 'converter_truncate_menu',
+  \ 'converter_auto_delimiter',
+  \ ])
 
 " ---------------------------------------------- fzf ---------------------------------------
 
