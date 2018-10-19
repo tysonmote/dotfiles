@@ -1,5 +1,6 @@
 #!/bin/bash -eux
 
+go get -u github.com/mgechev/revive
 go get -u github.com/alecthomas/gometalinter
 gometalinter --install
 
