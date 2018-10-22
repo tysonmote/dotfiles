@@ -268,11 +268,11 @@ map <Up> gk
 " Adjust viewports to the same size
 map <Leader>= <C-w>=
 
-" Option-arrows to move through panes
-nmap <silent> <A-Up> :wincmd k<CR>
-nmap <silent> <A-Down> :wincmd j<CR>
-nmap <silent> <A-Left> :wincmd h<CR>
-nmap <silent> <A-Right> :wincmd l<CR>
+" option + movement key to move through panes
+nnoremap <silent> <M-k> :wincmd k<CR>
+nnoremap <silent> <M-j> :wincmd j<CR>
+nnoremap <silent> <M-h> :wincmd h<CR>
+nnoremap <silent> <M-l> :wincmd l<CR>
 
 " -------------------------------------------- Plugins -------------------------------------
 
@@ -289,7 +289,7 @@ map <silent> <expr> <C-t> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":F
 imap <C-t> <ESC>:Fzf<CR>
 
 " vim-go
-nnoremap <leader>s :w <bar> GoMetaLinter<cr>
+nnoremap <leader>s :w <bar> GoMetaLinter<CR>
 
 " NERDCommenter
 map <leader>/ <plug>NERDCommenterToggle<CR>
