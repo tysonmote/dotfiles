@@ -308,6 +308,10 @@ map <leader>n :NERDTreeToggle<CR>
 let g:ags_agcontext = 0
 let g:ags_winheight = '20'
 
+" ---------------------------------------- auto-pair ---------------------------------------
+
+g:AutoPairsCenterLine = 0
+
 " ---------------------------------------- deoplete ----------------------------------------
 
 let g:deoplete#enable_at_startup = 1
