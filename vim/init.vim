@@ -268,6 +268,10 @@ map <Up> gk
 " Adjust viewports to the same size
 map <Leader>= <C-w>=
 
+" Option - / + to resize vertically
+map <M--> 2<C-w>-
+map <M-=> 2<C-w>+
+
 " option + movement key to move through panes
 nnoremap <silent> <M-k> :wincmd k<CR>
 nnoremap <silent> <M-j> :wincmd j<CR>
