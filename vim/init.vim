@@ -66,6 +66,7 @@ Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-sensible'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
+Plug 'sebdah/vim-delve'
 
 call plug#end()
 
