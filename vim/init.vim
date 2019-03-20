@@ -40,7 +40,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-unimpaired'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/echodoc.vim'
 Plug 'tpope/vim-surround'
@@ -322,7 +322,7 @@ let g:AutoPairsCenterLine = 0
 let g:deoplete#enable_at_startup = 1
 
 call deoplete#custom#option({
-	\ 'auto_complete_delay': 200,
+	\ 'auto_complete_delay': 100,
   \ })
 
 call deoplete#custom#source('_', 'converters', [
@@ -332,6 +332,12 @@ call deoplete#custom#source('_', 'converters', [
   \ 'converter_truncate_menu',
   \ 'converter_auto_delimiter',
   \ ])
+
+let g:deoplete#sources#go#gocode_binary = '/Users/tysonmote/dev/bin/gocode'
+let g:deoplete#sources#go#package_dot = 1
+let g:deoplete#sources#go#pointer = 1
+let g:deoplete#sources#go#builtin_objects = 1
+let g:deoplete#sources#go#unimported_packages = 1
 
 " ---------------------------------------------- fzf ---------------------------------------
 
