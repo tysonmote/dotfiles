@@ -79,3 +79,5 @@ alias s3stage='aws-okta exec stage-privileged -- aws s3'
 # -- Secrets
 
 [ -f $HOME/.secrets/prod ] && source $HOME/.secrets/prod
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

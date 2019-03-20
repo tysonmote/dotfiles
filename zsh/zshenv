@@ -31,3 +31,13 @@ export GOPATH=$HOME/dev
 export PATH=$GOPATH/bin:$PATH
 export PATH=/usr/local/opt/go/libexec/bin:$PATH
 export SEGMENT_TEAM=platform
+
+#
+# Segment: platform-api / connections-service
+#
+
+export CONNECTIONS_SERVICE_CLIENT_ID=dev-client-id
+export CONNECTIONS_SERVICE_CLIENT_SECRET=dev-client-secret
+export PLATFORM_AUTHZ_CLIENT_ID=dev-client-id
+export PLATFORM_AUTHZ_CLIENT_SECRET=dev-client-secret
+
