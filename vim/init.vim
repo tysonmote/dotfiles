@@ -333,7 +333,7 @@ call deoplete#custom#source('_', 'converters', [
   \ 'converter_auto_delimiter',
   \ ])
 
-let g:deoplete#sources#go#gocode_binary = '/Users/tysonmote/dev/bin/gocode'
+let g:deoplete#sources#go#gocode_binary = '/Users/tyson/go/bin/gocode'
 let g:deoplete#sources#go#package_dot = 1
 let g:deoplete#sources#go#pointer = 1
 let g:deoplete#sources#go#builtin_objects = 1
