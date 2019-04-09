@@ -19,6 +19,8 @@ function! AirlineInit()
 endfunction
 autocmd User AirlineAfterInit call AirlineInit()
 
+let g:polyglot_disabled = ['liquid']
+
 " ------------------------------------------------------------------------------------------
 " ------------------------------------------------------------------------------------------
 " ----------------------------------------- Plugins ----------------------------------------
@@ -31,6 +33,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'chriskempson/base16-vim'
 
 " Languages
+Plug 'dhruvasagar/vim-table-mode'
 Plug 'tpope/vim-rails'
 Plug 'fatih/vim-go'
 Plug 'mmalecki/vim-node.js'
