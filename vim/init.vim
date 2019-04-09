@@ -211,9 +211,7 @@ au FileType make setlocal noexpandtab  " real tabs
 
 " -------------------------------------------- Markdown ------------------------------------
 
-au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown
-au FileType markdown setlocal formatoptions+=t  " auto-wrap while typing
-au FileType markdown,mkd call pencil#init()     " use Pencil for Markdown writing
+au BufRead,BufNewFile *.{md,markdown,txt} setf markdown
 
 " --------------------------------------------- Python -------------------------------------
 
@@ -382,11 +380,6 @@ let g:NERDTreeShowHidden = 1
 let g:NERDTreeWinSize = 40
 let g:NERDTreeHijackNetrw = 0         " fix lots of weird issues
 let g:NERDTreeQuitOnOpen = 1          " close on file open
-
-" --------------------------------------------- Pencil -------------------------------------
-
-let g:pencil#conceallevel = 0
-let g:pencil#textwidth = 80
 
 " --------------------------------------------- Ragtag -------------------------------------
 
