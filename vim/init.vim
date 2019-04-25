@@ -43,7 +43,6 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-unimpaired'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/echodoc.vim'
 Plug 'tpope/vim-surround'
@@ -321,7 +320,7 @@ let g:AutoPairsCenterLine = 0
 let g:deoplete#enable_at_startup = 1
 
 call deoplete#custom#option({
-	\ 'auto_complete_delay': 100,
+  \ 'auto_complete_delay': 100,
   \ })
 
 call deoplete#custom#source('_', 'converters', [
@@ -332,11 +331,11 @@ call deoplete#custom#source('_', 'converters', [
   \ 'converter_auto_delimiter',
   \ ])
 
-let g:deoplete#sources#go#gocode_binary = '/Users/tysonmote/dev/bin/gocode'
-let g:deoplete#sources#go#package_dot = 1
-let g:deoplete#sources#go#pointer = 1
-let g:deoplete#sources#go#builtin_objects = 1
-let g:deoplete#sources#go#unimported_packages = 1
+call deoplete#custom#option('omni_patterns', {
+\ 'go': '[^. *\t]\.\w*',
+\})
+
+let g:deoplete#complete_method = "omnifunc"
 
 " ---------------------------------------------- fzf ---------------------------------------
 
@@ -348,10 +347,11 @@ let g:fzf_layout = { 'down': '~20%' }
 
 " --------------------------------------------- vim-go -------------------------------------
 
+let g:go_def_mode = "gopls"
+let g:go_info_mode = "gopls"
 let g:go_fmt_command = "goimports"
 let g:go_def_mapping_enabled = 0
 let g:go_test_show_name = 1
-let g:go_info_mode = 'guru'
 let g:go_jump_to_error = 0
 let g:go_fmt_experimental = 1
 let g:go_fmt_fail_silently = 1   " for syntastic active mode compatibility
