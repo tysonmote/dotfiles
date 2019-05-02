@@ -6,6 +6,8 @@
 bindkey -e
 HISTSIZE=1000
 SAVEHIST=10000
+# additional completions
+fpath+=~/.zfunc
 
 # -- oh-my-zsh
 
@@ -14,7 +16,7 @@ ZSH_THEME="agnoster"
 DEFAULT_USER=`whoami`
 ENABLE_CORRECTION="false"
 DISABLE_AUTO_UPDATE=true
-plugins=(brew golang vagrant rake-fast)
+plugins=(brew golang rust cargo rake-fast)
 source $ZSH/oh-my-zsh.sh
 
 # -- fzf
@@ -36,6 +38,13 @@ export PATH=$HOME/.rbenv/bin:$PATH
 eval "$(rbenv init -)"
 alias rake='noglob rake'
 alias be="bundle exec"
+
+# -- Rust
+
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+
+# -- Docker
+
 alias dc="docker-compose -f docker-compose.yml"
 
 # -- Tab completion

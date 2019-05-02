@@ -38,11 +38,13 @@ Plug 'tpope/vim-rails'
 Plug 'fatih/vim-go'
 Plug 'mmalecki/vim-node.js'
 Plug 'sheerun/vim-polyglot'
+Plug 'rust-lang/rust.vim'
 
 " Tools
 Plug 'tpope/vim-unimpaired'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'sebastianmarkow/deoplete-rust'
 Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/echodoc.vim'
 Plug 'tpope/vim-surround'
@@ -384,6 +386,12 @@ let g:NERDTreeQuitOnOpen = 1          " close on file open
 " --------------------------------------------- Ragtag -------------------------------------
 
 let g:ragtag_global_maps = 1
+
+" ------------------------------------------ Rust-------------------------------------------
+
+let g:rustfmt_autosave = 1
+let g:deoplete#sources#rust#racer_binary='/Users/tysonmote/.cargo/bin/racer'
+let g:deoplete#sources#rust#rust_source_path=$RUST_SRC_PATH
 
 " ------------------------------------------- Syntastic ------------------------------------
 
