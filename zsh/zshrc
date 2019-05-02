@@ -7,6 +7,8 @@ bindkey -e
 # long history
 HISTSIZE=1000
 SAVEHIST=10000
+# additional completions
+fpath+=~/.zfunc
 
 # -- oh-my-zsh
 
@@ -15,7 +17,7 @@ ZSH_THEME="agnoster"
 DEFAULT_USER=`whoami`
 ENABLE_CORRECTION="false"
 DISABLE_AUTO_UPDATE=true
-plugins=(brew golang)
+plugins=(brew golang rust cargo)
 source $ZSH/oh-my-zsh.sh
 
 # -- fzf
@@ -44,6 +46,10 @@ export NVM_DIR="$HOME/.nvm"
 loadnvm() {
 	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 }
+
+# -- Rust
+
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
 # -- Tab completion
 
