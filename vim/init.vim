@@ -69,6 +69,7 @@ Plug 'tpope/vim-sensible'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
 Plug 'sebdah/vim-delve'
+Plug 'PeterRincker/vim-searchlight'
 
 call plug#end()
 
@@ -126,6 +127,20 @@ syntax enable
 set background=dark
 colorscheme base16-default-dark
 set termguicolors
+
+" normal, visual, and showmatch in insert modes: block cursor
+set guicursor=n-v-c-sm:block
+" insert and visual selection modes: 25% vertical bar
+set guicursor+=i-ci-ve:ver25
+" replace, operator-pending modes: 20% horizontal bar
+set guicursor+=r-cr-o:hor20
+" nice blinking speed
+set guicursor+=a:blinkwait200-blinkon200-blinkoff200
+" highlight cursor line in normal mode
+set cursorline
+highlight CursorLine guibg=gray13
+" Highlight selected search result using vim-searchlight
+highlight link Searchlight Incsearch
 
 " ------------------------------------------- Searching ------------------------------------
 
