@@ -330,7 +330,8 @@ let g:ags_winheight = '20'
 
 " ---------------------------------------- auto-pair ---------------------------------------
 
-let g:AutoPairsCenterLine = 0
+let g:AutoPairsCenterLine = 0     " don't scroll for me
+let g:AutoPairsMultilineClose = 0 " don't jump lines to auto-close
 
 " ---------------------------------------- deoplete ----------------------------------------
 
@@ -341,18 +342,16 @@ call deoplete#custom#option({
   \ })
 
 call deoplete#custom#source('_', 'converters', [
+  \ 'converter_auto_delimiter',
   \ 'converter_auto_paren',
   \ 'converter_remove_overlap',
   \ 'converter_truncate_abbr',
   \ 'converter_truncate_menu',
-  \ 'converter_auto_delimiter',
   \ ])
 
 call deoplete#custom#option('omni_patterns', {
 \ 'go': '[^. *\t]\.\w*',
 \})
-
-let g:deoplete#complete_method = "omnifunc"
 
 " ---------------------------------------------- fzf ---------------------------------------
 
