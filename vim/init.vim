@@ -42,8 +42,8 @@ Plug 'sheerun/vim-polyglot' " Covers lots: https://github.com/sheerun/vim-polygl
 " Tools
 Plug 'tpope/vim-unimpaired'
 Plug 'scrooloose/nerdcommenter'
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'sebastianmarkow/deoplete-rust'
 Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/echodoc.vim'
 Plug 'tpope/vim-surround'
@@ -348,9 +348,13 @@ call deoplete#custom#source('_', 'converters', [
   \ 'converter_truncate_menu',
   \ ])
 
-call deoplete#custom#option('omni_patterns', {
-\ 'go': '[^. *\t]\.\w*',
-\})
+let g:LanguageClient_serverCommands = {
+  \ 'go': ['gopls'],
+  \ 'javascript': ['javascript-typescript-stdio'],
+  \ 'python': ['/usr/local/bin/pyls'],
+  \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+  \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+  \ }
 
 " ---------------------------------------------- fzf ---------------------------------------
 
@@ -403,8 +407,6 @@ let g:ragtag_global_maps = 1
 " ------------------------------------------ Rust-------------------------------------------
 
 let g:rustfmt_autosave = 1
-let g:deoplete#sources#rust#racer_binary='/Users/tysonmote/.cargo/bin/racer'
-let g:deoplete#sources#rust#rust_source_path=$RUST_SRC_PATH
 
 " ------------------------------------------- Syntastic ------------------------------------
 
