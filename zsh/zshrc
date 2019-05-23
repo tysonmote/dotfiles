@@ -39,6 +39,17 @@ eval "$(rbenv init -)"
 alias rake='noglob rake'
 alias be="bundle exec"
 
+# -- Node.js
+
+load_node () {
+  unalias node
+  unalias npm
+  n 12.3.1
+}
+
+alias node='load_node; node $@'
+alias npm='load_node; npm $@'
+
 # -- Rust
 
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
