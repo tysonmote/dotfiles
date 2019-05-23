@@ -34,13 +34,20 @@ brew install go
 banner "Installing Ruby"
 
 brew install rbenv ruby-build
-rbenv install 2.4.1
-rbenv global 2.4.1
+rbenv install 2.6.3
+rbenv global 2.6.3
+
+banner "Installing Node.js"
+
+brew install n
+n 12.3.1
+npm -g install typescript
 
 banner "Installing NeoVim"
 
 brew install neovim
 pip3 install neovim
+npm install -g neovim
 
 banner "Configuring NeoVim"
 

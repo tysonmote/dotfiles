@@ -37,8 +37,7 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'tpope/vim-rails'
 Plug 'fatih/vim-go'
 Plug 'mmalecki/vim-node.js'
-Plug 'sheerun/vim-polyglot'
-Plug 'rust-lang/rust.vim'
+Plug 'sheerun/vim-polyglot' " Covers lots: https://github.com/sheerun/vim-polyglot#language-packs
 
 " Tools
 Plug 'tpope/vim-unimpaired'
