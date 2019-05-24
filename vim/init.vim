@@ -356,6 +356,8 @@ let g:LanguageClient_serverCommands = {
   \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
   \ }
 
+let g:LanguageClient_diagnosticsEnable = 0
+
 " ---------------------------------------------- fzf ---------------------------------------
 
 set rtp+=/usr/local/opt/fzf
