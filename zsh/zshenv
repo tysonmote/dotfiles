@@ -16,6 +16,7 @@ export PATH=$HOME/bin:$PATH
 
 export NODE_PATH=/usr/local/lib/node_modules
 export PATH=/usr/local/share/npm/bin:$PATH
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 #
 # Editor
@@ -30,3 +31,17 @@ export EDITOR="nvim"
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$PATH
 export PATH=/usr/local/opt/go/libexec/bin:$PATH
+
+#
+# Segment
+#
+
+if [ -e $HOME/.segment ] ; then
+  export GOPATH=$HOME/dev
+  export SEGMENT_TEAM=platform
+  export CONNECTIONS_SERVICE_CLIENT_ID=dev-client-id
+  export CONNECTIONS_SERVICE_CLIENT_SECRET=dev-client-secret
+  export PLATFORM_AUTHZ_CLIENT_ID=dev-client-id
+  export PLATFORM_AUTHZ_CLIENT_SECRET=dev-client-secret
+fi
+

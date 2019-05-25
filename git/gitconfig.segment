@@ -1,0 +1,86 @@
+[user]
+  name = Tyson Mote
+  email = tyson@segment.com
+
+[core]
+  # Global ignores
+  excludesfile = ~/.gitignore
+
+  # Treat spaces before tabs and all kinds of trailing whitespace as an error
+  # [default] trailing-space: looks for spaces at the end of a line
+  # [default] space-before-tab: looks for spaces before tabs at the beginning of a line
+  whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+
+  # Make `git rebase` safer on OS X
+  # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+  trustctime = false
+
+  # Prevent showing files whose names contain non-ASCII symbols as unversioned.
+  # http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
+  precomposeunicode = false
+
+  # Use in-terminal NeoVim for commit message editing instead of opening MacVim
+  # (my default EDITOR).
+  editor = nvim
+
+  # Use less but just exit and retain output if output is short.
+  pager = "diff-so-fancy | less --tabs=4 -RFX"
+
+[alias]
+  log = log --stat --summary
+  up = "!git remote update -p; git merge --ff-only @{u}"
+
+[apply]
+  # Detect whitespace errors when applying a patch
+  whitespace = fix
+
+[credential]
+  helper = osxkeychain
+
+[diff]
+  tool = Kaleidoscope
+  mnemonicprefix = true
+
+[difftool]
+  prompt = false
+
+[difftool "Kaleidoscope"]
+  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+
+[merge]
+  summary = true
+  verbosity = 1
+  tool = Kaleidoscope
+
+[mergetool]
+  prompt = false
+
+[mergetool "Kaleidoscope"]
+  cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+  trustExitCode = true
+
+[push]
+	default = current
+
+[rerere]
+  enabled = 1
+
+[commit]
+	gpgsign = true
+
+[color]
+	ui = true
+
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+
+[color "diff"]
+	meta = yellow
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse

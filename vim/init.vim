@@ -305,7 +305,7 @@ vmap <C-v> <Plug>(expand_region_shrink)
 
 " fzf
 map <silent> <expr> <C-t> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
-imap <C-t> <ESC>:Fzf<CR>
+imap <C-t> <ESC>:FZF<CR>
 
 " vim-go
 nnoremap <leader>s :w <bar> GoMetaLinter<CR>

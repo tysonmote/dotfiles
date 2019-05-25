@@ -4,10 +4,11 @@
 
 # emacs-style keybindings
 bindkey -e
+# long history
 HISTSIZE=1000
 SAVEHIST=10000
 # additional completions
-fpath+=~/.zfunc
+fpath+=$HOME/.zfunc
 
 # -- oh-my-zsh
 
@@ -16,12 +17,12 @@ ZSH_THEME="agnoster"
 DEFAULT_USER=`whoami`
 ENABLE_CORRECTION="false"
 DISABLE_AUTO_UPDATE=true
-plugins=(brew golang rust cargo rake-fast)
+plugins=(brew golang rust cargo)
 source $ZSH/oh-my-zsh.sh
 
 # -- fzf
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude vendor'
 
 # -- git
@@ -39,7 +40,7 @@ eval "$(rbenv init -)"
 alias rake='noglob rake'
 alias be="bundle exec"
 
-# -- Node.js
+# -- Node.js / NVM
 
 load_node () {
   unalias node
@@ -61,7 +62,7 @@ alias dc="docker-compose -f docker-compose.yml"
 # -- Tab completion
 
 zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.zsh/cache
+zstyle ':completion:*' cache-path $HOME/.zsh/cache
 source /usr/local/share/zsh/site-functions/_aws   # awscli
 
 # -- Packer / ec2-ami-tools stuff
@@ -69,4 +70,27 @@ source /usr/local/share/zsh/site-functions/_aws   # awscli
 export JAVA_HOME="$(/usr/libexec/java_home)"
 export EC2_AMITOOL_HOME="$(find /usr/local/Cellar/ec2-ami-tools/*/libexec -type d | head -n 1)"
 export EC2_HOME=$EC2_AMITOOL_HOME
+
+# -- Segment
+
+if [ -f $file_name ] ; then
+  segment_dotfiles=(docker general robo scripts vm)
+  for dotfile in $segment_dotfiles ; do
+    source $HOME/dev/src/github.com/segmentio/dotfiles/source/$dotfile.sh
+  done
+
+  alias t='robo prod.tool'
+  alias wt='robo prod warehouse-tool'
+  alias rt='robo prod routing-tool'
+
+  # Production
+  alias awsprod='aws-okta exec prod-privileged -- aws'
+  alias logsprod='aws-okta exec production -- s3logs'
+  alias s3prod='aws-okta exec prod-privileged -- aws s3'
+
+  # Staging
+  alias awsstage='aws-okta exec stage-privileged -- aws'
+  alias logsstage='aws-okta exec stage -- s3logs'
+  alias s3stage='aws-okta exec stage-privileged -- aws s3'
+fi
 

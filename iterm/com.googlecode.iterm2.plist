@@ -4125,6 +4125,8 @@
 	<string>7FA1D2F1-A14B-474E-9F8C-0946ADE29DBB</string>
 	<key>DisableFullscreenTransparency</key>
 	<true/>
+	<key>EnableDivisionView</key>
+	<true/>
 	<key>FlashTabBarInFullscreen</key>
 	<true/>
 	<key>FsTabDelay</key>
@@ -4132,7 +4134,7 @@
 	<key>HideFromDockAndAppSwitcher</key>
 	<true/>
 	<key>HideMenuBarInFullscreen</key>
-	<true/>
+	<false/>
 	<key>HideScrollbar</key>
 	<false/>
 	<key>HideTab</key>
@@ -4178,7 +4180,7 @@
 	<key>NSScrollViewShouldScrollUnderTitlebar</key>
 	<false/>
 	<key>NSStatusItem Preferred Position Item-0</key>
-	<real>344</real>
+	<real>20493</real>
 	<key>NSStatusItem Preferred Position System Status Item Clone</key>
 	<real>1.3000321496278046e-07</real>
 	<key>NSTableView Columns v2 KeyBingingTable</key>
@@ -4218,7 +4220,7 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>489 92 697 456 0 0 2560 1417 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>456 471 918 381 0 0 1680 1027 </string>
+	<string>188 671 1016 512 0 0 2560 1417 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>230 833 592 584 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
@@ -4535,16 +4537,22 @@
 			<true/>
 			<key>Horizontal Spacing</key>
 			<real>1</real>
+			<key>HotKey Activated By Modifier</key>
+			<false/>
+			<key>HotKey Alternate Shortcuts</key>
+			<array/>
 			<key>HotKey Characters</key>
 			<string>`</string>
 			<key>HotKey Characters Ignoring Modifiers</key>
 			<string>`</string>
 			<key>HotKey Key Code</key>
 			<integer>50</integer>
+			<key>HotKey Modifier Activation</key>
+			<integer>0</integer>
 			<key>HotKey Modifier Flags</key>
-			<integer>262401</integer>
+			<integer>262144</integer>
 			<key>HotKey Window Animates</key>
-			<true/>
+			<false/>
 			<key>HotKey Window AutoHides</key>
 			<false/>
 			<key>HotKey Window Dock Click Action</key>
@@ -4552,7 +4560,7 @@
 			<key>HotKey Window Floats</key>
 			<false/>
 			<key>HotKey Window Reopens On Activation</key>
-			<false/>
+			<true/>
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Jobs to Ignore</key>
@@ -4909,6 +4917,8 @@
 	</dict>
 	<key>PrefsCustomFolder</key>
 	<string>/Users/tysonmote/dev/src/github.com/tysonmote/dotfiles/iterm</string>
+	<key>Print In Black And White</key>
+	<true/>
 	<key>PromptOnQuit</key>
 	<false/>
 	<key>QuitWhenAllWindowsClosed</key>
@@ -4924,7 +4934,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-07-17T03:31:40Z</date>
+	<date>2019-05-14T10:52:57Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -4949,7 +4959,7 @@
 		<string>Captured Output</string>
 	</array>
 	<key>UKCrashReporterLastCrashReportDate</key>
-	<real>1509905920</real>
+	<real>1554140032</real>
 	<key>UseAdaptiveFrameRate</key>
 	<true/>
 	<key>UseBorder</key>
@@ -4965,7 +4975,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.2.20180214-nightly</string>
+	<string>3.2.20180305-nightly</string>
 	<key>kCommandHistoryHasEverBeenUsed</key>
 	<true/>
 </dict>

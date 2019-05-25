@@ -14,8 +14,13 @@ brew install git lua mercurial openssl python python3 subversion
 
 banner "Linking git config"
 
-ln -s ~/git/dotfiles/git/gitignore ~/.gitignore
-ln -s ~/git/dotfiles/git/gitconfig ~/.gitconfig
+if [ -e $HOME/.segment ] ; then
+  ln -s $HOME/dev/src/github.com/tysonmote/dotfiles/git/gitignore $HOME/.gitignore
+  ln -s $HOME/dev/src/github.com/tysonmote/dotfiles/git/gitconfig.segment $HOME/.gitconfig
+else
+  ln -s $HOME/git/dotfiles/git/gitignore $HOME/.gitignore
+  ln -s $HOME/git/dotfiles/git/gitconfig $HOME/.gitconfig
+fi
 
 banner "Installing oh-my-zsh"
 
@@ -23,12 +28,16 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 
 banner "Linking zsh config"
 
-ln -s ~/git/dotfiles/zsh/zshrc ~/.zshrc
-ln -s ~/git/dotfiles/zsh/zshenv ~/.zshenv
+ln -s $HOME/git/dotfiles/zsh/zshrc $HOME/.zshrc
+ln -s $HOME/git/dotfiles/zsh/zshenv $HOME/.zshenv
 
 banner "Installing Go"
 
-mkdir ~/go
+if [ -e $HOME/.segment ] ; then
+  mkdir $HOME/dev
+else
+  mkdir $HOME/go
+fi
 brew install go
 
 banner "Installing Ruby"
@@ -51,16 +60,16 @@ npm install -g neovim
 
 banner "Configuring NeoVim"
 
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+curl -fLo $HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-mkdir -p ~/.config/nvim/
-ln -s ~/git/dotfiles/vim/init.vim ~/.config/nvim/
-ln -s ~/git/dotfiles/vim/snippets ~/.config/nvim/
+mkdir -p $HOME/.config/nvim/
+ln -s $HOME/git/dotfiles/vim/init.vim $HOME/.config/nvim/
+ln -s $HOME/git/dotfiles/vim/snippets $HOME/.config/nvim/
+nvim +PlugInstall +qall
+nvim +GoUpdateBinaries +qall
 
 banner "Installing extras"
 
 brew install awscli cscope ctags jq parallel pcre postgresql redis sqlite the_silver_searcher fzf fd bat htop diff-so-fancy tldr
 
 banner "Configuring fzf"
-
-$(brew --prefix)/opt/fzf/install
