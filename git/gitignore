@@ -16,4 +16,6 @@ Thumbs.db
 # .rake_completion caches
 .rake_tasks
 
+# IntelliJ editors
 .idea/
+
