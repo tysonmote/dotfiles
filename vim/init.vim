@@ -38,6 +38,7 @@ Plug 'tpope/vim-rails'
 Plug 'fatih/vim-go'
 Plug 'mmalecki/vim-node.js'
 Plug 'sheerun/vim-polyglot' " Covers lots: https://github.com/sheerun/vim-polyglot#language-packs
+Plug 'plasticboy/vim-markdown'
 
 " Tools
 Plug 'tpope/vim-unimpaired'
@@ -69,6 +70,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
 Plug 'sebdah/vim-delve'
 Plug 'PeterRincker/vim-searchlight'
+Plug 'reedes/vim-pencil'
 
 call plug#end()
 
@@ -101,6 +103,8 @@ set formatoptions+=c            " hard-wrap comments when typing, though
 set formatoptions+=r            " insert comment leader when hitting Enter in insert mode
 set formatoptions-=o            " don't insert comment leader when hitting 'o' or 'O' in normal mode
 set formatoptions+=n            " format numbered lists by indenting following lines
+set formatoptions+=q            " format comments with 'gq'
+set formatoptions+=j            " handle comments nicely when joining lines
 
 " ------------------------------------------- Whitespace -----------------------------------
 
@@ -224,9 +228,18 @@ au FileType go nmap <leader>t <Plug>(go-test-func)
 
 au FileType make setlocal noexpandtab  " real tabs
 
-" -------------------------------------------- Markdown ------------------------------------
+" ---------------------------------------- Markdown ----------------------------------------
 
-au BufRead,BufNewFile *.{md,markdown,txt} setf markdown
+au FileType markdown setlocal formatoptions+=a " autoformat while typing
+au FileType markdown setlocal formatoptions-=l " don't autoformat if it's already too wide
+au FileType markdown call deoplete#disable()
+au FileType markdown call pencil#init({'wrap': 'hard', 'autoformat': 1})
+
+let g:pencil#conceallevel = 0 " Don't hide style characters, collapse links, etc.
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_folding_disabled = 1 " disable folding
+let g:vim_markdown_auto_insert_bullets = 0
+let g:vim_markdown_new_list_item_indent = 0
 
 " --------------------------------------------- Python -------------------------------------
 
