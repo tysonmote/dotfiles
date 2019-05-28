@@ -73,7 +73,7 @@ export EC2_HOME=$EC2_AMITOOL_HOME
 
 # -- Segment
 
-if [ -f $file_name ] ; then
+if [ -e $HOME/.segment ] ; then
   segment_dotfiles=(docker general robo scripts vm)
   for dotfile in $segment_dotfiles ; do
     source $HOME/dev/src/github.com/segmentio/dotfiles/source/$dotfile.sh
