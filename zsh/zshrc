@@ -81,7 +81,6 @@ if [ -e $HOME/.segment ] ; then
 
   alias t='robo prod.tool'
   alias wt='robo prod warehouse-tool'
-  alias rt='robo prod routing-tool'
 
   # Production
   alias awsprod='aws-okta exec prod-privileged -- aws'

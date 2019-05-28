@@ -28,7 +28,11 @@ export EDITOR="nvim"
 # Go
 #
 
-export GOPATH=$HOME/go
+if [ -e $HOME/.segment ] ; then
+  export GOPATH=$HOME/dev
+else
+  export GOPATH=$HOME/go
+fi
 export PATH=$GOPATH/bin:$PATH
 export PATH=/usr/local/opt/go/libexec/bin:$PATH
 
@@ -37,7 +41,6 @@ export PATH=/usr/local/opt/go/libexec/bin:$PATH
 #
 
 if [ -e $HOME/.segment ] ; then
-  export GOPATH=$HOME/dev
   export SEGMENT_TEAM=platform
   export CONNECTIONS_SERVICE_CLIENT_ID=dev-client-id
   export CONNECTIONS_SERVICE_CLIENT_SECRET=dev-client-secret
