@@ -17,6 +17,6 @@ when bootstrapping a new machine.
 
 6. `cd dotfiles && ./bootstrap.sh`
 
-7. Install [Input Mono](http://input.fontbureau.com)
+7. Install [Input Mono](http://input.fontbureau.com) and [Fira Code](https://github.com/tonsky/FiraCode)
 
 8. `cd ~/.janus && ./fetch_all_plugins.sh`
