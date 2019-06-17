@@ -249,6 +249,9 @@ let g:vim_markdown_new_list_item_indent = 0
 
 au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4 " follow PEP8 for whitespace
 
+" ------------------------------------------ Text ------------------------------------------
+
+au FileType text,gitcommit call deoplete#disable()
 
 " ------------------------------------------------------------------------------------------
 " ------------------------------------------------------------------------------------------
