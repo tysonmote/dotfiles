@@ -216,6 +216,10 @@ au BufEnter * if &filetype == "" | setfiletype text | endif  " default to text t
 au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
   \| exe "normal! g`\"" | endif
 
+" --------------------------------------- gitcommit ----------------------------------------
+
+au FileType gitcommit call deoplete#disable()
+
 " ----------------------------------------------- Go ---------------------------------------
 
 au FileType go setlocal noexpandtab nowrap textwidth=0  " gofmt-approved indentation
@@ -248,10 +252,6 @@ let g:vim_markdown_new_list_item_indent = 0
 " --------------------------------------------- Python -------------------------------------
 
 au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4 " follow PEP8 for whitespace
-
-" ------------------------------------------ Text ------------------------------------------
-
-au FileType text,gitcommit call deoplete#disable()
 
 " ------------------------------------------------------------------------------------------
 " ------------------------------------------------------------------------------------------
