@@ -8,7 +8,7 @@ rustup update
 rustup component add rustfmt
 rustup component add rls rust-analysis rust-src
 
-cargo +nightly install racer
+cargo +nightly install racer --force
 
 # Update zsh completions
 mkdir -p ~/.zfunc
