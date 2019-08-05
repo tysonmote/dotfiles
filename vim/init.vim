@@ -357,7 +357,7 @@ let g:AutoPairsMultilineClose = 0 " don't jump lines to auto-close
 let g:deoplete#enable_at_startup = 1
 
 call deoplete#custom#option({
-  \ 'auto_complete_delay': 100,
+  \ 'auto_complete_delay': 200,
   \ })
 
 call deoplete#custom#source('_', 'converters', [
