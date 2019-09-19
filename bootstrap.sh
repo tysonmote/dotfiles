@@ -31,6 +31,10 @@ banner "Linking zsh config"
 ln -s $HOME/git/dotfiles/zsh/zshrc $HOME/.zshrc
 ln -s $HOME/git/dotfiles/zsh/zshenv $HOME/.zshenv
 
+banner "Installing base16-shell"
+
+git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
+
 banner "Installing Go"
 
 if [ -e $HOME/.segment ] ; then
