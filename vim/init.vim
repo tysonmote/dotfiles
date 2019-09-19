@@ -329,6 +329,8 @@ imap <C-t> <ESC>:FZF<CR>
 
 " vim-go
 nnoremap <leader>s :w <bar> GoMetaLinter<CR>
+nnoremap <leader>z :w <bar> GoDecls<CR>
+nnoremap <leader>x :w <bar> GoDeclsDir<CR>
 
 " NERDCommenter
 map <leader>/ <plug>NERDCommenterToggle<CR>
@@ -358,6 +360,7 @@ let g:deoplete#enable_at_startup = 1
 
 call deoplete#custom#option({
   \ 'auto_complete_delay': 200,
+  \ 'omni_patterns': { 'go': '[^. *\t]\.\w*' },
   \ })
 
 call deoplete#custom#source('_', 'converters', [
