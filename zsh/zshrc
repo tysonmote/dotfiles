@@ -91,5 +91,8 @@ if [ -e $HOME/.segment ] ; then
   alias awsstage='aws-okta exec stage-privileged -- aws'
   alias logsstage='aws-okta exec stage -- s3logs'
   alias s3stage='aws-okta exec stage-privileged -- aws s3'
+
+  # Okta
+  export AWS_OKTA_MFA_FACTOR_TYPE=push
 fi
 
