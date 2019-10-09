@@ -359,9 +359,13 @@ let g:AutoPairsMultilineClose = 0 " don't jump lines to auto-close
 let g:deoplete#enable_at_startup = 1
 
 call deoplete#custom#option({
-  \ 'auto_complete_delay': 200,
+  \ 'auto_complete_delay': 100,
   \ 'omni_patterns': { 'go': '[^. *\t]\.\w*' },
   \ })
+
+" Don't truncate menu width
+call deoplete#custom#source('_', 'max_abbr_width', 0)
+call deoplete#custom#source('_', 'max_menu_width', 0)
 
 call deoplete#custom#source('_', 'converters', [
   \ 'converter_auto_delimiter',
