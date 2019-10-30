@@ -6,7 +6,7 @@
 bindkey -e
 # long history
 HISTSIZE=1000
-SAVEHIST=10000
+SAVEHIST=5000
 # additional completions
 fpath+=$HOME/.zfunc
 
@@ -17,8 +17,20 @@ ZSH_THEME="agnoster"
 DEFAULT_USER=`whoami`
 ENABLE_CORRECTION="false"
 DISABLE_AUTO_UPDATE=true
-plugins=(brew golang rust cargo)
+plugins=(golang aws)
 source $ZSH/oh-my-zsh.sh
+
+# remove bzr and hg from agnoster prompt (slow)
+build_prompt() {
+  RETVAL=$?
+  prompt_status
+  prompt_virtualenv
+  prompt_aws
+  prompt_context
+  prompt_dir
+  prompt_git
+  prompt_end
+}
 
 # -- fzf
 
@@ -35,10 +47,12 @@ alias gs='git status'
 
 # -- Ruby
 
-export PATH=$HOME/.rbenv/bin:$PATH
-eval "$(rbenv init -)"
-alias rake='noglob rake'
-alias be="bundle exec"
+if [ ! -e $HOME/.segment ] ; then
+  export PATH=$HOME/.rbenv/bin:$PATH
+  eval "$(rbenv init -)"
+  alias rake='noglob rake'
+  alias be="bundle exec"
+fi
 
 # -- Node.js / NVM
 
@@ -63,7 +77,6 @@ alias dc="docker-compose -f docker-compose.yml"
 
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path $HOME/.zsh/cache
-source /usr/local/share/zsh/site-functions/_aws   # awscli
 
 # -- Packer / ec2-ami-tools stuff
 
@@ -74,7 +87,7 @@ export EC2_HOME=$EC2_AMITOOL_HOME
 # -- Segment
 
 if [ -e $HOME/.segment ] ; then
-  segment_dotfiles=(docker general robo scripts vm)
+  segment_dotfiles=(docker general robo scripts ssh)
   for dotfile in $segment_dotfiles ; do
     source $HOME/dev/src/github.com/segmentio/dotfiles/source/$dotfile.sh
   done
