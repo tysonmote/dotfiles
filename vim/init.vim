@@ -51,7 +51,6 @@ Plug 'tpope/vim-surround'
 Plug 'garbas/vim-snipmate'
 Plug 'tomtom/tlib_vim'
 Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'vim-syntastic/syntastic'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-endwise'
@@ -395,13 +394,25 @@ let g:fzf_layout = { 'down': '~20%' }
 
 " --------------------------------------------- vim-go -------------------------------------
 
-let g:go_fmt_command = "goimports"
+let g:go_auto_type_info = 1
 let g:go_def_mapping_enabled = 0
-let g:go_test_show_name = 1
-let g:go_jump_to_error = 0
+let g:go_fmt_command = "goimports"
 let g:go_fmt_experimental = 1
-let g:go_fmt_fail_silently = 1   " for syntastic active mode compatibility
-let g:go_list_type = "quickfix"  " for syntastic active mode compatibility
+let g:go_gopls_complete_unimported = 1
+let g:go_jump_to_error = 0
+let g:go_metalinter_autosave = 1
+let g:go_rename_command = 'gopls'
+let g:go_test_show_name = 1
+
+" deadcode: Finds unused code [fast: true, auto-fix: false]
+" errcheck: Errcheck is a program for checking for unchecked errors in go programs. These unchecked errors can be critical bugs in some cases [fast: true, auto-fix: false]
+" gosimple (megacheck): Linter for Go source code that specializes in simplifying a code [fast: true, auto-fix: false]
+" govet (vet, vetshadow): Vet examines Go source code and reports suspicious constructs, such as Printf calls whose arguments do not align with the format string [fast: true, auto-fix: false]
+" ineffassign: Detects when assignments to existing variables are not used [fast: true, auto-fix: false]
+" staticcheck (megacheck): Staticcheck is a go vet on steroids, applying a ton of static analysis checks [fast: true, auto-fix: false]
+" structcheck: Finds unused struct fields [fast: true, auto-fix: false]
+" typecheck: Like the front-end of a Go compiler, parses and type-checks Go code [fast: true, auto-fix: false]
+" varcheck: Finds unused global variables and constants [fast: true, auto-fix: false]
 
 " -------------------------------------------- vim-json ------------------------------------
 
@@ -434,23 +445,6 @@ let g:ragtag_global_maps = 1
 " ------------------------------------------ Rust-------------------------------------------
 
 let g:rustfmt_autosave = 1
-
-" ------------------------------------------- Syntastic ------------------------------------
-
-let g:syntastic_enable_signs = 1
-let g:syntastic_error_symbol = "🔺"
-let g:syntastic_style_error_symbol = "🔺"
-let g:syntastic_warning_symbol = "🔸"
-let g:syntastic_style_warning_symbol = "🔸"
-
-let g:syntastic_mode_map = {'mode': 'active'}
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 2
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_aggregate_errors = 1
-
-let g:syntastic_go_checkers = ['golint', 'govet']
 
 " --------------------------------------------- Tagbar -------------------------------------
 
