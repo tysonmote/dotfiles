@@ -41,12 +41,12 @@ Plug 'mmalecki/vim-node.js'
 Plug 'sheerun/vim-polyglot' " Covers lots: https://github.com/sheerun/vim-polyglot#language-packs
 
 " Tools
-Plug 'tpope/vim-unimpaired'
 Plug 'scrooloose/nerdcommenter'
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/echodoc.vim'
+Plug 'Shougo/neopairs.vim'
 Plug 'tpope/vim-surround'
 Plug 'garbas/vim-snipmate'
 Plug 'tomtom/tlib_vim'
@@ -59,11 +59,10 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
 Plug 'gabesoft/vim-ags'
-Plug 'godlygeek/tabular'
+Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'terryma/vim-expand-region'
-Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-sensible'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
@@ -172,7 +171,7 @@ set wildignore+=vendor/**
 
 " --------------------------------------- Completion ---------------------------------------
 
-set completeopt=menu,noinsert
+set completeopt=menu,menuone,noinsert,noselect
 
 " -------------------------------------------- Folding -------------------------------------
 
@@ -252,6 +251,8 @@ let g:vim_markdown_new_list_item_indent = 0
 
 au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4 " follow PEP8 for whitespace
 
+let g:python3_host_prog='/usr/local/bin/python3'
+
 " ------------------------------------------------------------------------------------------
 " ------------------------------------------------------------------------------------------
 " -------------------------------------------- Mappings ------------------------------------
@@ -318,6 +319,12 @@ nnoremap <silent> <M-l> :wincmd l<CR>
 map <C-f> :Ags<space>
 imap <C-f> <ESC>:Ags<space>
 
+" deoplete - tab/arrow through results
+inoremap <silent><expr> <TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <silent><expr> <Down>  pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <silent><expr> <S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
+inoremap <silent><expr> <Up>  pumvisible() ? "\<C-p>" : "\<Up>"
+
 " vim-expand-region
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
@@ -357,14 +364,20 @@ let g:AutoPairsMultilineClose = 0 " don't jump lines to auto-close
 
 let g:deoplete#enable_at_startup = 1
 
-call deoplete#custom#option({
-  \ 'auto_complete_delay': 100,
-  \ 'omni_patterns': { 'go': '[^. *\t]\.\w*' },
-  \ })
-
 " Don't truncate menu width
 call deoplete#custom#source('_', 'max_abbr_width', 0)
 call deoplete#custom#source('_', 'max_menu_width', 0)
+
+" Call omnifunc when these patterns are matched, regardless of
+" min_pattern_length.
+call deoplete#custom#var('omni', 'input_patterns', {
+  \ 'go': '[^. *\t]\.\w*',
+  \ 'javascript': '[^. *\t]\.\w*',
+  \ })
+
+" Only let omnifunc add dupes, the rest are annoying
+call deoplete#custom#source('_', 'dup', v:false)
+call deoplete#custom#source('omni', 'dup', v:true)
 
 call deoplete#custom#source('_', 'converters', [
   \ 'converter_auto_delimiter',
@@ -384,6 +397,11 @@ let g:LanguageClient_serverCommands = {
 
 let g:LanguageClient_diagnosticsEnable = 0
 
+" -------------------------------------------- echodoc -------------------------------------
+
+let g:echodoc#enable_at_startup = 1
+let g:echodoc#type = 'signature'
+
 " ---------------------------------------------- fzf ---------------------------------------
 
 set rtp+=/usr/local/opt/fzf
@@ -398,7 +416,6 @@ let g:go_auto_type_info = 1
 let g:go_def_mapping_enabled = 0
 let g:go_fmt_command = "goimports"
 let g:go_fmt_experimental = 1
-let g:go_gopls_complete_unimported = 1
 let g:go_jump_to_error = 0
 let g:go_metalinter_autosave = 1
 let g:go_rename_command = 'gopls'

@@ -57,6 +57,8 @@ banner "Installing NeoVim"
 brew install neovim
 pip3 install neovim
 npm install -g neovim
+sudo pip3 install --upgrade pynvim
+sudo gem install neovim
 
 banner "Configuring NeoVim"
 
