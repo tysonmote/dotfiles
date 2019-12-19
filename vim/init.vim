@@ -412,14 +412,16 @@ let g:fzf_layout = { 'down': '~20%' }
 
 " --------------------------------------------- vim-go -------------------------------------
 
-let g:go_auto_type_info = 1
-let g:go_def_mapping_enabled = 0
-let g:go_fmt_command = "goimports"
-let g:go_fmt_experimental = 1
-let g:go_jump_to_error = 0
-let g:go_metalinter_autosave = 1
-let g:go_rename_command = 'gopls'
-let g:go_test_show_name = 1
+let g:go_auto_type_info = 1        " show type info on hover
+let g:go_def_mapping_enabled = 0   " don't break my other key mappings
+let g:go_fmt_command = "goimports" " pretty the imports when formatting, too
+let g:go_fmt_experimental = 1      " format in-place
+let g:go_gopls_complete_unimported = 1 " autocomplete unimported packages
+let g:go_jump_to_error = 0         " don't jump around on save
+let g:go_metalinter_autosave = 1   " run metalinter on save
+let g:go_rename_command = 'gopls'  " use gopls to rename identifiers
+let g:go_test_show_name = 1        " show failed test names
+let g:go_updatetime = 200          " update on-hover things quickly
 
 " deadcode: Finds unused code [fast: true, auto-fix: false]
 " errcheck: Errcheck is a program for checking for unchecked errors in go programs. These unchecked errors can be critical bugs in some cases [fast: true, auto-fix: false]
