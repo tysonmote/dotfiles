@@ -364,6 +364,9 @@ let g:AutoPairsMultilineClose = 0 " don't jump lines to auto-close
 
 let g:deoplete#enable_at_startup = 1
 
+" Chill
+call deoplete#custom#option('auto_complete_delay', 100)
+
 " Don't truncate menu width
 call deoplete#custom#source('_', 'max_abbr_width', 0)
 call deoplete#custom#source('_', 'max_menu_width', 0)
