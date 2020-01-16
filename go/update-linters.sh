@@ -1,12 +1,12 @@
 #!/bin/bash -eux
 
-export GO111MODULE=off
+export GO111MODULE=on
 
-go get -u github.com/klauspost/asmfmt/cmd/asmfmt
-go get -u github.com/mgechev/revive
-go get -u github.com/vektra/mockery
-go get -u golang.org/x/tools/cmd/gopls
-go get -u honnef.co/go/tools/...
+go get github.com/klauspost/asmfmt/cmd/asmfmt@latest
+go get github.com/mgechev/revive@latest
+go get github.com/vektra/mockery@latest
+go get golang.org/x/tools/gopls@latest
+go get honnef.co/go/tools/...@latest
 
 nvim +GoUpdateBinaries +qall
 
