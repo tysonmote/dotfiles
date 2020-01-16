@@ -68,6 +68,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
 Plug 'sebdah/vim-delve'
 Plug 'PeterRincker/vim-searchlight'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 " Writing
 Plug 'plasticboy/vim-markdown'
@@ -393,9 +394,15 @@ call deoplete#custom#source('_', 'converters', [
 let g:LanguageClient_serverCommands = {
   \ 'go': ['gopls'],
   \ 'javascript': ['javascript-typescript-stdio'],
+  \ 'typescript': ['javascript-typescript-stdio'],
   \ 'python': ['/usr/local/bin/pyls'],
   \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
   \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+  \ }
+
+let g:LanguageClient_rootMarkers = {
+  \ 'javascript': ['jsconfig.json', 'package.json'],
+  \ 'typescript': ['tsconfig.json'],
   \ }
 
 let g:LanguageClient_diagnosticsEnable = 0
