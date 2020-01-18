@@ -377,6 +377,7 @@ call deoplete#custom#source('_', 'max_menu_width', 0)
 call deoplete#custom#var('omni', 'input_patterns', {
   \ 'go': '[^. *\t]\.\w*',
   \ 'javascript': '[^. *\t]\.\w*',
+  \ 'rust': '[^. *\t]\.\w*',
   \ })
 
 " Only let omnifunc add dupes, the rest are annoying
@@ -397,7 +398,7 @@ let g:LanguageClient_serverCommands = {
   \ 'typescript': ['javascript-typescript-stdio'],
   \ 'python': ['/usr/local/bin/pyls'],
   \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
-  \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+  \ 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', 'rls'],
   \ }
 
 let g:LanguageClient_rootMarkers = {
