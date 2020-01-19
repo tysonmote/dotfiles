@@ -69,6 +69,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'sebdah/vim-delve'
 Plug 'PeterRincker/vim-searchlight'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'dense-analysis/ale'
 
 " Writing
 Plug 'plasticboy/vim-markdown'
@@ -93,6 +94,7 @@ set visualbell        " no sounds because I'm deaf ;_;
 set hidden            " aLlow modified buffers to be hidden
 let mapleader = ";"
 set noshowmode        " don't show mode in status line
+set mouse=a           " mouse support!
 
 " -------------------------------------------- Wrapping ------------------------------------
 
@@ -433,16 +435,6 @@ let g:go_metalinter_autosave = 1   " run metalinter on save
 let g:go_rename_command = 'gopls'  " use gopls to rename identifiers
 let g:go_test_show_name = 1        " show failed test names
 let g:go_updatetime = 200          " update on-hover things quickly
-
-" deadcode: Finds unused code [fast: true, auto-fix: false]
-" errcheck: Errcheck is a program for checking for unchecked errors in go programs. These unchecked errors can be critical bugs in some cases [fast: true, auto-fix: false]
-" gosimple (megacheck): Linter for Go source code that specializes in simplifying a code [fast: true, auto-fix: false]
-" govet (vet, vetshadow): Vet examines Go source code and reports suspicious constructs, such as Printf calls whose arguments do not align with the format string [fast: true, auto-fix: false]
-" ineffassign: Detects when assignments to existing variables are not used [fast: true, auto-fix: false]
-" staticcheck (megacheck): Staticcheck is a go vet on steroids, applying a ton of static analysis checks [fast: true, auto-fix: false]
-" structcheck: Finds unused struct fields [fast: true, auto-fix: false]
-" typecheck: Like the front-end of a Go compiler, parses and type-checks Go code [fast: true, auto-fix: false]
-" varcheck: Finds unused global variables and constants [fast: true, auto-fix: false]
 
 " -------------------------------------------- vim-json ------------------------------------
 
