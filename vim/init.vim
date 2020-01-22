@@ -21,6 +21,11 @@ autocmd User AirlineAfterInit call AirlineInit()
 
 let g:polyglot_disabled = ['liquid']
 
+" ALE
+let g:ale_sign_error = 'X'
+let g:ale_sign_warning = '!'
+let g:airline#extensions#ale#enabled = 1
+
 " ------------------------------------------------------------------------------------------
 " ------------------------------------------------------------------------------------------
 " ----------------------------------------- Plugins ----------------------------------------
@@ -46,7 +51,6 @@ Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.s
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/echodoc.vim'
-Plug 'Shougo/neopairs.vim'
 Plug 'tpope/vim-surround'
 Plug 'garbas/vim-snipmate'
 Plug 'tomtom/tlib_vim'
@@ -94,7 +98,6 @@ set visualbell        " no sounds because I'm deaf ;_;
 set hidden            " aLlow modified buffers to be hidden
 let mapleader = ";"
 set noshowmode        " don't show mode in status line
-set mouse=a           " mouse support!
 
 " -------------------------------------------- Wrapping ------------------------------------
 
@@ -227,6 +230,7 @@ au FileType go setlocal noexpandtab nowrap textwidth=0  " gofmt-approved indenta
 au FileType go nmap <leader>c <Plug>(go-callers)
 au FileType go nmap <leader>d <Plug>(go-def)
 au FileType go nmap <leader>gd <Plug>(go-doc-browser)
+au FileType go nmap <leader>t :GoDeclsDir<cr>
 au FileType go nmap <leader>l <Plug>(go-lint)
 au FileType go nmap <leader>r <Plug>(go-rename)
 au FileType go nmap <leader>v <Plug>(go-vet)
@@ -336,11 +340,6 @@ vmap <C-v> <Plug>(expand_region_shrink)
 map <silent> <expr> <C-t> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
 imap <C-t> <ESC>:FZF<CR>
 
-" vim-go
-nnoremap <leader>s :w <bar> GoMetaLinter<CR>
-nnoremap <leader>z :w <bar> GoDecls<CR>
-nnoremap <leader>x :w <bar> GoDeclsDir<CR>
-
 " NERDCommenter
 map <leader>/ <plug>NERDCommenterToggle<CR>
 
@@ -403,11 +402,6 @@ let g:LanguageClient_serverCommands = {
   \ 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', 'rls'],
   \ }
 
-let g:LanguageClient_rootMarkers = {
-  \ 'javascript': ['jsconfig.json', 'package.json'],
-  \ 'typescript': ['tsconfig.json'],
-  \ }
-
 let g:LanguageClient_diagnosticsEnable = 0
 
 " -------------------------------------------- echodoc -------------------------------------
@@ -431,10 +425,18 @@ let g:go_fmt_command = "goimports" " pretty the imports when formatting, too
 let g:go_fmt_experimental = 1      " format in-place
 let g:go_gopls_complete_unimported = 1 " autocomplete unimported packages
 let g:go_jump_to_error = 0         " don't jump around on save
-let g:go_metalinter_autosave = 1   " run metalinter on save
 let g:go_rename_command = 'gopls'  " use gopls to rename identifiers
 let g:go_test_show_name = 1        " show failed test names
 let g:go_updatetime = 200          " update on-hover things quickly
+
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
 
 " -------------------------------------------- vim-json ------------------------------------
 
