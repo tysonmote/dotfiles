@@ -220,9 +220,12 @@ au BufEnter * if &filetype == "" | setfiletype text | endif  " default to text t
 au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
   \| exe "normal! g`\"" | endif
 
-" --------------------------------------- gitcommit ----------------------------------------
+" ------------------------------------------ git -------------------------------------------
 
-au FileType gitcommit call deoplete#disable()
+au FileType git,gitsendemail,*commit*,*COMMIT*
+  \   call deoplete#disable()
+  \ | call pencil#init({'wrap': 'hard', 'textwidth': 72})
+  \ | setl spell spl=en_us et sw=2 ts=2 noai
 
 " ----------------------------------------------- Go ---------------------------------------
 
@@ -246,8 +249,11 @@ au FileType make setlocal noexpandtab  " real tabs
 au FileType markdown setlocal formatoptions+=a " autoformat while typing
 au FileType markdown setlocal formatoptions-=l " don't autoformat if it's already too wide
 au FileType markdown call deoplete#disable()
-au FileType markdown call pencil#init({'wrap': 'hard', 'autoformat': 1})
+au FileType markdown,mkd call pencil#init()
+  \ | setl spell spl=en_us fdl=4 noru nonu nornu
+  \ | setl fdo+=search
 
+let g:pencil#textwidth = 80
 let g:pencil#conceallevel = 0 " Don't hide style characters, collapse links, etc.
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_folding_disabled = 1 " disable folding
