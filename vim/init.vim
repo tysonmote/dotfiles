@@ -24,6 +24,9 @@ let g:polyglot_disabled = ['liquid']
 " ALE
 let g:ale_sign_error = 'X'
 let g:ale_sign_warning = '!'
+let g:ale_linters = {
+	\ 'go': ['gopls'],
+	\}
 let g:airline#extensions#ale#enabled = 1
 
 " ------------------------------------------------------------------------------------------
@@ -39,8 +42,6 @@ Plug 'chriskempson/base16-vim'
 Plug 'reedes/vim-colors-pencil'
 
 " Languages
-Plug 'dhruvasagar/vim-table-mode'
-Plug 'tpope/vim-rails'
 Plug 'fatih/vim-go'
 Plug 'mmalecki/vim-node.js'
 Plug 'sheerun/vim-polyglot' " Covers lots: https://github.com/sheerun/vim-polyglot#language-packs
@@ -63,7 +64,7 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
 Plug 'gabesoft/vim-ags'
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'terryma/vim-expand-region'
@@ -77,7 +78,6 @@ Plug 'dense-analysis/ale'
 
 " Writing
 Plug 'plasticboy/vim-markdown'
-Plug 'junegunn/goyo.vim'
 Plug 'reedes/vim-pencil'
 
 call plug#end()
@@ -227,7 +227,7 @@ au FileType git,gitsendemail,*commit*,*COMMIT*
   \ | call pencil#init({'wrap': 'hard', 'textwidth': 72})
   \ | setl spell spl=en_us et sw=2 ts=2 noai
 
-" ----------------------------------------------- Go ---------------------------------------
+" --------------------------------------- Go / vim-go ---------------------------------------
 
 au FileType go setlocal noexpandtab nowrap textwidth=0  " gofmt-approved indentation
 au FileType go nmap <leader>c <Plug>(go-callers)
@@ -425,7 +425,6 @@ let g:fzf_layout = { 'down': '~20%' }
 
 " --------------------------------------------- vim-go -------------------------------------
 
-let g:go_auto_type_info = 1        " show type info on hover
 let g:go_def_mapping_enabled = 0   " don't break my other key mappings
 let g:go_fmt_command = "goimports" " pretty the imports when formatting, too
 let g:go_fmt_experimental = 1      " format in-place
@@ -435,18 +434,13 @@ let g:go_rename_command = 'gopls'  " use gopls to rename identifiers
 let g:go_test_show_name = 1        " show failed test names
 let g:go_updatetime = 200          " update on-hover things quickly
 
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_extra_types = 1
 let g:go_highlight_fields = 1
+let g:go_highlight_format_strings = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
-
-" -------------------------------------------- vim-json ------------------------------------
-
-let g:vim_json_syntax_conceal = 0
 
 " ----------------------------------------- NERDCommenter ----------------------------------
 
@@ -468,10 +462,6 @@ let g:NERDTreeWinSize = 40
 let g:NERDTreeHijackNetrw = 0         " fix lots of weird issues
 let g:NERDTreeQuitOnOpen = 1          " close on file open
 
-" --------------------------------------------- Ragtag -------------------------------------
-
-let g:ragtag_global_maps = 1
-
 " ------------------------------------------ Rust-------------------------------------------
 
 let g:rustfmt_autosave = 1
@@ -481,6 +471,8 @@ let g:rustfmt_autosave = 1
 nmap <F8> :TagbarToggle<CR>
 let g:tagbar_zoomwidth = 0
 let g:tagbar_case_insensitive = 1
+let g:tagbar_autofocus = 1
+let g:tagbar_autoclose = 1
 
 " ------------------------------------------------------------------------------------------
 " ------------------------------------------------------------------------------------------
