@@ -69,7 +69,6 @@ Plug 'rbgrouleff/bclose.vim'
 Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-sensible'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'jiangmiao/auto-pairs'
 Plug 'sebdah/vim-delve'
 Plug 'PeterRincker/vim-searchlight'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
@@ -301,6 +300,15 @@ nnoremap <silent> p p`]
 " upper/lower word
 nmap <leader>u mQviwU`Q
 nmap <leader>l mQviwu`Q
+
+" pairs
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
 
 " ------------------------------------------- Navigation -----------------------------------
 
