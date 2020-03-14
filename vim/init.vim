@@ -274,14 +274,6 @@ let g:python3_host_prog='/usr/local/bin/python3'
 imap <C-b> <C-[>va}V
 nnoremap <C-b> va}V
 
-" Emacs bindings because I'm a glutton for punishment
-inoremap <C-k> <C-[>ld$A
-nnoremap <C-k> d$
-inoremap <C-a> <C-[>I
-nnoremap <C-a> ^
-inoremap <C-e> <C-[>A
-nnoremap <C-e> $
-
 " Replace selected text without overwriting buffer
 vmap r "_dP
 
