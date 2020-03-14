@@ -49,7 +49,6 @@ Plug 'sheerun/vim-polyglot' " Covers lots: https://github.com/sheerun/vim-polygl
 " Tools
 Plug 'scrooloose/nerdcommenter'
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/echodoc.vim'
 Plug 'tpope/vim-surround'
@@ -177,7 +176,7 @@ set wildignore+=vendor/**
 
 " --------------------------------------- Completion ---------------------------------------
 
-set completeopt=menu,menuone,noinsert,noselect
+set completeopt=menu,menuone,noselect
 
 " -------------------------------------------- Folding -------------------------------------
 
@@ -223,7 +222,6 @@ au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= l
 " ------------------------------------------ git -------------------------------------------
 
 au FileType git,gitsendemail,*commit*,*COMMIT*
-  \   call deoplete#disable()
   \ | call pencil#init({'wrap': 'hard', 'textwidth': 72})
   \ | setl spell spl=en_us et sw=2 ts=2 noai
 
@@ -248,7 +246,6 @@ au FileType make setlocal noexpandtab  " real tabs
 
 au FileType markdown setlocal formatoptions+=a " autoformat while typing
 au FileType markdown setlocal formatoptions-=l " don't autoformat if it's already too wide
-au FileType markdown call deoplete#disable()
 au FileType markdown,mkd call pencil#init()
   \ | setl spell spl=en_us fdl=4 noru nonu nornu
   \ | setl fdo+=search
@@ -332,12 +329,6 @@ nnoremap <silent> <M-l> :wincmd l<CR>
 map <C-f> :Ags<space>
 imap <C-f> <ESC>:Ags<space>
 
-" deoplete - tab/arrow through results
-inoremap <silent><expr> <TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <silent><expr> <Down>  pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <silent><expr> <S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
-inoremap <silent><expr> <Up>  pumvisible() ? "\<C-p>" : "\<Up>"
-
 " vim-expand-region
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
@@ -362,53 +353,6 @@ map <leader>n :NERDTreeToggle<CR>
 
 let g:ags_agcontext = 0
 let g:ags_winheight = '20'
-
-" ---------------------------------------- auto-pair ---------------------------------------
-
-let g:AutoPairsCenterLine = 0     " don't scroll for me
-let g:AutoPairsMultilineClose = 0 " don't jump lines to auto-close
-
-" ---------------------------------------- deoplete ----------------------------------------
-
-let g:deoplete#enable_at_startup = 1
-
-" Chill
-call deoplete#custom#option('auto_complete_delay', 100)
-
-" Don't truncate menu width
-call deoplete#custom#source('_', 'max_abbr_width', 0)
-call deoplete#custom#source('_', 'max_menu_width', 0)
-
-" Call omnifunc when these patterns are matched, regardless of
-" min_pattern_length.
-call deoplete#custom#var('omni', 'input_patterns', {
-  \ 'go': '[^. *\t]\.\w*',
-  \ 'javascript': '[^. *\t]\.\w*',
-  \ 'rust': '[^. *\t]\.\w*',
-  \ })
-
-" Only let omnifunc add dupes, the rest are annoying
-call deoplete#custom#source('_', 'dup', v:false)
-call deoplete#custom#source('omni', 'dup', v:true)
-
-call deoplete#custom#source('_', 'converters', [
-  \ 'converter_auto_delimiter',
-  \ 'converter_auto_paren',
-  \ 'converter_remove_overlap',
-  \ 'converter_truncate_abbr',
-  \ 'converter_truncate_menu',
-  \ ])
-
-let g:LanguageClient_serverCommands = {
-  \ 'go': ['gopls'],
-  \ 'javascript': ['javascript-typescript-stdio'],
-  \ 'typescript': ['javascript-typescript-stdio'],
-  \ 'python': ['/usr/local/bin/pyls'],
-  \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
-  \ 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', 'rls'],
-  \ }
-
-let g:LanguageClient_diagnosticsEnable = 0
 
 " -------------------------------------------- echodoc -------------------------------------
 
