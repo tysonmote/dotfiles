@@ -270,10 +270,6 @@ let g:python3_host_prog='/usr/local/bin/python3'
 
 " --------------------------------------- Text Manipulation --------------------------------
 
-" Select entire block of code
-imap <C-b> <C-[>va}V
-nnoremap <C-b> va}V
-
 " Replace selected text without overwriting buffer
 vmap r "_dP
 
@@ -385,6 +381,19 @@ let g:go_highlight_methods = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
+
+" ------------------------------------- LanguageClient -------------------------------------
+
+let g:LanguageClient_echoProjectRoot = 0
+
+let g:LanguageClient_serverCommands = {
+  \ 'go': ['gopls'],
+  \ 'javascript': ['javascript-typescript-stdio'],
+  \ 'typescript': ['javascript-typescript-stdio'],
+  \ 'python': ['/usr/local/bin/pyls'],
+  \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+  \ 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', 'rls'],
+  \ }
 
 " ----------------------------------------- NERDCommenter ----------------------------------
 
