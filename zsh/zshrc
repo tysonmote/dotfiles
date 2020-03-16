@@ -87,13 +87,10 @@ export EC2_HOME=$EC2_AMITOOL_HOME
 # -- Segment
 
 if [ -e $HOME/.segment ] ; then
-  segment_dotfiles=(docker general robo scripts ssh)
+  segment_dotfiles=(docker general robo ssh go)
   for dotfile in $segment_dotfiles ; do
     source $HOME/dev/src/github.com/segmentio/dotfiles/source/$dotfile.sh
   done
-
-  alias t='robo prod.tool'
-  alias wt='robo prod warehouse-tool'
 
   # Production
   alias awsprod='aws-okta exec prod-privileged -- aws'
