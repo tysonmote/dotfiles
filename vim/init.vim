@@ -73,6 +73,7 @@ Plug 'sebdah/vim-delve'
 Plug 'PeterRincker/vim-searchlight'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'dense-analysis/ale'
+Plug 'jiangmiao/auto-pairs'
 
 " Writing
 Plug 'plasticboy/vim-markdown'
@@ -289,15 +290,6 @@ nnoremap <silent> p p`]
 nmap <leader>u mQviwU`Q
 nmap <leader>l mQviwu`Q
 
-" pairs
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
-inoremap {<CR> {<CR>}<ESC>O
-inoremap {;<CR> {<CR>};<ESC>O
-
 " ------------------------------------------- Navigation -----------------------------------
 
 " Map the arrow keys to be based on display lines, not physical lines
@@ -349,6 +341,10 @@ map <leader>n :NERDTreeToggle<CR>
 
 let g:ags_agcontext = 0
 let g:ags_winheight = '20'
+
+" --------------------------------------- auto-pairs ---------------------------------------
+
+let g:AutoPairsCenterLine = 0 " don't scroll my buffer all over the place
 
 " -------------------------------------------- echodoc -------------------------------------
 
