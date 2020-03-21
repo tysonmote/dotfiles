@@ -345,6 +345,7 @@ let g:ags_winheight = '20'
 " --------------------------------------- auto-pairs ---------------------------------------
 
 let g:AutoPairsCenterLine = 0 " don't scroll my buffer all over the place
+let g:AutoPairsMultilineClose = 0 " don't jump lines when trying to close pair manually
 
 " -------------------------------------------- echodoc -------------------------------------
 
