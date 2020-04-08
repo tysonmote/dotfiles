@@ -370,6 +370,8 @@ let g:go_jump_to_error = 0         " don't jump around on save
 let g:go_rename_command = 'gopls'  " use gopls to rename identifiers
 let g:go_test_show_name = 1        " show failed test names
 let g:go_updatetime = 200          " update on-hover things quickly
+let g:go_imports_mode = "gopls"    " use gopls for :GoImports
+let g:go_implements_mode = 'gopls' " use gopls for :GoImplements
 
 let g:go_highlight_fields = 1
 let g:go_highlight_format_strings = 1
@@ -382,7 +384,7 @@ let g:go_highlight_types = 1
 " ------------------------------------- LanguageClient -------------------------------------
 
 let g:LanguageClient_echoProjectRoot = 0
-
+let g:LanguageClient_useVirtualText = 'No' " chill with the flashy red errors
 let g:LanguageClient_serverCommands = {
   \ 'go': ['gopls'],
   \ 'javascript': ['javascript-typescript-stdio'],
