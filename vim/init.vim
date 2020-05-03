@@ -5,7 +5,7 @@
 " ------------------------------------------------------------------------------------------
 
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'base16_default'
+let g:airline_theme = 'nord'
 
 function! AirlineInit()
   " Disable git hunks & branch
@@ -77,6 +77,7 @@ Plug 'PeterRincker/vim-searchlight'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'dense-analysis/ale'
 Plug 'jiangmiao/auto-pairs'
+Plug 'arcticicestudio/nord-vim'
 
 " Writing
 Plug 'plasticboy/vim-markdown'
@@ -138,7 +139,7 @@ set listchars+=precedes:<         " The character to show in the last column whe
 
 syntax enable
 set background=dark
-colorscheme base16-default-dark
+colorscheme nord
 set termguicolors
 
 " normal, visual, and showmatch in insert modes: block cursor
@@ -151,7 +152,6 @@ set guicursor+=r-cr-o:hor20
 set guicursor+=a:blinkwait200-blinkon200-blinkoff200
 " highlight cursor line in normal mode
 set cursorline
-highlight CursorLine guibg=gray13
 " Highlight selected search result using vim-searchlight
 highlight link Searchlight Incsearch
 
