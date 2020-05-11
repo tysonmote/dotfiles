@@ -207,7 +207,8 @@ set updatetime=500   " write swap files after 0.5s of inactivity (default 4s)
 " --------------------------------------------- Misc. --------------------------------------
 
 set conceallevel=0  " don't auto-hide quotes. christ that's annoying
-let loaded_netrwPlugin = 1 " disable netrw
+let loaded_netrwPlugin=1 " disable netrw
+set signcolumn=yes " don't flicker in and out when using ALE
 
 " ------------------------------------------------------------------------------------------
 " ------------------------------------------------------------------------------------------
@@ -240,6 +241,10 @@ au FileType go nmap <leader>r <Plug>(go-rename)
 au FileType go nmap <leader>v <Plug>(go-vet)
 au FileType go nmap <leader>i <Plug>(go-info)
 au FileType go nmap <leader>t <Plug>(go-test-func)
+
+" --------------------------------------- JavaScript ---------------------------------------
+
+au FileType javascript let g:ale_fix_on_save = 1
 
 " -------------------------------------------- Makefile ------------------------------------
 
