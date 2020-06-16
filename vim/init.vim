@@ -395,12 +395,18 @@ let g:LanguageClient_echoProjectRoot = 0
 let g:LanguageClient_useVirtualText = 'No' " chill with the flashy red errors
 let g:LanguageClient_serverCommands = {
   \ 'go': ['gopls'],
+  \ 'json': ['/usr/local/bin/vscode-json-languageserver', '--stdio'],
   \ 'javascript': ['javascript-typescript-stdio'],
   \ 'typescript': ['javascript-typescript-stdio'],
   \ 'python': ['/usr/local/bin/pyls'],
   \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
   \ 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', 'rls'],
   \ }
+
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " ----------------------------------------- NERDCommenter ----------------------------------
 

@@ -59,6 +59,7 @@ pip3 install neovim
 npm install -g neovim
 sudo pip3 install --upgrade pynvim
 sudo gem install neovim
+npm install -g vscode-json-languageserver
 
 banner "Configuring NeoVim"
 
