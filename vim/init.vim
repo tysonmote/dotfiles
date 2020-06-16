@@ -104,7 +104,7 @@ set noshowmode        " don't show mode in status line
 
 " -------------------------------------------- Wrapping ------------------------------------
 
-set textwidth=80                " wrap at 80 chars
+set textwidth=100               " wrap at 100 chars
 set wrap                        " soft wrap by default
 set linebreak                   " wrap lines at words by default
 set whichwrap+=<,>,[,],b,s      " wrap cursor movements to next / previous lines
