@@ -49,7 +49,7 @@ rbenv global 2.6.3
 banner "Installing Node.js"
 
 brew install n
-n 12.3.1
+n 12
 npm -g install typescript
 
 banner "Installing NeoVim"
