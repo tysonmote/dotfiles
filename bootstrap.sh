@@ -50,7 +50,7 @@ banner "Installing Node.js"
 
 brew install n
 n 12
-npm -g install typescript
+npm -g install typescript prettier-eslint
 
 banner "Installing NeoVim"
 

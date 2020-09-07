@@ -25,12 +25,11 @@ let g:polyglot_disabled = ['liquid']
 let g:ale_sign_error = 'X'
 let g:ale_sign_warning = '!'
 let g:ale_linters = {
-	\ 'go': ['gopls'],
-	\}
+	\	'javascript': ['prettier-eslint'],
+	\ }
 let g:ale_fixers = {
-  \ 'javascript': ['eslint']
-  \}
-let g:airline#extensions#ale#enabled = 1
+  \ 'javascript': ['prettier-eslint'],
+  \ }
 
 " ------------------------------------------------------------------------------------------
 " ------------------------------------------------------------------------------------------
@@ -74,7 +73,6 @@ Plug 'tpope/vim-sensible'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'sebdah/vim-delve'
 Plug 'PeterRincker/vim-searchlight'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'dense-analysis/ale'
 Plug 'jiangmiao/auto-pairs'
 Plug 'arcticicestudio/nord-vim'
