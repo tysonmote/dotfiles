@@ -13,7 +13,7 @@ when bootstrapping a new machine.
 
 4. `brew install git mercurial lua openssl redis postgres`
 
-5. `mkdir ~/git && cd ~/git && git clone https://github.com/tysontate/dotfiles.git`
+5. `mkdir -p ~/dev/src/github.com/tysonmote && cd ~/dev/src/github.com/tysonmote && git clone https://github.com/tysonmote/dotfiles.git`
 
 6. `cd dotfiles && ./bootstrap.sh`
 

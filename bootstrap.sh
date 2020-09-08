@@ -2,6 +2,8 @@
 
 set -e
 
+DOTFILES=$HOME/dev/src/github.com/tysonmote/dotfiles
+
 function banner() {
   echo "***"
   echo "*** $1"
@@ -14,13 +16,8 @@ brew install git lua mercurial openssl python python3 subversion
 
 banner "Linking git config"
 
-if [ -e $HOME/.segment ] ; then
-  ln -s $HOME/dev/src/github.com/tysonmote/dotfiles/git/gitignore $HOME/.gitignore
-  ln -s $HOME/dev/src/github.com/tysonmote/dotfiles/git/gitconfig.segment $HOME/.gitconfig
-else
-  ln -s $HOME/git/dotfiles/git/gitignore $HOME/.gitignore
-  ln -s $HOME/git/dotfiles/git/gitconfig $HOME/.gitconfig
-fi
+ln -s $DOTFILES/git/gitignore $HOME/.gitignore
+ln -s $DOTFILES/git/gitconfig.segment $HOME/.gitconfig
 
 banner "Installing oh-my-zsh"
 
@@ -28,16 +25,12 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 
 banner "Linking zsh config"
 
-ln -s $HOME/git/dotfiles/zsh/zshrc $HOME/.zshrc
-ln -s $HOME/git/dotfiles/zsh/zshenv $HOME/.zshenv
+ln -s $DOTFILES/zsh/zshrc $HOME/.zshrc
+ln -s $DOTFILES/zsh/zshenv $HOME/.zshenv
+ln -s $DOTFILES/zsh/tyson.zsh-theme $HOME/.oh-my-zsh/themes/
 
 banner "Installing Go"
 
-if [ -e $HOME/.segment ] ; then
-  mkdir $HOME/dev
-else
-  mkdir $HOME/go
-fi
 brew install go
 
 banner "Installing Ruby"
@@ -66,8 +59,8 @@ banner "Configuring NeoVim"
 curl -fLo $HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 mkdir -p $HOME/.config/nvim/
-ln -s $HOME/git/dotfiles/vim/init.vim $HOME/.config/nvim/
-ln -s $HOME/git/dotfiles/vim/snippets $HOME/.config/nvim/
+ln -s $DOTFILES/vim/init.vim $HOME/.config/nvim/
+ln -s $DOTFILES/vim/snippets $HOME/.config/nvim/
 nvim +PlugInstall +qall
 nvim +GoUpdateBinaries +qall
 

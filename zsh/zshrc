@@ -13,7 +13,7 @@ fpath+=$HOME/.zfunc
 # -- oh-my-zsh
 
 ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="agnoster"
+ZSH_THEME="tyson"
 DEFAULT_USER=`whoami`
 ENABLE_CORRECTION="false"
 DISABLE_AUTO_UPDATE=true
