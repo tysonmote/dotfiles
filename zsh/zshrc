@@ -33,6 +33,8 @@ alias gcob='git checkout -b'
 alias gb='git branch'
 alias gs='git status'
 
+eval "$(gh completion -s zsh)"
+
 # -- Node.js / NVM
 
 load_node () {
