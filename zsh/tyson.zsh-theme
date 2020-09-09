@@ -131,7 +131,7 @@ prompt_status() {
 }
 
 ## Main prompt
-prompt() {
+build_prompt() {
   RETVAL=$?
   prompt_status
   prompt_context
@@ -141,5 +141,5 @@ prompt() {
 }
 
 PROMPT='
-╭─%{%f%b%k%}$(prompt)
+╭─%{%f%b%k%}$(build_prompt)
 ╰─▶ '

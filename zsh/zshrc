@@ -20,18 +20,6 @@ DISABLE_AUTO_UPDATE=true
 plugins=(golang aws)
 source $ZSH/oh-my-zsh.sh
 
-# remove bzr and hg from agnoster prompt (slow)
-build_prompt() {
-  RETVAL=$?
-  prompt_status
-  prompt_virtualenv
-  prompt_aws
-  prompt_context
-  prompt_dir
-  prompt_git
-  prompt_end
-}
-
 # -- fzf
 
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
