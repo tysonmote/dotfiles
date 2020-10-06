@@ -369,7 +369,7 @@ let g:fzf_layout = { 'down': '~20%' }
 " --------------------------------------------- vim-go -------------------------------------
 
 let g:go_def_mapping_enabled = 0       " don't break my other key mappings
-let g:go_fmt_command = "gopls"         " I live on the edge
+let g:go_fmt_command = "goimports"
 let g:go_fmt_experimental = 1          " format in-place
 let g:go_gopls_complete_unimported = 1 " autocomplete unimported packages
 let g:go_jump_to_error = 0             " don't jump around on save
