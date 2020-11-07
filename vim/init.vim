@@ -53,6 +53,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/echodoc.vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'tpope/vim-surround'
 Plug 'garbas/vim-snipmate'
 Plug 'tomtom/tlib_vim'
@@ -352,6 +353,47 @@ let g:ags_winheight = '20'
 
 let g:AutoPairsCenterLine = 0 " don't scroll my buffer all over the place
 let g:AutoPairsMultilineClose = 0 " don't jump lines when trying to close pair manually
+
+" ---------------------------------------- Deoplete ----------------------------------------
+
+let g:deoplete#enable_at_startup = 1
+
+" Chill
+call deoplete#custom#option('auto_complete_delay', 100)
+
+" Don't truncate menu width
+call deoplete#custom#source('_', 'max_abbr_width', 0)
+call deoplete#custom#source('_', 'max_menu_width', 0)
+
+" Call omnifunc when these patterns are matched, regardless of min_pattern_length.
+call deoplete#custom#var('omni', 'input_patterns', {
+  \ 'go': '[^. *\t]\.\w*',
+  \ 'javascript': '[^. *\t]\.\w*',
+  \ 'rust': '[^. *\t]\.\w*',
+  \ })
+
+call deoplete#custom#source('_', 'converters', [
+  \ 'converter_auto_delimiter',
+  \ 'converter_auto_paren',
+  \ 'converter_remove_overlap',
+  \ 'converter_truncate_abbr',
+  \ 'converter_truncate_menu',
+  \ 'converter_reorder_attr',
+  \ ])
+
+call deoplete#custom#filter('converter_reorder_attr',
+\  'attrs_order', {
+\    'go': {
+\      'kind': [
+\        'Field',
+\        'Method',
+\        'Function',
+\        'Class',
+\        'Variable',
+\        'Interface'
+\      ]
+\   },
+\})
 
 " -------------------------------------------- echodoc -------------------------------------
 
