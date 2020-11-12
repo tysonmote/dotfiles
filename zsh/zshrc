@@ -91,6 +91,9 @@ if [ -e $HOME/.segment ] ; then
 
   # Okta
   export AWS_OKTA_MFA_FACTOR_TYPE=push
+
+  # Kubernetes
+  source /Users/tysonmote/dev/src/github.com/segmentio/k/k.sh
 fi
 
 export PATH="/usr/local/opt/awscli@1/bin:$PATH"
