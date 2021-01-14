@@ -428,6 +428,11 @@ let g:NERDTreeQuitOnOpen = 1          " close on file open
 
 let g:rustfmt_autosave = 1
 
+" ---------------------------------------- SnipMate ----------------------------------------
+
+let g:snipMate = {}
+let g:snipMate.snippet_version = 1
+
 " --------------------------------------------- Tagbar -------------------------------------
 
 nmap <F8> :TagbarToggle<CR>
