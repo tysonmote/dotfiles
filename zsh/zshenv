@@ -38,6 +38,12 @@ export PATH=/usr/local/opt/go/libexec/bin:$PATH
 export GOPRIVATE=github.com/segment*
 
 #
+# Rust
+#
+
+source "$HOME/.cargo/env"
+
+#
 # Segment
 #
 
