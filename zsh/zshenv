@@ -54,4 +54,3 @@ if [ -e $HOME/.segment ] ; then
   export PLATFORM_AUTHZ_CLIENT_ID=dev-client-id
   export PLATFORM_AUTHZ_CLIENT_SECRET=dev-client-secret
 fi
-

@@ -65,11 +65,9 @@ alias dc="docker-compose -f docker-compose.yml"
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path $HOME/.zsh/cache
 
-# -- Packer / ec2-ami-tools stuff
+# -- GPG
 
-export JAVA_HOME="$(/usr/libexec/java_home)"
-export EC2_AMITOOL_HOME="$(find /usr/local/Cellar/ec2-ami-tools/*/libexec -type d | head -n 1)"
-export EC2_HOME=$EC2_AMITOOL_HOME
+export GPG_TTY=$(tty)
 
 # -- Segment
 
@@ -95,5 +93,3 @@ if [ -e $HOME/.segment ] ; then
   # Kubernetes
   source /Users/tysonmote/dev/src/github.com/segmentio/k/k.sh
 fi
-
-export PATH="/usr/local/opt/awscli@1/bin:$PATH"
