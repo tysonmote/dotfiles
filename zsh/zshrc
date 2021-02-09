@@ -72,7 +72,7 @@ export GPG_TTY=$(tty)
 # -- Segment
 
 if [ -e $HOME/.segment ] ; then
-  segment_dotfiles=(docker general robo ssh go)
+  segment_dotfiles=(docker general ssh go)
   for dotfile in $segment_dotfiles ; do
     source $HOME/dev/src/github.com/segmentio/dotfiles/source/$dotfile.sh
   done
@@ -92,4 +92,7 @@ if [ -e $HOME/.segment ] ; then
 
   # Kubernetes
   source /Users/tysonmote/dev/src/github.com/segmentio/k/k.sh
+
+  # Robo
+  export ROBO_CONFIG="$HOME/dev/src/github.com/segmentio/robofiles/development/robo.yml"
 fi
