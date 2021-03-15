@@ -92,7 +92,4 @@ if [ -e $HOME/.segment ] ; then
 
   # Kubernetes
   source /Users/tysonmote/dev/src/github.com/segmentio/k/k.sh
-
-  # Robo
-  export ROBO_CONFIG="$HOME/dev/src/github.com/segmentio/robofiles/development/robo.yml"
 fi
