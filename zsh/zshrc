@@ -35,6 +35,10 @@ alias gs='git status'
 
 eval "$(gh completion -s zsh)"
 
+# -- Kubernetes
+
+alias kc='kubectl'
+
 # -- Node.js / NVM
 
 load_node () {
