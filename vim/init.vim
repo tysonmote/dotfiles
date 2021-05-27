@@ -102,7 +102,7 @@ set noshowmode        " don't show mode in status line
 
 " -------------------------------------------- Wrapping ------------------------------------
 
-set textwidth=100               " wrap at 100 chars
+set textwidth=80                " wrap at 80 characters
 set wrap                        " soft wrap by default
 set linebreak                   " wrap lines at words by default
 set whichwrap+=<,>,[,],b,s      " wrap cursor movements to next / previous lines
@@ -252,9 +252,6 @@ au FileType make setlocal noexpandtab  " real tabs
 
 au FileType markdown setlocal formatoptions+=a " autoformat while typing
 au FileType markdown setlocal formatoptions-=l " don't autoformat if it's already too wide
-au FileType markdown,mkd call pencil#init()
-  \ | setl spell spl=en_us fdl=4 noru nonu nornu
-  \ | setl fdo+=search
 
 let g:pencil#textwidth = 80
 let g:pencil#conceallevel = 0 " Don't hide style characters, collapse links, etc.
