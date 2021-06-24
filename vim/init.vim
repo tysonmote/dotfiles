@@ -41,7 +41,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " Themes
 Plug 'chriskempson/base16-vim'
-Plug 'reedes/vim-colors-pencil'
 
 " Languages
 Plug 'fatih/vim-go'
@@ -79,7 +78,6 @@ Plug 'arcticicestudio/nord-vim'
 
 " Writing
 Plug 'plasticboy/vim-markdown'
-Plug 'reedes/vim-pencil'
 
 call plug#end()
 
@@ -224,7 +222,6 @@ au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= l
 " ------------------------------------------ git -------------------------------------------
 
 au FileType git,gitsendemail,*commit*,*COMMIT*
-  \ | call pencil#init({'wrap': 'hard', 'textwidth': 72})
   \ | setl spell spl=en_us et sw=2 ts=2 noai
 
 " --------------------------------------- Go / vim-go ---------------------------------------
@@ -253,8 +250,6 @@ au FileType make setlocal noexpandtab  " real tabs
 au FileType markdown setlocal formatoptions+=a " autoformat while typing
 au FileType markdown setlocal formatoptions-=l " don't autoformat if it's already too wide
 
-let g:pencil#textwidth = 80
-let g:pencil#conceallevel = 0 " Don't hide style characters, collapse links, etc.
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_folding_disabled = 1 " disable folding
 let g:vim_markdown_auto_insert_bullets = 0
