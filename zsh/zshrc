@@ -79,17 +79,11 @@ if [ -e $HOME/.segment ] ; then
     source $HOME/dev/src/github.com/segmentio/dotfiles/source/$dotfile.sh
   done
 
-  # Production
-  alias awsprod='aws-okta exec prod-privileged -- aws'
-  alias logsprod='aws-okta exec production -- s3logs'
-  alias s3prod='aws-okta exec prod-privileged -- aws s3'
-  alias roboprod='aws-okta exec prod-write -- ssh workbench-prod -t robo.local'
-
-  # Staging
-  alias awsstage='aws-okta exec stage-privileged -- aws'
-  alias logsstage='aws-okta exec stage -- s3logs'
-  alias s3stage='aws-okta exec stage-privileged -- aws s3'
-  alias robostage='aws-okta exec stage-write -- ssh workbench-stage -t robo.local'
+  # Regions
+  alias stage-usw2="aws-okta exec stage-read -- "
+  alias prod-usw2="aws-okta exec prod-read -- "
+  alias stage-euw1="aws-okta exec stage-euw1-read -- "
+  alias prod-euw1="aws-okta exec prod-euw1-read -- "
 
   # Okta
   export AWS_OKTA_MFA_FACTOR_TYPE=push
