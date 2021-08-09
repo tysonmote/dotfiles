@@ -73,7 +73,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'sebdah/vim-delve'
 Plug 'PeterRincker/vim-searchlight'
 Plug 'dense-analysis/ale'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs' " This might be more annoying than useful...
 Plug 'arcticicestudio/nord-vim'
 
 " Writing
