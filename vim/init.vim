@@ -75,6 +75,8 @@ Plug 'PeterRincker/vim-searchlight'
 Plug 'dense-analysis/ale'
 " Plug 'jiangmiao/auto-pairs' " This might be more annoying than useful...
 Plug 'arcticicestudio/nord-vim'
+Plug 'ruanyl/vim-gh-line'
+Plug 'tpope/vim-fugitive'
 
 " Writing
 Plug 'plasticboy/vim-markdown'
