@@ -78,6 +78,9 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'ruanyl/vim-gh-line'
 Plug 'tpope/vim-fugitive'
 
+" God help me
+Plug 'github/copilot.vim'
+
 " Writing
 Plug 'plasticboy/vim-markdown'
 
