@@ -17,6 +17,7 @@ ZSH_THEME="tyson"
 DEFAULT_USER=`whoami`
 ENABLE_CORRECTION="false"
 DISABLE_AUTO_UPDATE=true
+DISABLE_MAGIC_FUNCTIONS=true # Don't escape pasted input
 plugins=(golang aws)
 source $ZSH/oh-my-zsh.sh
 
