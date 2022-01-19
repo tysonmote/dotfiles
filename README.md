@@ -1,7 +1,10 @@
 # dotfiles
 
-This repo contains some of the common programs and configurations I use
-when bootstrapping a new machine.
+This repo contains some of the common programs and configurations I use when
+bootstrapping a new machine.
+
+NOTE: A lot of this is outdated because I just use Migration Assistant these
+days.
 
 ## Basics
 
@@ -11,12 +14,11 @@ when bootstrapping a new machine.
 
 3. Install [Homebrew](http://brew.sh)
 
-4. `brew install git mercurial lua openssl redis postgres`
+4. `brew install git`
 
 5. `mkdir -p ~/dev/src/github.com/tysonmote && cd ~/dev/src/github.com/tysonmote && git clone https://github.com/tysonmote/dotfiles.git`
 
 6. `cd dotfiles && ./bootstrap.sh`
 
-7. Install [Input Mono](http://input.fontbureau.com) and [Fira Code](https://github.com/tonsky/FiraCode)
-
-8. `cd ~/.janus && ./fetch_all_plugins.sh`
+7. Install [Input Mono](http://input.fontbureau.com) and [Fira
+   Code](https://github.com/tonsky/FiraCode)

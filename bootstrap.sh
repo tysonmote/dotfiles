@@ -10,9 +10,9 @@ function banner() {
   echo "***"
 }
 
-banner "Installing basics"
+banner "Installing some basics"
 
-brew install git lua mercurial openssl python python3 subversion
+brew install git lua openssl python
 
 banner "Linking git config"
 
@@ -36,13 +36,13 @@ brew install go
 banner "Installing Ruby"
 
 brew install rbenv ruby-build
-rbenv install 2.6.3
-rbenv global 2.6.3
+rbenv install 3.1.0
+rbenv global 3.1.0
 
 banner "Installing Node.js"
 
 brew install n
-n 12
+n 16
 npm -g install typescript prettier-eslint
 
 banner "Installing NeoVim"
@@ -66,5 +66,5 @@ nvim +GoUpdateBinaries +qall
 
 banner "Installing extras"
 
-brew install awscli cscope ctags jq parallel pcre postgresql redis sqlite the_silver_searcher fzf fd bat htop diff-so-fancy tldr
+brew install awscli cscope ctags jq parallel pcre postgresql redis sqlite the_silver_searcher fzf fd bat htop diff-so-fancy tldr wget
 

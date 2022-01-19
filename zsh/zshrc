@@ -79,7 +79,7 @@ export GPG_TTY=$(tty)
 # -- Segment
 
 if [ -e $HOME/.segment ] ; then
-  segment_dotfiles=(docker general ssh go)
+  segment_dotfiles=(_init docker general ssh go)
   for dotfile in $segment_dotfiles ; do
     source $HOME/dev/src/github.com/segmentio/dotfiles/source/$dotfile.sh
   done
