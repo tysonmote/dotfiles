@@ -10,6 +10,10 @@ SAVEHIST=5000
 # additional completions
 fpath+=$HOME/.zfunc
 
+# -- Homebrew
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # -- oh-my-zsh
 
 ZSH=$HOME/.oh-my-zsh
