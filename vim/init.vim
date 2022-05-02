@@ -21,16 +21,6 @@ autocmd User AirlineAfterInit call AirlineInit()
 
 let g:polyglot_disabled = ['liquid']
 
-" ALE
-let g:ale_sign_error = 'X'
-let g:ale_sign_warning = '!'
-let g:ale_linters = {
-	\	'javascript': ['prettier-eslint'],
-	\ }
-let g:ale_fixers = {
-  \ 'javascript': ['prettier-eslint'],
-  \ }
-
 " ------------------------------------------------------------------------------------------
 " ------------------------------------------------------------------------------------------
 " ----------------------------------------- Plugins ----------------------------------------
@@ -46,10 +36,12 @@ Plug 'chriskempson/base16-vim'
 Plug 'fatih/vim-go'
 Plug 'mmalecki/vim-node.js'
 Plug 'sheerun/vim-polyglot' " Covers lots: https://github.com/sheerun/vim-polyglot#language-packs
+Plug 'rust-lang/rust.vim'
+Plug 'simrat39/rust-tools.nvim'
 
 " Tools
+Plug 'neovim/nvim-lspconfig'
 Plug 'scrooloose/nerdcommenter'
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/echodoc.vim'
 Plug 'tpope/vim-surround'
@@ -58,7 +50,6 @@ Plug 'tomtom/tlib_vim'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree'
-" Plug 'tpope/vim-endwise' " conflicts with tab completion, inserting garbage
 Plug 'tpope/vim-repeat'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'airblade/vim-gitgutter'
@@ -72,8 +63,6 @@ Plug 'tpope/vim-sensible'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'sebdah/vim-delve'
 Plug 'PeterRincker/vim-searchlight'
-Plug 'dense-analysis/ale'
-" Plug 'jiangmiao/auto-pairs' " This might be more annoying than useful...
 Plug 'arcticicestudio/nord-vim'
 Plug 'ruanyl/vim-gh-line'
 Plug 'tpope/vim-fugitive'
@@ -246,10 +235,6 @@ au FileType go nmap <leader>v <Plug>(go-vet)
 au FileType go nmap <leader>i <Plug>(go-info)
 au FileType go nmap <leader>t <Plug>(go-test-func)
 
-" --------------------------------------- JavaScript ---------------------------------------
-
-au FileType javascript let g:ale_fix_on_save = 1
-
 " -------------------------------------------- Makefile ------------------------------------
 
 au FileType make setlocal noexpandtab  " real tabs
@@ -390,24 +375,72 @@ let g:go_highlight_operators = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
 
-" ------------------------------------- LanguageClient -------------------------------------
+" ------------------------------ lsp --------------------------------
 
-let g:LanguageClient_echoProjectRoot = 0
-let g:LanguageClient_useVirtualText = 'No' " chill with the flashy red errors
-let g:LanguageClient_serverCommands = {
-  \ 'go': ['gopls'],
-  \ 'json': ['/usr/local/bin/vscode-json-languageserver', '--stdio'],
-  \ 'javascript': ['javascript-typescript-stdio'],
-  \ 'typescript': ['javascript-typescript-stdio'],
-  \ 'python': ['/usr/local/bin/pyls'],
-  \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
-  \ 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', 'rls'],
-  \ }
+lua << EOF
+-- Mappings.
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+local opts = { noremap=true, silent=true }
+vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+  -- Enable completion triggered by <c-x><c-o>
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+end
+
+-- Use a loop to conveniently call 'setup' on multiple servers and
+-- map buffer local keybindings when the language server attaches
+local servers = { 'rust_analyzer', 'tsserver' }
+for _, lsp in pairs(servers) do
+  require('lspconfig')[lsp].setup {
+    on_attach = on_attach,
+    flags = {
+      -- This will be the default in neovim 0.7+
+      debounce_text_changes = 150,
+    }
+  }
+end
+EOF
+
+lua <<EOF
+  lspconfig = require "lspconfig"
+  util = require "lspconfig/util"
+
+  lspconfig.gopls.setup {
+    cmd = {"gopls", "serve"},
+    filetypes = {"go", "gomod"},
+    root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+    settings = {
+      gopls = {
+        analyses = {
+          unusedparams = true,
+        },
+        staticcheck = true,
+      },
+    },
+  }
+EOF
 
 " ----------------------------------------- NERDCommenter ----------------------------------
 
