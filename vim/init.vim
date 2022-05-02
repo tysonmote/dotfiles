@@ -84,6 +84,10 @@ Plug 'github/copilot.vim'
 " Writing
 Plug 'plasticboy/vim-markdown'
 
+" Enterprise(tm)
+Plug 'tyru/open-browser.vim'
+Plug 'weirongxu/plantuml-previewer.vim'
+
 call plug#end()
 
 " ------------------------------------------------------------------------------------------
@@ -259,6 +263,10 @@ let g:vim_markdown_conceal = 0
 let g:vim_markdown_folding_disabled = 1 " disable folding
 let g:vim_markdown_auto_insert_bullets = 0
 let g:vim_markdown_new_list_item_indent = 0
+
+" --------------------------------------- PlantUML -----------------------------------------
+
+let g:plantuml_previewer#plantuml_jar_path='/opt/homebrew/Cellar/plantuml/1.2022.2_1/libexec/plantuml.jar'
 
 " --------------------------------------------- Python -------------------------------------
 
