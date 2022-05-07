@@ -72,6 +72,7 @@ Plug 'github/copilot.vim'
 
 " Writing
 Plug 'preservim/vim-markdown'
+Plug 'preservim/vim-pencil'
 
 " Enterprise(tm)
 Plug 'tyru/open-browser.vim'
@@ -237,6 +238,10 @@ let g:vim_markdown_conceal = 0
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_new_list_item_indent = 0
 let g:vim_markdown_toml_frontmatter = 1
+
+let g:pencil#conceallevel=0
+
+au FileType markdown setlocal formatoptions= " disable all the annoying autoformatting
 
 " --------------------------------------- PlantUML -----------------------------------------
 
