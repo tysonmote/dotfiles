@@ -73,6 +73,7 @@ Plug 'github/copilot.vim'
 " Writing
 Plug 'preservim/vim-markdown'
 Plug 'preservim/vim-pencil'
+Plug 'folke/zen-mode.nvim'
 
 " Enterprise(tm)
 Plug 'tyru/open-browser.vim'
@@ -242,6 +243,19 @@ let g:vim_markdown_toml_frontmatter = 1
 let g:pencil#conceallevel=0
 
 au FileType markdown setlocal formatoptions= " disable all the annoying autoformatting
+
+lua << EOF
+  require("zen-mode").setup {
+    window = {
+      backdrop = 1,
+      width = 100,
+      options = {
+        number = false,
+        signcolumn = "no",
+      }
+    }
+  }
+EOF
 
 " --------------------------------------- PlantUML -----------------------------------------
 
