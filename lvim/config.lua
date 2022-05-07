@@ -15,6 +15,8 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- redo
 vim.api.nvim_set_keymap("n", "U", "<C-r>", {})
 
+vim.opt.cmdheight = 1
+
 local opts = { noremap = true, silent = true }
 local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
