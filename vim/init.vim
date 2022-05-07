@@ -71,7 +71,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'github/copilot.vim'
 
 " Writing
-Plug 'plasticboy/vim-markdown'
+Plug 'preservim/vim-markdown'
 
 " Enterprise(tm)
 Plug 'tyru/open-browser.vim'
@@ -232,13 +232,11 @@ au FileType make setlocal noexpandtab  " real tabs
 
 " ---------------------------------------- Markdown ----------------------------------------
 
-au FileType markdown setlocal formatoptions+=a " autoformat while typing
-au FileType markdown setlocal formatoptions-=l " don't autoformat if it's already too wide
-
-let g:vim_markdown_conceal = 0
-let g:vim_markdown_folding_disabled = 1 " disable folding
 let g:vim_markdown_auto_insert_bullets = 0
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_new_list_item_indent = 0
+let g:vim_markdown_toml_frontmatter = 1
 
 " --------------------------------------- PlantUML -----------------------------------------
 
