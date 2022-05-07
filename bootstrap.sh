@@ -64,6 +64,11 @@ ln -s $DOTFILES/vim/snippets $HOME/.config/nvim/
 nvim +PlugInstall +qall
 nvim +GoUpdateBinaries +qall
 
+banner "Configuring LunarVim"
+
+bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+ln -s $DOTFILES/lvim $HOME/.config/lvim
+
 banner "Installing extras"
 
 brew install awscli cscope ctags jq parallel pcre postgresql redis sqlite the_silver_searcher fzf fd bat htop diff-so-fancy tldr wget

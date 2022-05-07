@@ -20,5 +20,7 @@ days.
 
 6. `cd dotfiles && ./bootstrap.sh`
 
-7. Install [Input Mono](http://input.fontbureau.com) and [Fira
-   Code](https://github.com/tonsky/FiraCode)
+7. Install [Input Mono][input] and [Fira Code (Nerd Font build)][fira]
+
+[input]: http://input.fontbureau.com
+[fira]: https://github.com/tonsky/FiraCode

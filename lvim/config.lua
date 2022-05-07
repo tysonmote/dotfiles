@@ -4,7 +4,7 @@ lvim.format_on_save = true
 lvim.colorscheme = "nord"
 
 -- don't yank to system clipboard
-vim.opt.clipboard = "unnamed"
+vim.opt.clipboard = ""
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
