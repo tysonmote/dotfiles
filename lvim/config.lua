@@ -1,32 +1,38 @@
--- general
+lvim.plugins = {
+  { "arcticicestudio/nord-vim" },
+  { "github/copilot.vim" },
+}
+
+-- basics
+lvim.leader = "space"
 lvim.log.level = "warn"
 lvim.format_on_save = true
+vim.opt.cmdheight = 1
 lvim.colorscheme = "nord"
+
+-- move between windows
+vim.api.nvim_set_keymap("n", "<M-h>", "<C-w>h", {})
+vim.api.nvim_set_keymap("n", "<M-j>", "<C-w>j", {})
+vim.api.nvim_set_keymap("n", "<M-k>", "<C-w>k", {})
+vim.api.nvim_set_keymap("n", "<M-l>", "<C-w>l", {})
 
 -- don't yank to system clipboard
 vim.opt.clipboard = ""
 
--- keymappings [view all the defaults by pressing <leader>Lk]
-lvim.leader = "space"
-
--- add your own keymapping
-lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
-
 -- redo
 vim.api.nvim_set_keymap("n", "U", "<C-r>", {})
 
-vim.opt.cmdheight = 1
-
+-- language servers
 local opts = { noremap = true, silent = true }
 local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
@@ -86,29 +92,13 @@ lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 1
 
--- if you don't want all the parsers change this to a table of the ones you want
-lvim.builtin.treesitter.ensure_installed = {
-  "bash",
-  "c",
-  "javascript",
-  "json",
-  "lua",
-  "python",
-  "typescript",
-  "tsx",
-  "css",
-  "rust",
-  "java",
-  "yaml",
-}
-
 lvim.builtin.treesitter.ignore_install = { "haskell" }
-lvim.builtin.treesitter.highlight.enabled = false
+lvim.builtin.treesitter.highlight.disable = true
 
 -- generic LSP settings
 
 -- ---@usage disable automatic installation of servers
--- lvim.lsp.automatic_servers_installation = false
+lvim.lsp.automatic_servers_installation = false
 
 -- ---configure a server manually. !!Requires `:LvimCacheReset` to take effect!!
 -- ---see the full default list `:lua print(vim.inspect(lvim.lsp.automatic_configuration.skipped_servers))`
@@ -124,18 +114,16 @@ lvim.builtin.treesitter.highlight.enabled = false
 
 -- -- you can set a custom on_attach function that will be used for all the language servers
 -- -- See <https://github.com/neovim/nvim-lspconfig#keybindings-and-completion>
--- lvim.lsp.on_attach_callback = function(client, bufnr)
---   local function buf_set_option(...)
---     vim.api.nvim_buf_set_option(bufnr, ...)
---   end
---   --Enable completion triggered by <c-x><c-o>
---   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
--- end
+lvim.lsp.on_attach_callback = function(client, bufnr)
+  --Enable completion triggered by <c-x><c-o>
+  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+end
 
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   { command = "goimports", filetypes = { "go" } },
+
   --   { command = "black", filetypes = { "python" } },
   --   { command = "isort", filetypes = { "python" } },
   --   {
@@ -166,12 +154,6 @@ formatters.setup {
 --     filetypes = { "javascript", "python" },
 --   },
 -- }
-
--- Additional Plugins
-lvim.plugins = {
-  { "shaunsingh/nord.nvim" },
-  { "github/copilot.vim" },
-}
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- lvim.autocommands.custom_groups = {
