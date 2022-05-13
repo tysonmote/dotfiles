@@ -64,12 +64,19 @@ lvim.autocommands.custom_groups = {
   { "BufWritePre", "*.go", "lua OrgImports(2000)" },
 }
 
--- Don't show completion menu automatically (only on <C-space>)
 require('cmp').setup({
   completion = {
+    -- Don't show completion menu automatically (only on <C-space>)
     autocomplete = false
   }
 })
+
+require('telescope').setup {
+  defaults = {
+    -- Display as much of path as possible
+    path_display = { truncate = 3 }
+  }
+}
 
 -- unmap a default keymapping
 -- lvim.keys.normal_mode["<C-Up>"] = false
