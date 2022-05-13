@@ -19,10 +19,6 @@
 	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
 	precomposeunicode = false
 
-	# Use in-terminal NeoVim for commit message editing instead of opening MacVim
-	# (my default EDITOR).
-	editor = nvim
-
 	# Use less but just exit and retain output if output is short.
 	pager = "diff-so-fancy | less --tabs=4 -RFX"
 

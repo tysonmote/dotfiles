@@ -1,6 +1,7 @@
 lvim.plugins = {
   { "arcticicestudio/nord-vim" },
   { "github/copilot.vim" },
+  { "ruanyl/vim-gh-line" },
 }
 
 -- basics
@@ -22,31 +23,53 @@ vim.opt.clipboard = ""
 -- redo
 vim.api.nvim_set_keymap("n", "U", "<C-r>", {})
 
--- language servers
-local opts = { noremap = true, silent = true }
-local on_attach = function(client, bufnr)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-end
+-- join lines
+lvim.keys.visual_mode["J"] = false
 
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
-local servers = { 'gopls', 'rust_analyzer', 'tsserver' }
-for _, lsp in pairs(servers) do
-  require('lspconfig')[lsp].setup {
-    on_attach = on_attach,
-    flags = {
-      -- This will be the default in neovim 0.7+
-      debounce_text_changes = 150,
+-- language servers
+vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {})
+vim.api.nvim_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', {})
+vim.api.nvim_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', {})
+vim.api.nvim_set_keymap('i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', {})
+vim.api.nvim_set_keymap('n', '<space>r', '<cmd>lua vim.lsp.buf.rename()<CR>', {})
+vim.api.nvim_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', {})
+vim.api.nvim_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', {})
+
+require('lspconfig').gopls.setup({
+  settings = {
+    gopls = {
+      gofumpt = true
     }
   }
+})
+
+function OrgImports(wait_ms)
+  local params = vim.lsp.util.make_range_params(nil, nil)
+  params.context = { only = { "source.organizeImports" } }
+  local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
+  for _, res in pairs(result or {}) do
+    for _, r in pairs(res.result or {}) do
+      if r.edit then
+        vim.lsp.util.apply_workspace_edit(r.edit, "UTF-8")
+      else
+        vim.lsp.buf.execute_command(r.command)
+      end
+    end
+  end
 end
+
+-- Autocommands (https://neovim.io/doc/user/autocmd.html)
+lvim.autocommands.custom_groups = {
+  -- Add missing imports on write
+  { "BufWritePre", "*.go", "lua OrgImports(2000)" },
+}
+
+-- Don't show completion menu automatically (only on <C-space>)
+require('cmp').setup({
+  completion = {
+    autocomplete = false
+  }
+})
 
 -- unmap a default keymapping
 -- lvim.keys.normal_mode["<C-Up>"] = false
@@ -98,7 +121,7 @@ lvim.builtin.treesitter.highlight.disable = true
 -- generic LSP settings
 
 -- ---@usage disable automatic installation of servers
-lvim.lsp.automatic_servers_installation = false
+-- lvim.lsp.automatic_servers_installation = false
 
 -- ---configure a server manually. !!Requires `:LvimCacheReset` to take effect!!
 -- ---see the full default list `:lua print(vim.inspect(lvim.lsp.automatic_configuration.skipped_servers))`
@@ -120,22 +143,22 @@ lvim.lsp.on_attach_callback = function(client, bufnr)
 end
 
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
-local formatters = require "lvim.lsp.null-ls.formatters"
-formatters.setup {
-  { command = "goimports", filetypes = { "go" } },
+-- local formatters = require "lvim.lsp.null-ls.formatters"
+-- formatters.setup {
+--   { command = "goimports", filetypes = { "go" } },
 
-  --   { command = "black", filetypes = { "python" } },
-  --   { command = "isort", filetypes = { "python" } },
-  --   {
-  --     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
-  --     command = "prettier",
-  --     ---@usage arguments to pass to the formatter
-  --     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
-  --     extra_args = { "--print-with", "100" },
-  --     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
-  --     filetypes = { "typescript", "typescriptreact" },
-  --   },
-}
+--   --   { command = "black", filetypes = { "python" } },
+--   --   { command = "isort", filetypes = { "python" } },
+--   --   {
+--   --     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
+--   --     command = "prettier",
+--   --     ---@usage arguments to pass to the formatter
+--   --     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
+--   --     extra_args = { "--print-with", "100" },
+--   --     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+--   --     filetypes = { "typescript", "typescriptreact" },
+--   --   },
+-- }
 
 -- -- set additional linters
 -- local linters = require "lvim.lsp.null-ls.linters"
@@ -153,9 +176,4 @@ formatters.setup {
 --     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
 --     filetypes = { "javascript", "python" },
 --   },
--- }
-
--- Autocommands (https://neovim.io/doc/user/autocmd.html)
--- lvim.autocommands.custom_groups = {
---   { "BufWinEnter", "*.lua", "setlocal ts=8 sw=8" },
 -- }
