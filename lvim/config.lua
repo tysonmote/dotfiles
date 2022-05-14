@@ -24,7 +24,7 @@ vim.opt.clipboard = ""
 vim.api.nvim_set_keymap("n", "U", "<C-r>", {})
 
 -- join lines
-lvim.keys.visual_mode["J"] = false
+lvim.keys.visual_mode["J"] = false -- default to join lines
 
 -- language servers
 vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {})
@@ -64,54 +64,21 @@ lvim.autocommands.custom_groups = {
   { "BufWritePre", "*.go", "lua OrgImports(2000)" },
 }
 
-require('cmp').setup({
+local cmp = require('cmp')
+cmp.setup({
   completion = {
     -- Don't show completion menu automatically (only on <C-space>)
     autocomplete = false
-  }
+  },
 })
 
-require('telescope').setup {
-  defaults = {
-    -- Display as much of path as possible
-    path_display = { truncate = 3 }
-  }
-}
+-- Display as much of path as possible
+lvim.builtin.telescope.defaults.path_display = { "truncate" }
 
 -- unmap a default keymapping
 -- lvim.keys.normal_mode["<C-Up>"] = false
 -- edit a default keymapping
 -- lvim.keys.normal_mode["<C-q>"] = ":q<cr>"
-
--- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
--- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
--- local _, actions = pcall(require, "telescope.actions")
--- lvim.builtin.telescope.defaults.mappings = {
---   -- for input mode
---   i = {
---     ["<C-j>"] = actions.move_selection_next,
---     ["<C-k>"] = actions.move_selection_previous,
---     ["<C-n>"] = actions.cycle_history_next,
---     ["<C-p>"] = actions.cycle_history_prev,
---   },
---   -- for normal mode
---   n = {
---     ["<C-j>"] = actions.move_selection_next,
---     ["<C-k>"] = actions.move_selection_previous,
---   },
--- }
-
--- Use which-key to add extra bindings with the leader-key prefix
--- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
--- lvim.builtin.which_key.mappings["t"] = {
---   name = "+Trouble",
---   r = { "<cmd>Trouble lsp_references<cr>", "References" },
---   f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
---   d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
---   q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
---   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
---   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Wordspace Diagnostics" },
--- }
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
@@ -124,6 +91,42 @@ lvim.builtin.nvimtree.show_icons.git = 1
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.disable = true
+
+local components                                 = require "lvim.core.lualine.components"
+lvim.builtin.lualine.style                       = 'default'
+lvim.builtin.lualine.icons_enabled               = lvim.use_icons
+lvim.builtin.lualine.extensions                  = { "nvim-tree" }
+lvim.builtin.lualine.disabled_filetypes          = { "alpha", "NvimTree", "Outline" }
+lvim.builtin.lualine.sections.lualine_a          = {}
+lvim.builtin.lualine.sections.lualine_b          = { { 'filename', color = { gui = 'bold' }, cond = nil, path = 1 } }
+lvim.builtin.lualine.sections.lualine_c          = { components.diff }
+lvim.builtin.lualine.sections.lualine_x          = { components.diagnostics, components.filetype }
+lvim.builtin.lualine.sections.lualine_y          = {}
+lvim.builtin.lualine.sections.lualine_z          = { components.lsp }
+lvim.builtin.lualine.inactive_sections.lualine_a = {}
+lvim.builtin.lualine.inactive_sections.lualine_b = { { 'filename', color = {}, cond = nil, path = 1 } }
+lvim.builtin.lualine.inactive_sections.lualine_c = {}
+lvim.builtin.lualine.inactive_sections.lualine_x = {}
+lvim.builtin.lualine.inactive_sections.lualine_y = {}
+lvim.builtin.lualine.inactive_sections.lualine_z = {}
+
+
+-- Make copilot and cmp play nice
+vim.g["copilot_no_tab_map"] = true
+vim.api.nvim_set_keymap('i', '<Plug>(vimrc:copilot-dummy-map)', 'copilot#Accept("<Tab>")', { expr = true })
+cmp.setup {
+  mapping = {
+    ['<Tab>'] = cmp.mapping(function(fallback)
+      vim.api.nvim_feedkeys(vim.fn['copilot#Accept'](vim.api.nvim_replace_termcodes('<Tab>', true, true, true)), 'n', true)
+    end)
+  },
+  experimental = {
+    ghost_text = false -- this feature conflict with copilot.vim's preview.
+  }
+}
+
+-- imap <expr> <Plug>(vimrc:copilot-dummy-map) copilot#Accept("\<Tab>")
+
 
 -- generic LSP settings
 
