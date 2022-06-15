@@ -5,7 +5,6 @@ lvim.plugins = {
   { "tpope/vim-surround" },
   { "kyoh86/vim-go-coverage" },
   { "hashivim/vim-terraform" },
-  { "akinsho/toggleterm.nvim" },
 }
 
 -- basics
