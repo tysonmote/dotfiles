@@ -3,6 +3,9 @@ lvim.plugins = {
   { "github/copilot.vim" },
   { "ruanyl/vim-gh-line" },
   { "tpope/vim-surround" },
+  { "kyoh86/vim-go-coverage" },
+  { "hashivim/vim-terraform" },
+  { "akinsho/toggleterm.nvim" },
 }
 
 -- basics
@@ -20,7 +23,18 @@ lvim.keys.normal_mode["<M-k>"] = "<C-w>k"
 lvim.keys.normal_mode["<M-l>"] = "<C-w>l"
 
 lvim.keys.normal_mode["U"] = "<C-r>" -- redo
+
 lvim.keys.visual_mode["J"] = false -- default to join lines
+
+-- Yank-free pasting/deleting
+lvim.keys.visual_mode["r"] = "\"_dP`]"
+lvim.keys.visual_mode["D"] = "\"_d`]"
+
+-- Move cursor to end of pasted text
+lvim.keys.visual_mode["p"] = "p`]"
+lvim.keys.visual_mode["P"] = "P`]"
+lvim.keys.normal_mode["p"] = "p`]"
+lvim.keys.normal_mode["P"] = "P`]"
 
 -- language servers
 vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {})
@@ -47,10 +61,12 @@ function OrgImports(wait_ms)
 end
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
-lvim.autocommands.custom_groups = {
-  -- Add missing imports on write
-  { "BufWritePre", "*.go", "lua OrgImports(3000)" },
-}
+
+-- Add missing imports on write
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*.go" },
+  callback = function() OrgImports(3000) end
+})
 
 -- Make copilot and cmp play nice
 vim.g.copilot_no_tab_map = true
@@ -66,7 +82,6 @@ lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.notify.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 1
 lvim.builtin.terminal.active = true
 lvim.builtin.treesitter.highlight.disable = true
 lvim.builtin.treesitter.ignore_install = { "haskell" }
@@ -78,6 +93,24 @@ lvim.builtin.cmp.mapping['<Tab>'] = cmp.mapping(function(fallback)
   vim.api.nvim_feedkeys(vim.fn['copilot#Accept'](vim.api.nvim_replace_termcodes('<Tab>', true, true, true)), 'n', true)
 end)
 
+lvim.builtin.cmp.formatting.kind_icons.Constant = 'const'
+lvim.builtin.cmp.formatting.kind_icons.Enum = 'enum'
+lvim.builtin.cmp.formatting.kind_icons.Field = '.'
+lvim.builtin.cmp.formatting.kind_icons.Function = '()'
+lvim.builtin.cmp.formatting.kind_icons.Interface = '{}'
+lvim.builtin.cmp.formatting.kind_icons.Module = 'pkg'
+lvim.builtin.cmp.formatting.kind_icons.Keyword = ' '
+lvim.builtin.cmp.formatting.kind_icons.Method = '()'
+lvim.builtin.cmp.formatting.kind_icons.Variable = 'var'
+lvim.builtin.cmp.formatting.kind_icons.Struct = 'struct'
+lvim.builtin.cmp.formatting.kind_icons.TypeParameter = 'TYPE' -- TODO
+lvim.builtin.cmp.formatting.kind_icons.Unit = 'UNIT' -- TODO
+
+lvim.builtin.cmp.formatting.source_names.buffer = ''
+lvim.builtin.cmp.formatting.source_names.luasnip = ' '
+lvim.builtin.cmp.formatting.source_names.nvim_lsp = ''
+lvim.builtin.cmp.formatting.source_names.vsnip = ' '
+
 local components                                 = require "lvim.core.lualine.components"
 lvim.builtin.lualine.style                       = 'default'
 lvim.builtin.lualine.icons_enabled               = lvim.use_icons
@@ -88,18 +121,13 @@ lvim.builtin.lualine.sections.lualine_b          = { { 'filename', color = { gui
 lvim.builtin.lualine.sections.lualine_c          = { components.diff }
 lvim.builtin.lualine.sections.lualine_x          = { components.diagnostics, components.filetype }
 lvim.builtin.lualine.sections.lualine_y          = {}
-lvim.builtin.lualine.sections.lualine_z          = {}
+lvim.builtin.lualine.sections.lualine_z          = { 'location' }
 lvim.builtin.lualine.inactive_sections.lualine_a = {}
 lvim.builtin.lualine.inactive_sections.lualine_b = { { 'filename', color = {}, cond = nil, path = 1 } }
 lvim.builtin.lualine.inactive_sections.lualine_c = {}
 lvim.builtin.lualine.inactive_sections.lualine_x = {}
 lvim.builtin.lualine.inactive_sections.lualine_y = {}
 lvim.builtin.lualine.inactive_sections.lualine_z = {}
-
-lvim.lsp.on_attach_callback = function(client, bufnr)
-  --Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-end
 
 require('lspconfig').gopls.setup({
   settings = {
