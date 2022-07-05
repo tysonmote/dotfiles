@@ -38,6 +38,12 @@ export PATH=/usr/local/opt/go/libexec/bin:$PATH
 export GOPRIVATE=github.com/segment*
 
 #
+# Python
+#
+
+export PATH=$PATH:/opt/homebrew/opt/python@3.9/libexec/bin
+
+#
 # Rust
 #
 
