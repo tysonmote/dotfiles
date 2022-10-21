@@ -5,15 +5,27 @@ lvim.plugins = {
   { "tpope/vim-surround" },
   { "kyoh86/vim-go-coverage" },
   { "hashivim/vim-terraform" },
+  { "jparise/vim-graphql" },
 }
+
+-- disable some core plugins
+lvim.builtin.indentlines.enabled = false
+vim.g.indent_blankline_enabled = false
+
+-- preferred formatting options, w.r.t. comments especially
+vim.cmd [[set formatoptions=cro/qnlj]]
 
 -- basics
 lvim.leader = "space"
-lvim.log.level = "warn"
 lvim.format_on_save = true
 vim.opt.cmdheight = 1
 lvim.colorscheme = "nord"
 vim.opt.clipboard = "" -- don't yank to system clipboard
+
+-- Toggle floating terminal
+lvim.keys.normal_mode["<C-t>"] = "<Esc><Cmd>ToggleTerm<CR>"
+lvim.keys.visual_mode["<C-t>"] = "<Esc><Cmd>ToggleTerm<CR>"
+lvim.keys.insert_mode["<C-t>"] = "<Esc><Cmd>ToggleTerm<CR>"
 
 -- move between windows
 lvim.keys.normal_mode["<M-h>"] = "<C-w>h"
@@ -74,14 +86,19 @@ vim.api.nvim_set_keymap('i', '<C-g>', '<Esc>:Copilot<cr>', {})
 
 -- Display as much of path as possible
 lvim.builtin.telescope.defaults.path_display = { "truncate" }
+lvim.builtin.telescope.defaults.layout_strategy = "horizontal"
+lvim.builtin.telescope.defaults.borderchars = {
+  prompt = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+  results = { "─", "▐", "─", "│", "╭", "▐", "▐", "╰" },
+  -- results = {' ', '▐', '▄', '▌', '▌', '▐', '▟', '▙' };
+  preview = { " ", "│", " ", "▌", "▌", "╮", "╯", "▌" },
+}
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
-lvim.builtin.notify.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.terminal.active = true
 lvim.builtin.treesitter.highlight.disable = true
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 
