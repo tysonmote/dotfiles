@@ -9,8 +9,7 @@ lvim.plugins = {
 }
 
 -- disable some core plugins
-lvim.builtin.indentlines.enabled = false
-vim.g.indent_blankline_enabled = false
+lvim.builtin.indentlines.active = false -- annoying indent characters
 
 -- preferred formatting options, w.r.t. comments especially
 vim.cmd [[set formatoptions=cro/qnlj]]
@@ -22,10 +21,8 @@ vim.opt.cmdheight = 1
 lvim.colorscheme = "nord"
 vim.opt.clipboard = "" -- don't yank to system clipboard
 
--- Toggle floating terminal
-lvim.keys.normal_mode["<C-t>"] = "<Esc><Cmd>ToggleTerm<CR>"
-lvim.keys.visual_mode["<C-t>"] = "<Esc><Cmd>ToggleTerm<CR>"
-lvim.keys.insert_mode["<C-t>"] = "<Esc><Cmd>ToggleTerm<CR>"
+-- Toggle floating terminal, fixes a regression added in https://github.com/LunarVim/LunarVim/commit/a4c2dc4d0b638a50c3219f247b09e6238a44ec50
+lvim.builtin.terminal.open_mapping = [[<c-t>]]
 
 -- move between windows
 lvim.keys.normal_mode["<M-h>"] = "<C-w>h"
@@ -83,16 +80,6 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 vim.g.copilot_no_tab_map = true
 vim.api.nvim_set_keymap('i', '<Plug>(vimrc:copilot-dummy-map)', 'copilot#Accept("<Tab>")', { expr = true })
 vim.api.nvim_set_keymap('i', '<C-g>', '<Esc>:Copilot<cr>', {})
-
--- Display as much of path as possible
-lvim.builtin.telescope.defaults.path_display = { "truncate" }
-lvim.builtin.telescope.defaults.layout_strategy = "horizontal"
-lvim.builtin.telescope.defaults.borderchars = {
-  prompt = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-  results = { "─", "▐", "─", "│", "╭", "▐", "▐", "╰" },
-  -- results = {' ', '▐', '▄', '▌', '▌', '▐', '▟', '▙' };
-  preview = { " ", "│", " ", "▌", "▌", "╮", "╯", "▌" },
-}
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
