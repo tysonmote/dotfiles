@@ -8,8 +8,8 @@ lvim.plugins = {
   { "jparise/vim-graphql" },
 }
 
--- disable some core plugins
-lvim.builtin.indentlines.active = false -- annoying indent characters
+-- todo clean up
+lvim.builtin.project.active = false -- don't need 'projects'
 
 -- preferred formatting options, w.r.t. comments especially
 vim.cmd [[set textwidth=80]]
@@ -70,6 +70,13 @@ function OrgImports(wait_ms)
 end
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
+
+-- Only show indentation lines for certain filetypes
+lvim.builtin.indentlines.options.enabled = false
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "json", "yaml", "toml" },
+  command = ":IndentBlanklineEnable",
+})
 
 -- Add missing imports on write
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
@@ -134,10 +141,5 @@ lvim.builtin.lualine.inactive_sections.lualine_x = {}
 lvim.builtin.lualine.inactive_sections.lualine_y = {}
 lvim.builtin.lualine.inactive_sections.lualine_z = {}
 
-require('lspconfig').gopls.setup({
-  settings = {
-    gopls = {
-      gofumpt = true
-    }
-  }
-})
+lvim.lsp.installer.setup.automatic_installation = false
+lvim.format_on_save = true
