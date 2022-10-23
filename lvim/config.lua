@@ -12,7 +12,8 @@ lvim.plugins = {
 lvim.builtin.indentlines.active = false -- annoying indent characters
 
 -- preferred formatting options, w.r.t. comments especially
-vim.cmd [[set formatoptions=cro/qnlj]]
+vim.cmd [[set textwidth=80]]
+vim.cmd [[set formatoptions=tcro/qnjp]]
 
 -- basics
 lvim.leader = "space"
@@ -116,9 +117,10 @@ lvim.builtin.cmp.formatting.source_names.vsnip = ' '
 
 local components                                 = require "lvim.core.lualine.components"
 lvim.builtin.lualine.style                       = 'default'
-lvim.builtin.lualine.icons_enabled               = lvim.use_icons
-lvim.builtin.lualine.extensions                  = { "nvim-tree" }
-lvim.builtin.lualine.disabled_filetypes          = { "alpha", "NvimTree", "Outline" }
+lvim.builtin.lualine.extensions                  = {}
+lvim.builtin.lualine.options.disabled_filetypes  = { "alpha", "NvimTree", "Outline" }
+lvim.builtin.lualine.options.globalstatus        = false
+lvim.builtin.lualine.options.icons_enabled       = true
 lvim.builtin.lualine.sections.lualine_a          = {}
 lvim.builtin.lualine.sections.lualine_b          = { { 'filename', color = { gui = 'bold' }, cond = nil, path = 1 } }
 lvim.builtin.lualine.sections.lualine_c          = { components.diff }
