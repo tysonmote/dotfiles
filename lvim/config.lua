@@ -14,6 +14,7 @@ lvim.builtin.project.active = false -- don't need 'projects'
 -- preferred formatting options, w.r.t. comments especially
 vim.cmd [[set textwidth=80]]
 vim.cmd [[set formatoptions=tcro/qnjp]]
+lvim.lsp.buffer_options.formatexpr = "" -- don't use LSP for `gq`
 
 -- basics
 lvim.leader = "space"
@@ -143,3 +144,19 @@ lvim.builtin.lualine.inactive_sections.lualine_z = {}
 
 lvim.lsp.installer.setup.automatic_installation = false
 lvim.format_on_save = true
+
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  {
+    name = "prettierd",
+    filetypes = { "markdown" }
+  }
+}
+
+local linters = require "lvim.lsp.null-ls.linters"
+linters.setup {
+  {
+    name = "vale",
+    filetypes = { "markdown", "text" }
+  }
+}
