@@ -15,12 +15,12 @@ lvim.builtin.project.active = false -- don't need 'projects'
 vim.cmd [[set textwidth=80]]
 vim.cmd [[set formatoptions=tcro/qnjp]]
 lvim.lsp.buffer_options.formatexpr = "" -- don't use LSP for `gq`
+lvim.format_on_save = true
 
 -- basics
-lvim.leader = "space"
-lvim.format_on_save = true
-vim.opt.cmdheight = 1
 lvim.colorscheme = "nord"
+lvim.leader = "space"
+vim.opt.cmdheight = 1
 vim.opt.clipboard = "" -- don't yank to system clipboard
 
 -- Toggle floating terminal, fixes a regression added in https://github.com/LunarVim/LunarVim/commit/a4c2dc4d0b638a50c3219f247b09e6238a44ec50
@@ -55,21 +55,6 @@ vim.api.nvim_set_keymap('n', '<space>r', '<cmd>lua vim.lsp.buf.rename()<CR>', {}
 vim.api.nvim_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', {})
 vim.api.nvim_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', {})
 
-function OrgImports(wait_ms)
-  local params = vim.lsp.util.make_range_params(nil, nil)
-  params.context = { only = { "source.organizeImports" } }
-  local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
-  for _, res in pairs(result or {}) do
-    for _, r in pairs(res.result or {}) do
-      if r.edit then
-        vim.lsp.util.apply_workspace_edit(r.edit, "UTF-8")
-      else
-        vim.lsp.buf.execute_command(r.command)
-      end
-    end
-  end
-end
-
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 
 -- Only show indentation lines for certain filetypes
@@ -85,6 +70,21 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   callback = function() OrgImports(3000) end
 })
 
+function OrgImports(wait_ms)
+  local params = vim.lsp.util.make_range_params(nil, nil)
+  params.context = { only = { "source.organizeImports" } }
+  local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
+  for _, res in pairs(result or {}) do
+    for _, r in pairs(res.result or {}) do
+      if r.edit then
+        vim.lsp.util.apply_workspace_edit(r.edit, "UTF-8")
+      else
+        vim.lsp.buf.execute_command(r.command)
+      end
+    end
+  end
+end
+
 -- Make copilot and cmp play nice
 vim.g.copilot_no_tab_map = true
 vim.api.nvim_set_keymap('i', '<Plug>(vimrc:copilot-dummy-map)', 'copilot#Accept("<Tab>")', { expr = true })
@@ -92,11 +92,28 @@ vim.api.nvim_set_keymap('i', '<C-g>', '<Esc>:Copilot<cr>', {})
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
+
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
+
+lvim.builtin.nvimtree.setup.actions.open_file.quit_on_open = true
+lvim.builtin.nvimtree.setup.renderer.indent_markers.enable = true
+lvim.builtin.nvimtree.setup.update_cwd = false
+lvim.builtin.nvimtree.setup.update_focused_file.enable = false
 lvim.builtin.nvimtree.setup.view.side = "left"
+
 lvim.builtin.treesitter.highlight.disable = true
 lvim.builtin.treesitter.ignore_install = { "haskell" }
+
+lvim.builtin.telescope.defaults.layout_strategy = "horizontal"
+lvim.builtin.telescope.defaults.layout_config = {
+  height = 0.7,
+  preview_cutoff = 120,
+  prompt_position = "bottom",
+  width = 0.7
+}
+lvim.builtin.telescope.defaults.border = true
+lvim.builtin.telescope.defaults.borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" }
 
 local cmp = require('cmp')
 lvim.builtin.cmp.completion.autocomplete = false -- Show on <C-space> only
@@ -142,8 +159,8 @@ lvim.builtin.lualine.inactive_sections.lualine_x = {}
 lvim.builtin.lualine.inactive_sections.lualine_y = {}
 lvim.builtin.lualine.inactive_sections.lualine_z = {}
 
+table.insert(lvim.lsp.automatic_configuration.skipped_servers, "terraform-ls") --- terraform-ls is hopelessly broken
 lvim.lsp.installer.setup.automatic_installation = false
-lvim.format_on_save = true
 
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
