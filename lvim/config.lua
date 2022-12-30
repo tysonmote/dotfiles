@@ -114,6 +114,8 @@ lvim.builtin.telescope.defaults.layout_config = {
 }
 lvim.builtin.telescope.defaults.border = true
 lvim.builtin.telescope.defaults.borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" }
+lvim.builtin.telescope.defaults.path_display = { "truncate" }
+lvim.builtin.telescope.defaults.dynamic_preview_title = true
 
 local cmp = require('cmp')
 lvim.builtin.cmp.completion.autocomplete = false -- Show on <C-space> only
