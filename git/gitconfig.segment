@@ -2,6 +2,9 @@
 	name = Tyson Mote
 	email = tyson@segment.com
 
+[twilio]
+  username = tmote
+
 [core]
 	# Global ignores
 	excludesfile = ~/.gitignore

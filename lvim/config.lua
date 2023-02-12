@@ -57,6 +57,12 @@ vim.api.nvim_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', {})
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 
+-- Spell check
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown", "text", "gitcommit", "org" },
+  command = ":setlocal spell",
+})
+
 -- Only show indentation lines for certain filetypes
 lvim.builtin.indentlines.options.enabled = false
 vim.api.nvim_create_autocmd("FileType", {
