@@ -73,3 +73,6 @@ banner "Installing extras"
 
 brew install awscli cscope ctags jq parallel pcre postgresql redis sqlite the_silver_searcher fzf fd bat htop diff-so-fancy tldr wget
 
+banner "Linking configs"
+
+ln -s $DOTFILEs/vale/.vale.ini $HOME/.vale.ini
