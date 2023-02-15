@@ -3,7 +3,10 @@
 	email = tyson@segment.com
 
 [twilio]
-  username = tmote
+	username = tmote
+	segmentUsername = tyson
+	segmentTeam = foundation
+	github = tysonmote
 
 [core]
 	# Global ignores
@@ -79,5 +82,6 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
-[url "git@github.com:"]
+
+[url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
