@@ -17,7 +17,6 @@ brew install git lua openssl python
 banner "Linking git config"
 
 ln -s $DOTFILES/git/gitignore $HOME/.gitignore
-ln -s $DOTFILES/git/gitconfig.segment $HOME/.gitconfig
 
 banner "Installing oh-my-zsh"
 
@@ -42,7 +41,7 @@ rbenv global 3.1.0
 banner "Installing Node.js"
 
 brew install n
-n 16
+n 19
 npm -g install typescript prettier-eslint
 
 banner "Installing NeoVim"
@@ -71,7 +70,7 @@ ln -s $DOTFILES/lvim $HOME/.config/lvim
 
 banner "Installing extras"
 
-brew install awscli cscope ctags jq parallel pcre postgresql redis sqlite the_silver_searcher fzf fd bat htop diff-so-fancy tldr wget
+brew install awscli cscope ctags jq parallel pcre sqlite the_silver_searcher fzf fd bat htop diff-so-fancy tldr wget
 
 banner "Linking configs"
 
