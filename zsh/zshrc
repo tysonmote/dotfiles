@@ -32,7 +32,6 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclu
 
 # -- git
 
-alias gpr='git push -u origin `git rev-parse --abbrev-ref HEAD` ; hub pull-request'
 alias gco='git checkout'
 alias gcob='git checkout -b'
 alias gb='git branch'
@@ -49,7 +48,7 @@ alias kc='kubectl'
 load_node () {
   unalias node
   unalias npm
-  n 12
+  n latest
 }
 
 alias node='load_node; node $@'
@@ -58,10 +57,6 @@ alias npm='load_node; npm $@'
 # -- Rust
 
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
-
-# -- Ruby
-
-eval "$(rbenv init -)"
 
 # -- Docker
 
@@ -75,21 +70,3 @@ zstyle ':completion:*' cache-path $HOME/.zsh/cache
 # -- GPG
 
 export GPG_TTY=$(tty)
-
-# -- Segment
-
-if [ -e $HOME/.segment ] ; then
-  segment_dotfiles=(_init docker general ssh go)
-  for dotfile in $segment_dotfiles ; do
-    source $HOME/dev/src/github.com/segmentio/dotfiles/source/$dotfile.sh
-  done
-
-  # Regions
-  alias stage-usw2="aws-okta exec stage-read -- "
-  alias prod-usw2="aws-okta exec prod-read -- "
-  alias stage-euw1="aws-okta exec stage-euw1-read -- "
-  alias prod-euw1="aws-okta exec prod-euw1-read -- "
-
-  # Okta
-  export AWS_OKTA_MFA_FACTOR_TYPE=push
-fi
