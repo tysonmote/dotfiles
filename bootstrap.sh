@@ -32,39 +32,15 @@ banner "Installing Go"
 
 brew install go
 
-banner "Installing Ruby"
-
-brew install rbenv ruby-build
-rbenv install 3.1.0
-rbenv global 3.1.0
-
 banner "Installing Node.js"
 
 brew install n
 n 19
 npm -g install typescript prettier-eslint
 
-banner "Installing NeoVim"
+banner "Configuring NeoVim / LunarVim"
 
 brew install neovim
-pip3 install neovim
-npm install -g neovim
-sudo pip3 install --upgrade pynvim
-sudo gem install neovim
-npm install -g vscode-json-languageserver
-
-banner "Configuring NeoVim"
-
-curl -fLo $HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-mkdir -p $HOME/.config/nvim/
-ln -s $DOTFILES/vim/init.vim $HOME/.config/nvim/
-ln -s $DOTFILES/vim/snippets $HOME/.config/nvim/
-nvim +PlugInstall +qall
-nvim +GoUpdateBinaries +qall
-
-banner "Configuring LunarVim"
-
 bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 ln -s $DOTFILES/lvim $HOME/.config/lvim
 
