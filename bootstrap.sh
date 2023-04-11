@@ -12,6 +12,10 @@ function banner() {
 
 banner "Installing some basics"
 
+xcode-select --install
+sudo /usr/sbin/DevToolsSecurity -enable
+sudo dscl . append /Groups/_developer GroupMembership $(whoami)
+
 brew install git lua openssl python
 
 banner "Linking git config"
