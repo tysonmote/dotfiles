@@ -8,6 +8,8 @@
 	<integer>0</integer>
 	<key>AddNewTabAtEndOfTabs</key>
 	<false/>
+	<key>AdjustWindowForFontSizeChange</key>
+	<false/>
 	<key>AllowClipboardAccess</key>
 	<false/>
 	<key>AlternateMouseScroll</key>
@@ -58735,7 +58737,7 @@
 	<key>StatusBarPosition</key>
 	<integer>0</integer>
 	<key>StretchTabsToFillBar</key>
-	<false/>
+	<true/>
 	<key>SwitchPaneModifier</key>
 	<integer>5</integer>
 	<key>TabStyle</key>
@@ -58778,6 +58780,6 @@
 	<key>kCommandHistoryHasEverBeenUsed</key>
 	<true/>
 	<key>metalMaximizeThroughput</key>
-	<true/>
+	<false/>
 </dict>
 </plist>
