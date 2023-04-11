@@ -21,6 +21,7 @@ brew install git lua openssl python
 banner "Linking git config"
 
 ln -s $DOTFILES/git/gitignore $HOME/.gitignore
+ln -s $DOTFILES/git/gitconfig $HOME/.gitconfig
 
 banner "Installing oh-my-zsh"
 
@@ -34,13 +35,12 @@ ln -s $DOTFILES/zsh/tyson.zsh-theme $HOME/.oh-my-zsh/themes/
 
 banner "Installing Go"
 
-brew install go
+brew install go delve
 
 banner "Installing Node.js"
 
 brew install n
-n 19
-npm -g install typescript prettier-eslint
+n latest
 
 banner "Configuring NeoVim / LunarVim"
 
