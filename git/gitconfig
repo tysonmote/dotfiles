@@ -1,7 +1,7 @@
 [user]
 	name = Tyson Mote
-	email = tyson@bufio.net
-	signingkey = 0A26C6E7C09FC49D
+	email = tmote@rippling.com
+	signingkey = 9BFFAAC944454BEE
 
 [core]
 	# Global ignores
