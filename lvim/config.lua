@@ -6,6 +6,15 @@ lvim.plugins = {
   { "kyoh86/vim-go-coverage" },
   { "hashivim/vim-terraform" },
   { "jparise/vim-graphql" },
+  {
+    "iamcco/markdown-preview.nvim",
+    build = "cd app && npm install",
+    ft = "markdown",
+    config = function()
+      vim.g.mkdp_auto_start = 0
+      vim.g.mkdp_auto_close = 0
+    end,
+  },
 }
 
 -- todo clean up
@@ -104,8 +113,6 @@ lvim.builtin.alpha.mode = "dashboard"
 
 lvim.builtin.nvimtree.setup.actions.open_file.quit_on_open = true
 lvim.builtin.nvimtree.setup.renderer.indent_markers.enable = true
-lvim.builtin.nvimtree.setup.update_cwd = false
-lvim.builtin.nvimtree.setup.update_focused_file.enable = false
 lvim.builtin.nvimtree.setup.view.side = "left"
 
 lvim.builtin.treesitter.highlight.disable = true
