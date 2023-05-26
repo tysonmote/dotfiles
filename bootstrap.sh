@@ -52,6 +52,8 @@ banner "Installing extras"
 
 brew install awscli cscope ctags jq parallel pcre sqlite the_silver_searcher fzf fd bat htop diff-so-fancy tldr wget
 
+$(brew --prefix)/opt/fzf/install
+
 banner "Linking configs"
 
 ln -s $DOTFILEs/vale/.vale.ini $HOME/.vale.ini
