@@ -15,7 +15,7 @@ lvim.builtin.project.active = false -- don't need 'projects'
 vim.cmd [[set textwidth=80]]
 vim.cmd [[set formatoptions=tcro/qnjp]]
 lvim.lsp.buffer_options.formatexpr = "" -- don't use LSP for `gq`
-lvim.format_on_save = true
+lvim.format_on_save.enabled = true
 
 -- basics
 lvim.colorscheme = "nord"
@@ -169,19 +169,3 @@ lvim.builtin.lualine.inactive_sections.lualine_z = {}
 
 table.insert(lvim.lsp.automatic_configuration.skipped_servers, "terraform-ls") --- terraform-ls is hopelessly broken
 lvim.lsp.installer.setup.automatic_installation = false
-
-local formatters = require "lvim.lsp.null-ls.formatters"
-formatters.setup {
-  {
-    name = "prettierd",
-    filetypes = { "markdown" }
-  }
-}
-
-local linters = require "lvim.lsp.null-ls.linters"
-linters.setup {
-  {
-    name = "vale",
-    filetypes = { "markdown", "text" }
-  }
-}
