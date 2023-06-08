@@ -27,6 +27,9 @@
 	# Use less but just exit and retain output if output is short.
 	pager = "diff-so-fancy | less --tabs=4 -RFX"
 
+[init]
+	defaultBranch = main
+
 [alias]
 	log = log --stat --summary
 	up = "!git remote update -p; git merge --ff-only @{u}"
