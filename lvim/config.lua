@@ -6,6 +6,15 @@ lvim.plugins = {
   { "kyoh86/vim-go-coverage" },
   { "hashivim/vim-terraform" },
   { "jparise/vim-graphql" },
+  {
+    "iamcco/markdown-preview.nvim",
+    build = "cd app && npm install",
+    ft = "markdown",
+    config = function()
+      vim.g.mkdp_auto_start = 0
+      vim.g.mkdp_auto_close = 0
+    end,
+  },
 }
 
 -- todo clean up
@@ -26,15 +35,20 @@ vim.opt.clipboard = "" -- don't yank to system clipboard
 -- Toggle floating terminal, fixes a regression added in https://github.com/LunarVim/LunarVim/commit/a4c2dc4d0b638a50c3219f247b09e6238a44ec50
 lvim.builtin.terminal.open_mapping = [[<c-t>]]
 
--- move between windows
+-- Move between windows
 lvim.keys.normal_mode["<M-h>"] = "<C-w>h"
 lvim.keys.normal_mode["<M-j>"] = "<C-w>j"
 lvim.keys.normal_mode["<M-k>"] = "<C-w>k"
 lvim.keys.normal_mode["<M-l>"] = "<C-w>l"
 
-lvim.keys.normal_mode["U"] = "<C-r>" -- redo
+-- Move between buffers
+lvim.keys.normal_mode["<Tab>"] = "<C-^>"
 
-lvim.keys.visual_mode["J"] = false -- default to join lines
+-- Redo
+lvim.keys.normal_mode["U"] = "<C-r>"
+
+-- Restore join lines command
+lvim.keys.visual_mode["J"] = false
 
 -- Yank-free pasting/deleting
 lvim.keys.visual_mode["r"] = "\"_dP`]"
@@ -47,12 +61,10 @@ lvim.keys.normal_mode["p"] = "p`]"
 lvim.keys.normal_mode["P"] = "P`]"
 
 -- language servers
-vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {})
-vim.api.nvim_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', {})
-vim.api.nvim_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', {})
-vim.api.nvim_set_keymap('i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', {})
 vim.api.nvim_set_keymap('n', '<space>r', '<cmd>lua vim.lsp.buf.rename()<CR>', {})
-vim.api.nvim_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', {})
+vim.api.nvim_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', {})
+vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {})
+vim.api.nvim_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', {})
 vim.api.nvim_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', {})
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
@@ -104,8 +116,6 @@ lvim.builtin.alpha.mode = "dashboard"
 
 lvim.builtin.nvimtree.setup.actions.open_file.quit_on_open = true
 lvim.builtin.nvimtree.setup.renderer.indent_markers.enable = true
-lvim.builtin.nvimtree.setup.update_cwd = false
-lvim.builtin.nvimtree.setup.update_focused_file.enable = false
 lvim.builtin.nvimtree.setup.view.side = "left"
 
 lvim.builtin.treesitter.highlight.disable = true
