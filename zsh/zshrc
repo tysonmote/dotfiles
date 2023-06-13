@@ -77,7 +77,7 @@ export GPG_TTY=$(tty)
 
 # -- Rippling
 
-ecport AWS_REGION=us-west-2
+export AWS_REGION=us-west-2
 export DEVELOPER_NAME=tysonmote
 export REMOTE_IP=10.201.8.109
 export REMOTE_PRIVATE_KEY_FILE="/Users/tyson/.ssh/id_ed25519"
