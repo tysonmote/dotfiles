@@ -141,7 +141,7 @@ build_prompt() {
 }
 
 aws_prompt() {
-  if [[ -n "$AWS_P ROFILE" ]]; then
+  if [[ -n "$AWS_PROFILE" ]]; then
     echo -n " "
     prompt_segment magenta black
     echo -n "  $AWS_PROFILE"
