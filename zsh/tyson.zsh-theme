@@ -140,6 +140,17 @@ build_prompt() {
   prompt_end
 }
 
+aws_prompt() {
+  if [[ -n "$AWS_PROFILE" ]]; then
+    echo -n "\n├─"
+    prompt_segment magenta black
+    echo -n "  $AWS_PROFILE"
+    prompt_segment white black
+    echo -n " ${AWS_REGION:-${AWS_DEFAULT_REGION:-$AWS_PROFILE_REGION}}"
+    prompt_end
+  fi
+}
+
 PROMPT='
-╭─%{%f%b%k%}$(build_prompt)
+╭─%{%f%b%k%}$(build_prompt)$(aws_prompt)
 ╰─▶ '
