@@ -143,11 +143,11 @@ end)
 lvim.builtin.cmp.formatting.kind_icons.Constant = 'const'
 lvim.builtin.cmp.formatting.kind_icons.Enum = 'enum'
 lvim.builtin.cmp.formatting.kind_icons.Field = '.'
-lvim.builtin.cmp.formatting.kind_icons.Function = '()'
+lvim.builtin.cmp.formatting.kind_icons.Function = '󰊕()'
 lvim.builtin.cmp.formatting.kind_icons.Interface = '{}'
 lvim.builtin.cmp.formatting.kind_icons.Module = 'pkg'
 lvim.builtin.cmp.formatting.kind_icons.Keyword = ' '
-lvim.builtin.cmp.formatting.kind_icons.Method = '()'
+lvim.builtin.cmp.formatting.kind_icons.Method = '󰊕()'
 lvim.builtin.cmp.formatting.kind_icons.Variable = 'var'
 lvim.builtin.cmp.formatting.kind_icons.Struct = 'struct'
 lvim.builtin.cmp.formatting.kind_icons.TypeParameter = 'TYPE' -- TODO
@@ -155,7 +155,7 @@ lvim.builtin.cmp.formatting.kind_icons.Unit = 'UNIT' -- TODO
 
 lvim.builtin.cmp.formatting.source_names.buffer = ''
 lvim.builtin.cmp.formatting.source_names.luasnip = ' '
-lvim.builtin.cmp.formatting.source_names.nvim_lsp = ''
+lvim.builtin.cmp.formatting.source_names.nvim_lsp = '󱐋'
 lvim.builtin.cmp.formatting.source_names.vsnip = ' '
 
 local components                                 = require "lvim.core.lualine.components"
