@@ -42,7 +42,7 @@ lvim.keys.normal_mode["<M-k>"] = "<C-w>k"
 lvim.keys.normal_mode["<M-l>"] = "<C-w>l"
 
 -- Move between buffers
-lvim.keys.normal_mode["<Tab>"] = "<C-^>"
+lvim.keys.normal_mode["<Tab>"] = "<cmd>bnext<CR>"
 
 -- Redo
 lvim.keys.normal_mode["U"] = "<C-r>"
@@ -179,3 +179,14 @@ lvim.builtin.lualine.inactive_sections.lualine_z = {}
 
 table.insert(lvim.lsp.automatic_configuration.skipped_servers, "terraform-ls") --- terraform-ls is hopelessly broken
 lvim.lsp.installer.setup.automatic_installation = false
+
+-- use eslint for formatting javascript
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  {
+    exe = "eslint_d",
+    filetypes = { "javascript", "javascriptreact" },
+    args = { "--stdin", "--stdin-filename", "$FILENAME", "--fix-to-stdout" },
+    stdin = true,
+  },
+}
