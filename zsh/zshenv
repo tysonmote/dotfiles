@@ -37,3 +37,9 @@ export PATH=/usr/local/opt/go/libexec/bin:$PATH
 #
 
 source "$HOME/.cargo/env"
+
+#
+# Zig
+#
+
+export PATH="$HOME/bin/zig:$PATH"
