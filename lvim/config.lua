@@ -5,7 +5,6 @@ lvim.plugins = {
   { "tpope/vim-surround" },
   { "kyoh86/vim-go-coverage" },
   { "hashivim/vim-terraform" },
-  { "jparise/vim-graphql" },
   {
     "iamcco/markdown-preview.nvim",
     build = "cd app && npm install",
@@ -15,10 +14,46 @@ lvim.plugins = {
       vim.g.mkdp_auto_close = 0
     end,
   },
+  {
+  "ray-x/lsp_signature.nvim",
+    event = "BufRead",
+    config = function()
+      require("lsp_signature").on_attach({
+        bind = true,
+        hint_enable = false,
+      })
+    end,
+  },
+  {
+    "rmagatti/goto-preview",
+    config = function()
+      require('goto-preview').setup({
+        width = 120; -- Width of the floating window
+        height = 25; -- Height of the floating window
+        default_mappings = true; -- Bind default mappings
+      })
+    end
+  },
+  {
+    "romgrk/nvim-treesitter-context",
+    config = function()
+      require("treesitter-context").setup{
+        throttle = true,
+        patterns = {
+          default = {
+            'class',
+            'function',
+            'method',
+          },
+        },
+      }
+    end
+  },
 }
 
 -- todo clean up
 lvim.builtin.project.active = false -- don't need 'projects'
+lvim.builtin.luasnip.active = false
 
 -- preferred formatting options, w.r.t. comments especially
 vim.cmd [[set textwidth=80]]
@@ -42,7 +77,8 @@ lvim.keys.normal_mode["<M-k>"] = "<C-w>k"
 lvim.keys.normal_mode["<M-l>"] = "<C-w>l"
 
 -- Move between buffers
-lvim.keys.normal_mode["<Tab>"] = "<C-^>"
+lvim.keys.normal_mode["<Tab>"] = "<cmd>bnext<CR>"
+lvim.keys.normal_mode["<S-Tab>"] = "<cmd>bprevious<CR>"
 
 -- Redo
 lvim.keys.normal_mode["U"] = "<C-r>"
@@ -108,9 +144,6 @@ vim.g.copilot_no_tab_map = true
 vim.api.nvim_set_keymap('i', '<Plug>(vimrc:copilot-dummy-map)', 'copilot#Accept("<Tab>")', { expr = true })
 vim.api.nvim_set_keymap('i', '<C-g>', '<Esc>:Copilot<cr>', {})
 
--- TODO: User Config for predefined plugins
--- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
-
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 
@@ -140,23 +173,23 @@ lvim.builtin.cmp.mapping['<Tab>'] = cmp.mapping(function(fallback)
   vim.api.nvim_feedkeys(vim.fn['copilot#Accept'](vim.api.nvim_replace_termcodes('<Tab>', true, true, true)), 'n', true)
 end)
 
+lvim.builtin.cmp.formatting.kind_icons.Class = 'class'
 lvim.builtin.cmp.formatting.kind_icons.Constant = 'const'
 lvim.builtin.cmp.formatting.kind_icons.Enum = 'enum'
 lvim.builtin.cmp.formatting.kind_icons.Field = '.'
 lvim.builtin.cmp.formatting.kind_icons.Function = '󰊕()'
-lvim.builtin.cmp.formatting.kind_icons.Interface = '{}'
-lvim.builtin.cmp.formatting.kind_icons.Module = 'pkg'
+lvim.builtin.cmp.formatting.kind_icons.Interface = 'iface'
+lvim.builtin.cmp.formatting.kind_icons.Module = ''
 lvim.builtin.cmp.formatting.kind_icons.Keyword = ' '
 lvim.builtin.cmp.formatting.kind_icons.Method = '󰊕()'
 lvim.builtin.cmp.formatting.kind_icons.Variable = 'var'
+lvim.builtin.cmp.formatting.kind_icons.Snippet = '...'
 lvim.builtin.cmp.formatting.kind_icons.Struct = 'struct'
-lvim.builtin.cmp.formatting.kind_icons.TypeParameter = 'TYPE' -- TODO
-lvim.builtin.cmp.formatting.kind_icons.Unit = 'UNIT' -- TODO
 
-lvim.builtin.cmp.formatting.source_names.buffer = ''
-lvim.builtin.cmp.formatting.source_names.luasnip = ' '
-lvim.builtin.cmp.formatting.source_names.nvim_lsp = '󱐋'
-lvim.builtin.cmp.formatting.source_names.vsnip = ' '
+-- lvim.builtin.cmp.formatting.source_names.buffer = ''
+-- lvim.builtin.cmp.formatting.source_names.luasnip = ' '
+-- lvim.builtin.cmp.formatting.source_names.nvim_lsp = '󱐋'
+-- lvim.builtin.cmp.formatting.source_names.vsnip = ' '
 
 local components                                 = require "lvim.core.lualine.components"
 lvim.builtin.lualine.style                       = 'default'
@@ -177,5 +210,19 @@ lvim.builtin.lualine.inactive_sections.lualine_x = {}
 lvim.builtin.lualine.inactive_sections.lualine_y = {}
 lvim.builtin.lualine.inactive_sections.lualine_z = {}
 
-table.insert(lvim.lsp.automatic_configuration.skipped_servers, "terraform-ls") --- terraform-ls is hopelessly broken
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "terraform-ls" }) --- terraform-ls is hopelessly broken
+lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
+  return server ~= "java_language_server" and server ~= "golangci_lint_ls" and server ~= "docker_compose_language_service"
+end, lvim.lsp.automatic_configuration.skipped_servers)
 lvim.lsp.installer.setup.automatic_installation = false
+
+-- use eslint for formatting javascript
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  {
+    exe = "eslint_d",
+    filetypes = { "javascript", "javascriptreact" },
+    args = { "--stdin", "--stdin-filename", "$FILENAME", "--fix-to-stdout" },
+    stdin = true,
+  },
+}
