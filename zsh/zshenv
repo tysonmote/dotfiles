@@ -31,6 +31,7 @@ export EDITOR="lvim"
 export GOPATH=$HOME/dev
 export PATH=$GOPATH/bin:$PATH
 export PATH=/usr/local/opt/go/libexec/bin:$PATH
+export GOPRIVATE="github.com/Rippling/*"
 
 #
 # Rust
