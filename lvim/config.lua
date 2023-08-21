@@ -145,7 +145,7 @@ vim.api.nvim_set_keymap('i', '<Plug>(vimrc:copilot-dummy-map)', 'copilot#Accept(
 vim.api.nvim_set_keymap('i', '<C-g>', '<Esc>:Copilot<cr>', {})
 
 lvim.builtin.alpha.active = true
-lvim.builtin.alpha.mode = "dashboard"
+lvim.builtin.alpha.mode = "startify"
 
 lvim.builtin.nvimtree.setup.actions.open_file.quit_on_open = true
 lvim.builtin.nvimtree.setup.renderer.indent_markers.enable = true
