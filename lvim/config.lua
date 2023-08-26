@@ -49,11 +49,20 @@ lvim.plugins = {
       }
     end
   },
+  {
+    "simrat39/symbols-outline.nvim",
+    config = function()
+      require('symbols-outline').setup({
+        symbol_blacklist = { "Field" },
+        auto_close = true,
+      })
+    end
+  },
 }
 
--- todo clean up
+-- Disable unused stuff
 lvim.builtin.project.active = false -- don't need 'projects'
-lvim.builtin.luasnip.active = false
+lvim.builtin.luasnip.active = false -- disable snippets
 
 -- preferred formatting options, w.r.t. comments especially
 vim.cmd [[set textwidth=80]]
@@ -103,6 +112,8 @@ vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {})
 vim.api.nvim_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', {})
 vim.api.nvim_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', {})
 
+lvim.keys.normal_mode["<C-s>"] = "<cmd>SymbolsOutline<CR>"
+
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 
 -- Spell check
@@ -145,11 +156,12 @@ vim.api.nvim_set_keymap('i', '<Plug>(vimrc:copilot-dummy-map)', 'copilot#Accept(
 vim.api.nvim_set_keymap('i', '<C-g>', '<Esc>:Copilot<cr>', {})
 
 lvim.builtin.alpha.active = true
-lvim.builtin.alpha.mode = "startify"
+lvim.builtin.alpha.mode = "startify" -- show recently opened files
 
 lvim.builtin.nvimtree.setup.actions.open_file.quit_on_open = true
 lvim.builtin.nvimtree.setup.renderer.indent_markers.enable = true
 lvim.builtin.nvimtree.setup.view.side = "left"
+lvim.builtin.nvimtree.setup.view.width = 40
 
 lvim.builtin.treesitter.highlight.disable = true
 lvim.builtin.treesitter.ignore_install = { "haskell" }
@@ -191,6 +203,7 @@ lvim.builtin.cmp.formatting.kind_icons.Struct = 'struct'
 -- lvim.builtin.cmp.formatting.source_names.nvim_lsp = '󱐋'
 -- lvim.builtin.cmp.formatting.source_names.vsnip = ' '
 
+
 local components                                 = require "lvim.core.lualine.components"
 lvim.builtin.lualine.style                       = 'default'
 lvim.builtin.lualine.extensions                  = {}
@@ -225,4 +238,17 @@ formatters.setup {
     args = { "--stdin", "--stdin-filename", "$FILENAME", "--fix-to-stdout" },
     stdin = true,
   },
+  {
+    exe = "black",
+    filetypes = { "python" },
+    args = { "--quiet", "-" },
+    stdin = true,
+    timeout = 5000,
+  },
+  {
+    exe = "isort",
+    filetypes = { "python" },
+    args = { "--quiet", "-" },
+    stdin = true,
+  }
 }
