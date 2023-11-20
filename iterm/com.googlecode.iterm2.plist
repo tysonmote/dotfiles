@@ -56746,7 +56746,7 @@
 			<key>Non-ASCII Ligatures</key>
 			<false/>
 			<key>Normal Font</key>
-			<string>BerkeleyMonoNerdFontComplete-Regular 12</string>
+			<string>BerkeleyMonoNF-Regular 15</string>
 			<key>Option Key Sends</key>
 			<integer>2</integer>
 			<key>Prompt Before Closing 2</key>
