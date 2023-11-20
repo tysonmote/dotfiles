@@ -44,3 +44,5 @@ source "$HOME/.cargo/env"
 #
 
 export PATH="$HOME/bin/zig:$PATH"
+
+alias assume=". assume"

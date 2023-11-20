@@ -268,3 +268,4 @@ require('lspconfig').gopls.setup({
 vim.cmd[[
   autocmd VimEnter * if filereadable(".env-dev") | Dotenv .env-dev | endif
 ]]
+
