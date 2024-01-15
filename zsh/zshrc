@@ -1,3 +1,6 @@
+# Uncommment this line and the last line in the file to profile startup time
+# zmodload zsh/zprof
+
 # .zshrc is sourced for interactive shells only
 
 # -- ZSH
@@ -45,9 +48,16 @@ alias kc='kubectl'
 
 # -- Node.js / NVM
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# The following lines were added by nvm's install script and are *extremely*
+# slow:
+#
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#
+# Instead, we can use a plugin to lazy load nvm:
+
+zstyle ':omz:plugins:nvm' lazy yes
 
 # -- Rust
 
@@ -76,3 +86,5 @@ zstyle ':completion:*' cache-path $HOME/.zsh/cache
 # -- GPG
 
 export GPG_TTY=$(tty)
+
+# zprof
