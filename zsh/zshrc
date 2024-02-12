@@ -17,11 +17,6 @@ fpath+=$HOME/.zfunc
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# -- fzf
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude vendor'
-
 # -- git
 
 alias gco='git checkout'
@@ -99,5 +94,10 @@ SHOW_AWS_PROMPT=false # Don't put AWS info in $RPROMPT
 zstyle ':omz:update' mode disabled # Don't check for updates
 plugins=(golang aws nvm)
 source $ZSH/oh-my-zsh.sh
+
+# -- fzf
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude vendor'
 
 # zprof
