@@ -17,11 +17,6 @@ fpath+=$HOME/.zfunc
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# -- fzf
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude vendor'
-
 # -- git
 
 alias gco='git checkout'
@@ -75,16 +70,35 @@ zstyle ':completion:*' cache-path $HOME/.zsh/cache
 
 export GPG_TTY=$(tty)
 
+# -- direnv
+
+(( $+commands[direnv] )) && eval "$(direnv hook zsh)"
+
+# -- Rippling
+
+export AWS_REGION=us-west-2
+export DEVELOPER_NAME=tysonmote
+export REMOTE_IP=10.201.8.109
+export REMOTE_PRIVATE_KEY_FILE="/Users/tyson/.ssh/id_ed25519"
+export SKIP_CHECK_VPN=true
+export USE_SSO=true
+export ENABLE_MONGODB_REPLICASETS=1 # domain events, temp
+
 # -- oh-my-zsh
 
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="tyson"
 DEFAULT_USER=`whoami`
 ENABLE_CORRECTION="false"
-DISABLE_AUTO_UPDATE=true
 DISABLE_MAGIC_FUNCTIONS=true # Don't escape pasted input
 SHOW_AWS_PROMPT=false # Don't put AWS info in $RPROMPT
+zstyle ':omz:update' mode disabled # Don't check for updates
 plugins=(golang aws nvm)
 source $ZSH/oh-my-zsh.sh
+
+# -- fzf
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude vendor'
 
 # zprof

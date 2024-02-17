@@ -58,6 +58,7 @@ lvim.plugins = {
       })
     end
   },
+  { "tpope/vim-dotenv" },
 }
 
 -- Disable unused stuff
@@ -160,6 +161,7 @@ lvim.builtin.alpha.mode = "startify" -- show recently opened files
 
 lvim.builtin.nvimtree.setup.actions.open_file.quit_on_open = true
 lvim.builtin.nvimtree.setup.renderer.indent_markers.enable = true
+lvim.builtin.nvimtree.setup.update_focused_file.update_root = false
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.view.width = 40
 
@@ -252,3 +254,17 @@ formatters.setup {
     stdin = true,
   }
 }
+
+-- configure lspconfig to use gofumpt
+require('lspconfig').gopls.setup({
+  settings = {
+    gopls = {
+      gofumpt = true
+    }
+  }
+})
+
+-- Automatically load .env-dev if it exists
+vim.cmd[[
+  autocmd VimEnter * if filereadable(".env-dev") | Dotenv .env-dev | endif
+]]

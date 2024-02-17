@@ -22,7 +22,7 @@
 
 	# Use in-terminal NeoVim for commit message editing instead of opening MacVim
 	# (my default EDITOR).
-	editor = nvim
+	editor = lvim
 
 	# Use less but just exit and retain output if output is short.
 	pager = "diff-so-fancy | less --tabs=4 -RFX"
@@ -42,8 +42,8 @@
 	helper = osxkeychain
 
 [diff]
-	tool = opendiff
 	mnemonicprefix = true
+	algorithm = histogram
 
 [difftool]
 	prompt = false
@@ -52,6 +52,8 @@
 	summary = true
 	verbosity = 1
 	tool = opendiff
+	conflictstyle = zdiff3
+	keepbackup = false
 
 [mergetool]
 	prompt = false
@@ -87,8 +89,15 @@
 
 [url "ssh://git@github.com/"]
   insteadOf = https://github.com/
+
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
+
+[branch]
+	sort = -committerdate
+
+[tags]
+	sort = -taggerdate
