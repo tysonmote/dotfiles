@@ -23,7 +23,7 @@ alias gco='git checkout'
 alias gb='git branch'
 alias gs='git status'
 
-eval "$(gh completion -s zsh)"
+# eval "$(gh completion -s zsh)"
 
 # -- Kubernetes
 
