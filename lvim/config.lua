@@ -1,5 +1,5 @@
 lvim.plugins = {
-  { "arcticicestudio/nord-vim" },
+  { "ericvw/nordtheme-vim",  branch = "pu" },
   { "github/copilot.vim" },
   { "ruanyl/vim-gh-line" },
   { "tpope/vim-surround" },
@@ -15,7 +15,7 @@ lvim.plugins = {
     end,
   },
   {
-  "ray-x/lsp_signature.nvim",
+    "ray-x/lsp_signature.nvim",
     event = "BufRead",
     config = function()
       require("lsp_signature").on_attach({
@@ -28,16 +28,16 @@ lvim.plugins = {
     "rmagatti/goto-preview",
     config = function()
       require('goto-preview').setup({
-        width = 120; -- Width of the floating window
-        height = 25; -- Height of the floating window
-        default_mappings = true; -- Bind default mappings
+        width = 120,             -- Width of the floating window
+        height = 25,             -- Height of the floating window
+        default_mappings = true, -- Bind default mappings
       })
     end
   },
   {
     "romgrk/nvim-treesitter-context",
     config = function()
-      require("treesitter-context").setup{
+      require("treesitter-context").setup {
         throttle = true,
         patterns = {
           default = {
@@ -59,6 +59,51 @@ lvim.plugins = {
     end
   },
   { "tpope/vim-dotenv" },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    after = "nvim-treesitter",
+    config = function()
+      require 'nvim-treesitter.configs'.setup {
+        textobjects = {
+          select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+              ["if"] = "@function.inner",
+              ["af"] = "@function.outer",
+              ["ic"] = "@class.inner",
+              ["ac"] = "@class.outer",
+            }
+          },
+          selection_modes = {
+            ['@parameter.outer'] = 'v', -- charwise
+            ['@function.outer'] = 'V',  -- linewise
+            ['@class.outer'] = '<c-v>', -- blockwise
+          },
+          move = {
+            enable = true,
+            set_jumps = true,
+            goto_next_start = {
+              ["]m"] = "@function.outer",
+              ["]]"] = "@function.outer",
+              ["]c"] = "@class.outer",
+              ["]C"] = "@class.outer",
+            },
+            goto_previous_start = {
+              ["[m"] = "@function.outer",
+              ["[["] = "@function.outer",
+              ["[c"] = "@class.outer",
+              ["[C"] = "@class.outer",
+            },
+          },
+        },
+      }
+
+      local ts_repeat_move = require "nvim-treesitter.textobjects.repeatable_move"
+      vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move_next)
+      vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)
+    end
+  },
 }
 
 -- Disable unused stuff
@@ -227,7 +272,8 @@ lvim.builtin.lualine.inactive_sections.lualine_z = {}
 
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "terraform-ls" }) --- terraform-ls is hopelessly broken
 lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
-  return server ~= "java_language_server" and server ~= "golangci_lint_ls" and server ~= "docker_compose_language_service"
+  return server ~= "java_language_server" and server ~= "golangci_lint_ls" and
+      server ~= "docker_compose_language_service"
 end, lvim.lsp.automatic_configuration.skipped_servers)
 lvim.lsp.installer.setup.automatic_installation = false
 
@@ -265,6 +311,6 @@ require('lspconfig').gopls.setup({
 })
 
 -- Automatically load .env-dev if it exists
-vim.cmd[[
+vim.cmd [[
   autocmd VimEnter * if filereadable(".env-dev") | Dotenv .env-dev | endif
 ]]
