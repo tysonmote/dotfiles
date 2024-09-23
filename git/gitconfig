@@ -87,11 +87,11 @@
 	new = green bold
 	whitespace = red reverse
 
-[url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
-
 [branch]
 	sort = -committerdate
 
-[tags]
-	sort = -taggerdate
+[tag]
+	sort = -creatordate
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/
