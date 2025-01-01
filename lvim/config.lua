@@ -1,5 +1,5 @@
 lvim.plugins = {
-  { "arcticicestudio/nord-vim" },
+  { "ericvw/nordtheme-vim",  branch = "pu" },
   { "github/copilot.vim" },
   { "ruanyl/vim-gh-line" },
   { "tpope/vim-surround" },
@@ -59,6 +59,51 @@ lvim.plugins = {
     end
   },
   { "tpope/vim-dotenv" },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    after = "nvim-treesitter",
+    config = function()
+      require 'nvim-treesitter.configs'.setup {
+        textobjects = {
+          select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+              ["if"] = "@function.inner",
+              ["af"] = "@function.outer",
+              ["ic"] = "@class.inner",
+              ["ac"] = "@class.outer",
+            }
+          },
+          selection_modes = {
+            ['@parameter.outer'] = 'v', -- charwise
+            ['@function.outer'] = 'V',  -- linewise
+            ['@class.outer'] = '<c-v>', -- blockwise
+          },
+          move = {
+            enable = true,
+            set_jumps = true,
+            goto_next_start = {
+              ["]m"] = "@function.outer",
+              ["]]"] = "@function.outer",
+              ["]c"] = "@class.outer",
+              ["]C"] = "@class.outer",
+            },
+            goto_previous_start = {
+              ["[m"] = "@function.outer",
+              ["[["] = "@function.outer",
+              ["[c"] = "@class.outer",
+              ["[C"] = "@class.outer",
+            },
+          },
+        },
+      }
+
+      local ts_repeat_move = require "nvim-treesitter.textobjects.repeatable_move"
+      vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move_next)
+      vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)
+    end
+  },
 }
 
 -- Disable unused stuff
