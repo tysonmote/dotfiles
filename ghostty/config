@@ -1,0 +1,9 @@
+font-family = TX02 Nerd Font SemiCondensed
+font-size = 15
+theme = nord
+
+mouse-hide-while-typing = true
+
+fullscreen = true
+macos-non-native-fullscreen = visible-menu
+keybind = global:ctrl+`=toggle_visibility
