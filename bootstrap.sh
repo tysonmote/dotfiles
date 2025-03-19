@@ -50,10 +50,32 @@ ln -s $DOTFILES/lvim $HOME/.config/lvim
 
 banner "Installing extras"
 
-brew install awscli cscope ctags jq parallel pcre sqlite the_silver_searcher fzf fd bat htop diff-so-fancy tldr wget
+brew install /
+	awscli /
+	bat /
+	btop /
+  ca-certificates /
+	cscope /
+	ctags /
+	diff-so-fancy /
+	fd /
+	fzf /
+  gh /
+  gnupg /
+	ghostty /
+	htop /
+	jq /
+  lazygit /
+	parallel /
+	pcre /
+	sqlite /
+  tree-sitter /
+	wget /
+	zellij
 
 $(brew --prefix)/opt/fzf/install
 
 banner "Linking configs"
 
-ln -s $DOTFILEs/vale/.vale.ini $HOME/.vale.ini
+ln -s $DOTFILES/ghostty $HOME/.config/ghostty
+ln -s $DOTFILES/zellij $HOME/.config/zellij
