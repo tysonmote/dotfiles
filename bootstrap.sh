@@ -77,6 +77,5 @@ $(brew --prefix)/opt/fzf/install
 
 banner "Linking configs"
 
-ln -s $DOTFILES/vale/.vale.ini $HOME/.vale.ini
 ln -s $DOTFILES/ghostty $HOME/.config/ghostty
 ln -s $DOTFILES/zellij $HOME/.config/zellij
