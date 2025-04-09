@@ -79,7 +79,6 @@ export REMOTE_IP=10.201.8.109
 export REMOTE_PRIVATE_KEY_FILE="/Users/tyson/.ssh/id_ed25519"
 export SKIP_CHECK_VPN=true
 export USE_SSO=true
-export ENABLE_MONGODB_REPLICASETS=1 # domain events, temp
 
 # -- oh-my-zsh
 

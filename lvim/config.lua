@@ -188,7 +188,7 @@ function OrgImports(wait_ms)
   for _, res in pairs(result or {}) do
     for _, r in pairs(res.result or {}) do
       if r.edit then
-        vim.lsp.util.apply_workspace_edit(r.edit, "UTF-8")
+        vim.lsp.util.apply_workspace_edit(r.edit, "utf-8")
       else
         vim.lsp.buf.execute_command(r.command)
       end
@@ -305,10 +305,25 @@ formatters.setup {
 require('lspconfig').gopls.setup({
   settings = {
     gopls = {
-      gofumpt = true
+      gofumpt = true,
+      buildFlags = { "-tags=integration" }
     }
   }
 })
+
+-- configure lua lsp to ignore redis and vim globals
+require('lspconfig').lua_ls.setup {
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { 'redis', 'cjson', 'ARGV', 'KEYS', 'vim', 'lvim', 'bit' },
+      },
+      runtime = {
+        version = 'Lua 5.1',
+      },
+    },
+  }
+}
 
 -- Automatically load .env-dev if it exists
 vim.cmd [[
