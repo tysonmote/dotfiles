@@ -81,7 +81,7 @@ SHOW_AWS_PROMPT=false # Don't put AWS info in $RPROMPT
 zstyle ':omz:update' mode disabled # Don't check for updates
 DISABLE_LS_COLORS=true
 alias ls='ls -G'  # Default macOS colors
-plugins=(golang)
+plugins=(golang aws)
 source $ZSH/oh-my-zsh.sh
 
 # -- fzf
