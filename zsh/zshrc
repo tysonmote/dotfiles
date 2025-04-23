@@ -27,19 +27,6 @@ alias gs='git status'
 
 alias kc='kubectl'
 
-# -- Node.js / NVM
-
-# The following lines were added by nvm's install script and are *extremely*
-# slow:
-#
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-#
-# Instead, we can use a plugin to lazy load nvm:
-
-zstyle ':omz:plugins:nvm' lazy yes
-
 # -- Rust
 
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
@@ -51,7 +38,7 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="$HOME/.poetry/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# eval "$(pyenv virtualenv-init -)"
 export PANTS_LINT=true
 
 # -- Docker
@@ -60,6 +47,9 @@ alias dc="docker-compose -f docker-compose.yml"
 
 # -- Tab completion
 
+autoload -Uz compinit
+compinit -C
+zstyle ':completion::compatibility:*' rehash true
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path $HOME/.zsh/cache
 
@@ -89,7 +79,9 @@ ENABLE_CORRECTION="false"
 DISABLE_MAGIC_FUNCTIONS=true # Don't escape pasted input
 SHOW_AWS_PROMPT=false # Don't put AWS info in $RPROMPT
 zstyle ':omz:update' mode disabled # Don't check for updates
-plugins=(golang aws nvm)
+DISABLE_LS_COLORS=true
+alias ls='ls -G'  # Default macOS colors
+plugins=(golang)
 source $ZSH/oh-my-zsh.sh
 
 # -- fzf
