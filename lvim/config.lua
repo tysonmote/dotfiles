@@ -104,6 +104,8 @@ lvim.plugins = {
       vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)
     end
   },
+  { "echasnovski/mini.icons" },
+  { "folke/which-key.nvim" },
 }
 
 -- Disable unused stuff
