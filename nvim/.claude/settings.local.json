@@ -4,7 +4,8 @@
       "WebFetch(domain:github.com)",
       "WebFetch(domain:raw.githubusercontent.com)",
       "Bash(find:*)",
-      "WebFetch(domain:www.lazyvim.org)"
+      "WebFetch(domain:www.lazyvim.org)",
+      "WebFetch(domain:neovim.io)"
     ],
     "deny": []
   }
