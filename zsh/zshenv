@@ -47,13 +47,8 @@ source "$HOME/.cargo/env"
 export PATH="$HOME/bin/zig:$PATH"
 
 #
-# Docker
-#
-
-export DOCKER_HOST="unix://${HOME}/.colima/default/docker.sock"
-
-#
 # Misc.
 #
 
 alias assume=". assume"
+export GPG_TTY=$(tty)
