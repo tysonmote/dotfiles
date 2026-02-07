@@ -37,7 +37,9 @@ export GOPRIVATE="github.com/Rippling/*,github.com/rippling/*"
 # Rust
 #
 
-source "$HOME/.cargo/env"
+if [[ -r "$HOME/.cargo/env" ]]; then
+  source "$HOME/.cargo/env"
+fi
 
 #
 # Zig

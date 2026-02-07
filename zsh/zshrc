@@ -22,7 +22,9 @@ fpath+=$HOME/.zfunc
 
 # -- Homebrew
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 # -- git
 
@@ -49,6 +51,8 @@ alias dc="docker-compose -f docker-compose.yml"
 ZSH_COMPDUMP="$HOME/.zsh/cache/zcompdump"
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$HOME/.zsh/cache"
+# Ensure cache directory exists before compinit
+mkdir -p "$HOME/.zsh/cache"
 # Ensure $fpath is initialized before calling compinit
 autoload -Uz compinit
 # Use the -C option to enable caching
@@ -74,7 +78,6 @@ export USE_SSO=true
 # -- oh-my-zsh
 
 ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="tyson"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 DEFAULT_USER=$(whoami)
 ENABLE_CORRECTION="false"
