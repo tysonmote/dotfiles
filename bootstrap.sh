@@ -78,4 +78,5 @@ $(brew --prefix)/opt/fzf/install
 banner "Linking configs"
 
 ln -s $DOTFILES/ghostty $HOME/.config/ghostty
+ln -s $DOTFILES/nvim $HOME/.config/nvim
 ln -s $DOTFILES/zellij $HOME/.config/zellij
