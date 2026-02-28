@@ -20,3 +20,7 @@ vim.keymap.set("i", "<M-h>", "<Esc><C-w>h", { desc = "Navigate to left split" })
 vim.keymap.set("i", "<M-j>", "<Esc><C-w>j", { desc = "Navigate to bottom split" })
 vim.keymap.set("i", "<M-k>", "<Esc><C-w>k", { desc = "Navigate to top split" })
 vim.keymap.set("i", "<M-l>", "<Esc><C-w>l", { desc = "Navigate to right split" })
+
+-- Jump to next/previous unstaged git change in the file (gitsigns hunks)
+vim.keymap.set("n", "<leader>gj", function() require("gitsigns").next_hunk() end, { desc = "Next unstaged git change" })
+vim.keymap.set("n", "<leader>gk", function() require("gitsigns").prev_hunk() end, { desc = "Previous unstaged git change" })
