@@ -1,82 +1,135 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
-DOTFILES=$HOME/dev/src/github.com/tysonmote/dotfiles
+DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-function banner() {
+banner() {
   echo "***"
   echo "*** $1"
   echo "***"
 }
 
-banner "Installing some basics"
+have() {
+  command -v "$1" >/dev/null 2>&1
+}
 
-xcode-select --install
-sudo /usr/sbin/DevToolsSecurity -enable
-sudo dscl . append /Groups/_developer GroupMembership $(whoami)
+link_path() {
+  local source_path="$1"
+  local target_path="$2"
+  mkdir -p "$(dirname "$target_path")"
+  ln -sfn "$source_path" "$target_path"
+}
 
-brew install git lua openssl python
+ensure_xcode_clt() {
+  banner "Installing Xcode Command Line Tools"
+  if xcode-select -p >/dev/null 2>&1; then
+    echo "Xcode Command Line Tools already installed."
+    return
+  fi
+  xcode-select --install || true
+  echo "Complete the Xcode Command Line Tools UI installer, then rerun this script."
+  exit 1
+}
 
-banner "Linking git config"
+ensure_homebrew() {
+  banner "Ensuring Homebrew is installed"
+  if have brew; then
+    echo "Homebrew already installed."
+  else
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  fi
 
-ln -s $DOTFILES/git/gitignore $HOME/.gitignore
-ln -s $DOTFILES/git/gitconfig $HOME/.gitconfig
+  if [ -x /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  elif [ -x /usr/local/bin/brew ]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+  else
+    echo "Homebrew install completed but brew was not found on PATH."
+    exit 1
+  fi
+}
 
-banner "Installing oh-my-zsh"
+install_formulae() {
+  local formulae=("$@")
+  local missing=()
+  local f
+  for f in "${formulae[@]}"; do
+    if ! brew list --formula "$f" >/dev/null 2>&1; then
+      missing+=("$f")
+    fi
+  done
+  if [ "${#missing[@]}" -gt 0 ]; then
+    brew install "${missing[@]}"
+  fi
+}
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+install_casks() {
+  local casks=("$@")
+  local missing=()
+  local c
+  for c in "${casks[@]}"; do
+    if ! brew list --cask "$c" >/dev/null 2>&1; then
+      missing+=("$c")
+    fi
+  done
+  if [ "${#missing[@]}" -gt 0 ]; then
+    brew install --cask "${missing[@]}"
+  fi
+}
 
-banner "Linking zsh config"
+ensure_oh_my_zsh() {
+  banner "Installing oh-my-zsh"
+  if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  else
+    echo "oh-my-zsh already installed."
+  fi
+}
 
-ln -s $DOTFILES/zsh/zshrc $HOME/.zshrc
-ln -s $DOTFILES/zsh/zshenv $HOME/.zshenv
-ln -s $DOTFILES/zsh/tyson.zsh-theme $HOME/.oh-my-zsh/themes/
+ensure_powerlevel10k() {
+  local p10k_dir="$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
+  if [ ! -d "$p10k_dir" ]; then
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$p10k_dir"
+  else
+    echo "powerlevel10k already installed."
+  fi
+}
 
-banner "Installing Go"
+configure_fzf() {
+  local fzf_install
+  fzf_install="$(brew --prefix)/opt/fzf/install"
+  if [ -x "$fzf_install" ]; then
+    "$fzf_install" --all --no-bash --no-fish
+  fi
+}
 
-brew install go delve
+ensure_xcode_clt
+ensure_homebrew
 
-banner "Installing Node.js"
-
-brew install n
-n latest
-
-banner "Configuring NeoVim / LunarVim"
-
-brew install neovim
-bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
-ln -s $DOTFILES/lvim $HOME/.config/lvim
+banner "Installing base packages"
+install_formulae git lua openssl python neovim go delve
 
 banner "Installing extras"
+install_formulae awscli bat btop ca-certificates cscope ctags diff-so-fancy fd fzf gh gnupg htop jq lazygit parallel pcre2 sqlite tree-sitter wget zellij direnv pyenv ripgrep
+install_casks ghostty
+configure_fzf
 
-brew install /
-	awscli /
-	bat /
-	btop /
-  ca-certificates /
-	cscope /
-	ctags /
-	diff-so-fancy /
-	fd /
-	fzf /
-  gh /
-  gnupg /
-	ghostty /
-	htop /
-	jq /
-  lazygit /
-	parallel /
-	pcre /
-	sqlite /
-  tree-sitter /
-	wget /
-	zellij
+ensure_oh_my_zsh
+banner "Installing powerlevel10k theme"
+ensure_powerlevel10k
 
-$(brew --prefix)/opt/fzf/install
+banner "Linking git config"
+link_path "$DOTFILES/git/gitignore" "$HOME/.gitignore"
+link_path "$DOTFILES/git/gitconfig" "$HOME/.gitconfig"
 
-banner "Linking configs"
+banner "Linking zsh config"
+link_path "$DOTFILES/zsh/zshrc" "$HOME/.zshrc"
+link_path "$DOTFILES/zsh/zshenv" "$HOME/.zshenv"
 
-ln -s $DOTFILES/ghostty $HOME/.config/ghostty
-ln -s $DOTFILES/nvim $HOME/.config/nvim
-ln -s $DOTFILES/zellij $HOME/.config/zellij
+banner "Linking app configs"
+link_path "$DOTFILES/ghostty" "$HOME/.config/ghostty"
+link_path "$DOTFILES/nvim" "$HOME/.config/nvim"
+link_path "$DOTFILES/zellij" "$HOME/.config/zellij"
+
+echo "Bootstrap complete."
