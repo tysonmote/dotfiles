@@ -36,16 +36,6 @@ alias gs='git status'
 
 alias kc='kubectl'
 
-# -- Python
-
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-
-# -- Docker
-
-alias dc="docker-compose -f docker-compose.yml"
-
 # -- Tab completion
 
 ZSH_COMPDUMP="$HOME/.zsh/cache/zcompdump"
@@ -65,15 +55,6 @@ export GPG_TTY=$(tty)
 # -- direnv
 
 (( $+commands[direnv] )) && eval "$(direnv hook zsh)"
-
-# -- Rippling
-
-export AWS_REGION=us-west-2
-export DEVELOPER_NAME=tysonmote
-export REMOTE_IP=10.201.8.109
-export REMOTE_PRIVATE_KEY_FILE="/Users/tyson/.ssh/id_ed25519"
-export SKIP_CHECK_VPN=true
-export USE_SSO=true
 
 # -- oh-my-zsh
 
