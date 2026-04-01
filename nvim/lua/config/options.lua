@@ -7,3 +7,6 @@ vim.opt.clipboard = ""
 vim.opt.foldenable = false
 vim.opt.foldcolumn = "0"
 vim.opt.foldmethod = "manual"
+
+-- Avoid "N fewer lines" / similar messages (Noice shows them as notifications)
+vim.opt.report = 10000

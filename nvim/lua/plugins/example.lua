@@ -1,4 +1,17 @@
 return {
+  -- If you enable LazyVim `lang.markdown` (render-markdown.nvim), keep link URLs visible while rendered.
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    optional = true,
+    opts = {
+      win_options = {
+        conceallevel = {
+          rendered = 0,
+        },
+      },
+    },
+  },
+
   {
     "folke/snacks.nvim",
     opts = {
@@ -36,6 +49,8 @@ return {
       colorscheme = "nordbones",
     },
   },
+
+  { "tpope/vim-surround", event = "VeryLazy" },
 
   -- change some telescope options and a keymap to browse plugin files
   {
