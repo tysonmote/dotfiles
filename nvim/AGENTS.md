@@ -1,0 +1,1 @@
+This directory holds my NeoVim configuration. This configuration uses LazyVim. Use the doumentation available at https://www.lazyvim.org/ to understand configuration options, plugins, keymaps, and more.
