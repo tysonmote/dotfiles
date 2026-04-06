@@ -5,4 +5,8 @@ return {
       colorscheme = "nordbones",
     },
   },
+  {
+    "RRethy/vim-illuminate",
+    enabled = false,
+  },
 }
