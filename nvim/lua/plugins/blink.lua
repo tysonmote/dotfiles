@@ -6,13 +6,15 @@ return {
       -- Replace LazyVim default { "lsp", "path", "snippets", "buffer" }; opts_extend would merge arrays.
       opts.sources.default = { "lsp", "buffer" }
 
+      opts.keymap = opts.keymap or {}
+      opts.keymap["<C-space>"] = { "show" }
+      -- LazyVim uses preset "enter" (<CR> accepts). Use Tab to accept; Enter stays a normal newline.
+      opts.keymap["<CR>"] = { "fallback" }
+      opts.keymap["<Tab>"] = { "select_and_accept", "snippet_forward", "fallback" }
+
       opts.completion = opts.completion or {}
-      -- Delay uses context.timestamp so each keystroke resets the wait (debounced idle).
       opts.completion.menu = vim.tbl_deep_extend("force", opts.completion.menu or {}, {
-        auto_show = function(_, items)
-          return #items > 0
-        end,
-        auto_show_delay_ms = 250,
+        auto_show = false,
       })
 
       return opts
