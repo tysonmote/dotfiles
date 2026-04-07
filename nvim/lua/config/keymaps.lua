@@ -15,6 +15,8 @@ vim.keymap.set("n", "<M-l>", "<C-w>l", { desc = "Go to Right Window", remap = tr
 vim.keymap.set("n", "<Tab>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 vim.keymap.set("n", "<S-Tab>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 
+vim.keymap.set("x", "r", '"_dP', { desc = "Replace selection without yanking" })
+
 vim.keymap.set({ "n", "i", "t" }, "<C-'>", function()
   Snacks.terminal(nil, { cwd = LazyVim.root(), win = { position = "float" } })
 end, { desc = "Toggle Floating Terminal (Root Dir)" })
