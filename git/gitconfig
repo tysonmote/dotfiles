@@ -1,7 +1,7 @@
 [user]
 	name = Tyson Mote
-	email = tyson@bufio.net
-	signingkey = 0A26C6E7C09FC49D
+	email = tyson.mote@anysphere.co
+	signingkey = BCE7B77EFDF58489
 
 [core]
 	# Global ignores
