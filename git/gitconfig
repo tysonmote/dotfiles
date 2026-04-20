@@ -85,5 +85,8 @@
 [tag]
 	sort = -creatordate
 
+# Use SSH for GitHub (HTTPS and git:// URLs are rewritten at clone/fetch time).
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+	insteadOf = https://github.com
+	insteadOf = git://github.com/
