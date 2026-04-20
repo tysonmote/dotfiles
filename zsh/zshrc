@@ -82,3 +82,7 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclu
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # zprof
+
+### AnySphere Setup ###
+source "/Users/tyson/dev/src/github.com/anysphere/everysphere/scripts/setup/rcfiles/zshrc"
+### End AnySphere Setup ###
