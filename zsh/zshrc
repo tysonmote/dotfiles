@@ -25,12 +25,6 @@ SAVEHIST=5000
 # additional completions
 fpath+=$HOME/.zfunc
 
-# -- Homebrew
-
-if [[ -x /opt/homebrew/bin/brew ]]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
 # -- git
 
 alias gco='git checkout'

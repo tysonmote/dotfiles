@@ -1,0 +1,2 @@
+# zsh login shells read ~/.zprofile (not ~/.profile). Source the shared login PATH.
+emulate sh -c 'source "${HOME}/.profile"'

@@ -126,6 +126,8 @@ link_path "$DOTFILES/git/gitconfig" "$HOME/.gitconfig"
 banner "Linking zsh config"
 link_path "$DOTFILES/zsh/zshrc" "$HOME/.zshrc"
 link_path "$DOTFILES/zsh/zshenv" "$HOME/.zshenv"
+link_path "$DOTFILES/zsh/profile" "$HOME/.profile"
+link_path "$DOTFILES/zsh/zprofile" "$HOME/.zprofile"
 
 banner "Linking app configs"
 link_path "$DOTFILES/ghostty" "$HOME/.config/ghostty"
