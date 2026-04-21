@@ -73,6 +73,50 @@ zstyle ':omz:update' mode disabled # Don't check for updates
 plugins=(golang pyenv rust)
 source $ZSH/oh-my-zsh.sh
 
+# -- g: cd to ~/dev/src/github.com/<org>/<repo> by repo name
+
+_GH_SRC_ROOT="${HOME}/dev/src/github.com"
+
+g() {
+  emulate -L zsh
+  local name="$1"
+  if [[ -z "$name" ]]; then
+    print -u2 "usage: g <repo>"
+    return 1
+  fi
+  local -a matches
+  matches=(${_GH_SRC_ROOT}/*/${name}(/N))
+  local -a repos
+  local d
+  for d in $matches; do
+    [[ -d "$d/.git" ]] && repos+=("$d")
+  done
+  case ${#repos} in
+    0)
+      print -u2 "g: no git repo named ${(q)name} under ${_GH_SRC_ROOT}"
+      return 1
+      ;;
+    1) cd "$repos[1]" ;;
+    *)
+      print -u2 "g: multiple repos named ${(q)name}:"
+      print -l -u2 "${repos[@]}"
+      return 1
+      ;;
+  esac
+}
+
+_g() {
+  local -a repos
+  local d
+  for d in ${_GH_SRC_ROOT}/*/*(/N); do
+    [[ -d "$d/.git" ]] || continue
+    repos+=(${d:t})
+  done
+  repos=(${(u)${(o)repos}})
+  compadd "$@" -a repos
+}
+compdef _g g
+
 # -- fzf
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
