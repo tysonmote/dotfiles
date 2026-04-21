@@ -47,3 +47,10 @@ fi
 #
 
 export PATH="$HOME/bin/zig:$PATH"
+
+#
+# Local overrides (not tracked in git). Put machine-specific config and
+# sensitive env vars (API keys, tokens, etc.) in ~/.zshenv.local.
+#
+
+[[ -r "$HOME/.zshenv.local" ]] && source "$HOME/.zshenv.local"
