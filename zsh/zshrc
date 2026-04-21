@@ -20,8 +20,10 @@ fi
 # emacs-style keybindings
 bindkey -e
 # long history
-HISTSIZE=1000
-SAVEHIST=5000
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=50000
+SAVEHIST=50000
+setopt SHARE_HISTORY HIST_IGNORE_DUPS HIST_IGNORE_SPACE HIST_REDUCE_BLANKS
 # additional completions
 fpath+=$HOME/.zfunc
 
@@ -40,8 +42,6 @@ alias kc='kubectl'
 ZSH_COMPDUMP="$HOME/.zsh/cache/zcompdump"
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$HOME/.zsh/cache"
-# Ensure cache directory exists before compinit
-mkdir -p "$HOME/.zsh/cache"
 # Ensure $fpath is initialized before calling compinit
 autoload -Uz compinit
 # Use the -C option to enable caching
@@ -49,7 +49,7 @@ compinit -C
 
 # -- GPG
 
-export GPG_TTY=$(tty)
+export GPG_TTY=${TTY:-$(tty)}
 
 # -- direnv
 
