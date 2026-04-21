@@ -20,7 +20,7 @@ This repo contains some of the common programs and configurations I use when boo
 - Installs Oh My Zsh and the `powerlevel10k` theme if missing.
 - Creates symlinks for managed config files and directories:
   - `~/.gitconfig`, `~/.gitignore`
-  - `~/.zshrc`, `~/.zshenv`, `~/.profile`, `~/.zprofile`
+  - `~/.zshrc`, `~/.zshenv`
   - `~/.config/nvim`, `~/.config/ghostty`, `~/.config/zellij`
 
 The script is intended to be idempotent and safe to rerun.

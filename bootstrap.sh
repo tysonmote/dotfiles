@@ -111,7 +111,7 @@ banner "Installing base packages"
 install_formulae git lua openssl python neovim go delve
 
 banner "Installing extras"
-install_formulae awscli bat btop ca-certificates cscope ctags diff-so-fancy fd fzf gh gnupg htop jq lazygit parallel pcre2 sqlite tree-sitter wget zellij direnv pyenv ripgrep
+install_formulae awscli bat btop ca-certificates cscope ctags diff-so-fancy fd fzf gh gnupg htop jq lazygit parallel pcre2 sqlite tree-sitter wget zellij direnv ripgrep
 install_casks ghostty
 configure_fzf
 
@@ -126,8 +126,6 @@ link_path "$DOTFILES/git/gitconfig" "$HOME/.gitconfig"
 banner "Linking zsh config"
 link_path "$DOTFILES/zsh/zshrc" "$HOME/.zshrc"
 link_path "$DOTFILES/zsh/zshenv" "$HOME/.zshenv"
-link_path "$DOTFILES/zsh/profile" "$HOME/.profile"
-link_path "$DOTFILES/zsh/zprofile" "$HOME/.zprofile"
 
 banner "Linking app configs"
 link_path "$DOTFILES/ghostty" "$HOME/.config/ghostty"

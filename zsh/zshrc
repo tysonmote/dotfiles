@@ -64,7 +64,7 @@ ENABLE_CORRECTION="false"
 DISABLE_MAGIC_FUNCTIONS=true # Don't escape pasted input
 SHOW_AWS_PROMPT=false # Don't put AWS info in $RPROMPT
 zstyle ':omz:update' mode disabled # Don't check for updates
-plugins=(golang pyenv rust)
+plugins=(golang rust)
 source $ZSH/oh-my-zsh.sh
 
 # -- g: cd to ~/dev/src/github.com/<org>/<repo> by repo name

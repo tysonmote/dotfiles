@@ -1,7 +1,7 @@
 # .zshenv is always sourced (every zsh, including scripts).
 
 #
-# Homebrew (before zprofile/pyenv so login PATH keeps pyenv shims before brew bin)
+# Homebrew
 #
 
 if [[ -x /opt/homebrew/bin/brew ]]; then
