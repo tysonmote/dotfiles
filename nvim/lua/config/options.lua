@@ -4,6 +4,9 @@
 
 vim.opt.clipboard = ""
 
+-- Never hide syntax characters (markdown `*`, `_`, link brackets, etc.).
+vim.opt.conceallevel = 0
+
 vim.opt.foldenable = false
 vim.opt.foldcolumn = "0"
 vim.opt.foldmethod = "manual"
