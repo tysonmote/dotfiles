@@ -8,9 +8,6 @@ return {
 
       opts.keymap = opts.keymap or {}
       opts.keymap["<C-space>"] = { "show" }
-      -- LazyVim uses preset "enter" (<CR> accepts). Use Tab to accept; Enter stays a normal newline.
-      opts.keymap["<CR>"] = { "fallback" }
-      opts.keymap["<Tab>"] = { "select_and_accept", "snippet_forward", "fallback" }
 
       opts.completion = opts.completion or {}
       opts.completion.menu = vim.tbl_deep_extend("force", opts.completion.menu or {}, {

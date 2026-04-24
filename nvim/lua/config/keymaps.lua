@@ -14,9 +14,21 @@ vim.keymap.set("n", "<M-l>", "<C-w>l", { desc = "Go to Right Window", remap = tr
 
 vim.keymap.set("n", "<Tab>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 vim.keymap.set("n", "<S-Tab>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
+vim.keymap.set("n", "*", "*N", { desc = "Highlight word without jumping" })
 
 vim.keymap.set("x", "r", '"_dP', { desc = "Replace selection without yanking" })
 
+-- Toggle the floating terminal. When invoked from inside a terminal buffer we
+-- close the window instead of calling Snacks.terminal() again: Snacks keys
+-- terminals by cwd, and `cd`-ing inside the shell triggers an OSC 7 update
+-- that renames the term:// buffer, which would spawn a brand-new terminal.
+-- We anchor to nvim's startup cwd so the same terminal is reused regardless
+-- of which file is currently focused.
+local startup_cwd = vim.fn.getcwd()
 vim.keymap.set({ "n", "i", "t" }, "<C-'>", function()
-  Snacks.terminal(nil, { cwd = LazyVim.root(), win = { position = "float" } })
-end, { desc = "Toggle Floating Terminal (Root Dir)" })
+  if vim.bo.buftype == "terminal" then
+    vim.cmd.close()
+    return
+  end
+  Snacks.terminal(nil, { cwd = startup_cwd, win = { position = "float" } })
+end, { desc = "Toggle Floating Terminal (CWD)" })

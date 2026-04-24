@@ -1,6 +1,16 @@
 # .zshenv is always sourced
 
 #
+# Homebrew
+#
+
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -x /usr/local/bin/brew ]]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+fi
+
+#
 # Path
 #
 
@@ -22,7 +32,7 @@ export EDITOR="nvim"
 
 export GOPATH=$HOME/dev
 export PATH=$GOPATH/bin:$PATH
-export PATH=/usr/local/opt/go/libexec/bin:$PATH
+[[ -d /opt/homebrew/opt/go/libexec/bin ]] && export PATH=/opt/homebrew/opt/go/libexec/bin:$PATH
 
 #
 # Rust
@@ -37,3 +47,10 @@ fi
 #
 
 export PATH="$HOME/bin/zig:$PATH"
+
+#
+# Local overrides (not tracked in git). Put machine-specific config and
+# sensitive env vars (API keys, tokens, etc.) in ~/.zshenv.local.
+#
+
+[[ -r "$HOME/.zshenv.local" ]] && source "$HOME/.zshenv.local"

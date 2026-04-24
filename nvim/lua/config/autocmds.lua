@@ -17,6 +17,8 @@ vim.api.nvim_create_autocmd("FileType", {
     -- (lists, blockquotes, formatlistpat).
     vim.opt_local.formatexpr = ""
     vim.opt_local.textwidth = 80
+    -- Prettier rewraps prose and reflows lists, which conflicts with how I edit markdown.
+    vim.b.autoformat = false
   end,
 })
 
