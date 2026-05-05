@@ -3,6 +3,7 @@
 -- Add any additional options here
 
 vim.opt.clipboard = ""
+vim.opt.list = false
 
 -- Never hide syntax characters (markdown `*`, `_`, link brackets, etc.).
 vim.opt.conceallevel = 0
